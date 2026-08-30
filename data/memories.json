@@ -1,1 +1,32 @@
-
+[
+    {
+        "date": "12.08.2026",
+        "title": "The Beginning",
+        "description": "The date that became the beginning of our little world.",
+        "image": ""
+    },
+    {
+        "date": "A MOMENT",
+        "title": "The First Memory",
+        "description": "Some moments are small when they happen, but somehow become everything later.",
+        "image": ""
+    },
+    {
+        "date": "A LITTLE THING",
+        "title": "The Laughs",
+        "description": "The random conversations, stupid jokes and moments that somehow became special.",
+        "image": ""
+    },
+    {
+        "date": "ONE OF THOSE DAYS",
+        "title": "A Day To Remember",
+        "description": "Another little piece of our story, saved here among the stars.",
+        "image": ""
+    },
+    {
+        "date": "STILL UNWRITTEN",
+        "title": "More To Come",
+        "description": "There are memories we haven't made yet.",
+        "image": ""
+    }
+]
