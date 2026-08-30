@@ -1,6 +1,7 @@
 /* =========================================
    OUR LITTLE WORLD
    V5 — MAIN CSS
+   LIVING UNIVERSE
 ========================================= */
 
 
@@ -36,11 +37,20 @@ body {
     overflow: hidden;
 
     -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
     text-rendering: optimizeLegibility;
 }
 
-button {
+button,
+input,
+textarea,
+select {
     font: inherit;
+}
+
+button {
+    -webkit-tap-highlight-color: transparent;
 }
 
 
@@ -57,6 +67,8 @@ button {
     overflow: hidden;
 
     background: #030305;
+
+    isolation: isolate;
 }
 
 
@@ -77,6 +89,35 @@ button {
     z-index: 1;
 
     overflow: hidden;
+
+    contain: strict;
+}
+
+
+/* =========================================
+   DYNAMIC STAR
+========================================= */
+
+.universe-star {
+    position: absolute;
+
+    width: 2px;
+    height: 2px;
+
+    border-radius: 50%;
+
+    background: #ffffff;
+
+    pointer-events: none;
+
+    transform-origin: center;
+
+    box-shadow:
+        0 0 4px rgba(255,255,255,0.45);
+
+    will-change:
+        opacity,
+        transform;
 }
 
 
@@ -96,16 +137,21 @@ button {
     background:
         radial-gradient(
             circle at 50% 50%,
-            rgba(90, 80, 120, 0.08),
+            rgba(90, 80, 120, 0.09),
             transparent 35%
         );
 
     filter: blur(35px);
 
     animation:
-        ambientBreathing 10s
+        ambientBreathing
+        10s
         ease-in-out
         infinite;
+
+    will-change:
+        opacity,
+        transform;
 }
 
 
@@ -155,7 +201,8 @@ button {
 
     z-index: 5;
 
-    width: min(900px, 90%);
+    width:
+        min(900px, 90%);
 
     text-align: center;
 }
@@ -250,7 +297,8 @@ button {
 
     z-index: 5;
 
-    width: min(900px, 90%);
+    width:
+        min(900px, 90%);
 
     text-align: center;
 }
@@ -353,7 +401,8 @@ button {
 }
 
 #enter-world:hover {
-    transform: translateY(-4px);
+    transform:
+        translateY(-4px);
 
     background:
         rgba(255, 255, 255, 0.08);
@@ -364,6 +413,12 @@ button {
     box-shadow:
         0 10px 35px
         rgba(255,255,255,0.08);
+}
+
+#enter-world:active {
+    transform:
+        translateY(-1px)
+        scale(0.98);
 }
 
 #enter-world:focus-visible {
@@ -399,6 +454,61 @@ button {
 
     transition:
         transform 0.2s ease-out;
+
+    isolation: isolate;
+}
+
+
+/* =========================================
+   UNIVERSE ATMOSPHERE
+========================================= */
+
+.universe::before {
+    content: "";
+
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    width: min(720px, 75vw);
+    height: min(720px, 75vw);
+
+    transform:
+        translate(-50%, -50%);
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255,255,255,0.035),
+            transparent 68%
+        );
+
+    pointer-events: none;
+
+    z-index: 0;
+}
+
+.universe::after {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    background:
+        radial-gradient(
+            ellipse at center,
+            transparent 35%,
+            rgba(0,0,0,0.18) 72%,
+            rgba(0,0,0,0.45) 100%
+        );
+
+    z-index: 0;
 }
 
 
@@ -422,6 +532,8 @@ button {
 
     transform:
         translate(-50%, -50%);
+
+    z-index: 1;
 }
 
 .orbit-one {
@@ -429,7 +541,8 @@ button {
     height: 420px;
 
     animation:
-        orbitDrift 24s
+        orbitDrift
+        24s
         linear
         infinite;
 }
@@ -441,7 +554,8 @@ button {
     opacity: 0.65;
 
     animation:
-        orbitDriftReverse 34s
+        orbitDriftReverse
+        34s
         linear
         infinite;
 }
@@ -453,7 +567,8 @@ button {
     opacity: 0.35;
 
     animation:
-        orbitDrift 46s
+        orbitDrift
+        46s
         linear
         infinite;
 }
@@ -568,13 +683,29 @@ button {
 
     transition:
         transform 0.5s
-        cubic-bezier(.16,1,.3,1);
+        cubic-bezier(.16,1,.3,1),
+        filter 0.5s ease;
 }
 
 .constellation:hover,
 .constellation:focus-visible {
-    transform: scale(1.05);
+    transform:
+        scale(1.05);
 }
+
+.constellation:active {
+    transform:
+        scale(0.97);
+}
+
+.constellation:focus-visible {
+    outline: none;
+}
+
+
+/* =========================================
+   NODE STAR
+========================================= */
 
 .node-star {
     position: relative;
@@ -588,6 +719,23 @@ button {
         text-shadow 0.5s ease;
 }
 
+.constellation:hover .node-star,
+.constellation:focus-visible .node-star {
+    transform:
+        scale(1.35);
+
+    text-shadow:
+        0 0 15px
+        rgba(255, 255, 255, 0.9),
+        0 0 35px
+        rgba(255, 255, 255, 0.4);
+}
+
+
+/* =========================================
+   NODE GLOW
+========================================= */
+
 .node-glow {
     position: absolute;
 
@@ -599,54 +747,20 @@ button {
     background:
         rgba(255, 255, 255, 0.12);
 
-    filter: blur(8px);
+    filter:
+        blur(8px);
 
     transition:
         transform 0.5s ease,
         opacity 0.5s ease;
 }
 
-.constellation:hover .node-star,
-.constellation:focus-visible .node-star {
-    transform: scale(1.35);
-
-    text-shadow:
-        0 0 15px
-        rgba(255, 255, 255, 0.9),
-        0 0 35px
-        rgba(255, 255, 255, 0.4);
-}
-
 .constellation:hover .node-glow,
 .constellation:focus-visible .node-glow {
-    transform: scale(3);
+    transform:
+        scale(3);
 
     opacity: 0.8;
-}
-
-
-/* =========================================
-   CONSTELLATION POSITIONS
-========================================= */
-
-.constellation-letter {
-    left: 16%;
-    top: 29%;
-}
-
-.constellation-memories {
-    right: 16%;
-    top: 28%;
-}
-
-.constellation-music {
-    left: 19%;
-    bottom: 21%;
-}
-
-.constellation-future {
-    right: 18%;
-    bottom: 20%;
 }
 
 
@@ -685,7 +799,33 @@ button {
 .constellation:focus-visible .node-label {
     opacity: 0.9;
 
-    transform: translateY(4px);
+    transform:
+        translateY(4px);
+}
+
+
+/* =========================================
+   CONSTELLATION POSITIONS
+========================================= */
+
+.constellation-letter {
+    left: 16%;
+    top: 29%;
+}
+
+.constellation-memories {
+    right: 16%;
+    top: 28%;
+}
+
+.constellation-music {
+    left: 19%;
+    bottom: 21%;
+}
+
+.constellation-future {
+    right: 18%;
+    bottom: 20%;
 }
 
 
@@ -715,13 +855,19 @@ button {
     z-index: 4;
 }
 
+
+/* =========================================
+   CONSTELLATION LINE POSITIONS
+========================================= */
+
 .line-one {
     width: 28%;
 
     left: 24%;
     top: 36%;
 
-    transform: rotate(14deg);
+    transform:
+        rotate(14deg);
 }
 
 .line-two {
@@ -730,7 +876,8 @@ button {
     right: 24%;
     top: 36%;
 
-    transform: rotate(-14deg);
+    transform:
+        rotate(-14deg);
 }
 
 .line-three {
@@ -739,7 +886,8 @@ button {
     left: 25%;
     bottom: 31%;
 
-    transform: rotate(-14deg);
+    transform:
+        rotate(-14deg);
 }
 
 .line-four {
@@ -748,7 +896,8 @@ button {
     right: 25%;
     bottom: 31%;
 
-    transform: rotate(14deg);
+    transform:
+        rotate(14deg);
 }
 
 
@@ -775,6 +924,10 @@ button {
     letter-spacing: 0.45rem;
 
     opacity: 0.22;
+
+    white-space: nowrap;
+
+    z-index: 20;
 }
 
 
@@ -810,6 +963,8 @@ button {
     text-align: center;
 
     scrollbar-width: thin;
+
+    z-index: 5;
 }
 
 .chapter-eyebrow {
@@ -904,6 +1059,14 @@ button {
 
     transform:
         translateX(-4px);
+}
+
+.chapter-back:focus-visible {
+    outline:
+        1px solid
+        rgba(255,255,255,0.55);
+
+    outline-offset: 6px;
 }
 
 
@@ -1111,6 +1274,9 @@ button {
 
     -webkit-overflow-scrolling:
         touch;
+
+    overscroll-behavior:
+        contain;
 }
 
 .memory-back {
@@ -1152,6 +1318,19 @@ button {
     transform:
         translateX(-4px);
 }
+
+.memory-back:focus-visible {
+    outline:
+        1px solid
+        rgba(255,255,255,0.55);
+
+    outline-offset: 6px;
+}
+
+
+/* =========================================
+   MEMORY HEADING
+========================================= */
 
 .memory-heading {
     position: relative;
@@ -1268,6 +1447,23 @@ button {
         box-shadow 0.5s ease;
 }
 
+.memory-card::before {
+    content: "✦";
+
+    position: absolute;
+
+    top: 18px;
+    right: 20px;
+
+    font-size: 0.75rem;
+
+    opacity: 0.35;
+
+    transition:
+        transform 0.5s ease,
+        opacity 0.5s ease;
+}
+
 .memory-card:hover,
 .memory-card:focus-visible {
     transform:
@@ -1280,6 +1476,14 @@ button {
     box-shadow:
         0 25px 70px
         rgba(0, 0, 0, 0.5);
+}
+
+.memory-card:hover::before,
+.memory-card:focus-visible::before {
+    transform:
+        scale(1.7);
+
+    opacity: 0.8;
 }
 
 .memory-card:focus-visible {
@@ -1310,9 +1514,11 @@ button {
             rgba(0, 0, 0, 0.25)
         );
 
-    background-size: cover;
+    background-size:
+        cover;
 
-    background-position: center;
+    background-position:
+        center;
 
     display: flex;
 
@@ -1330,7 +1536,8 @@ button {
     opacity: 0.25;
 
     animation:
-        memoryPulse 4s
+        memoryPulse
+        4s
         ease-in-out
         infinite;
 }
@@ -1368,29 +1575,10 @@ button {
     opacity: 0.42;
 }
 
-.memory-card::before {
-    content: "✦";
 
-    position: absolute;
-
-    top: 18px;
-    right: 20px;
-
-    font-size: 0.75rem;
-
-    opacity: 0.35;
-
-    transition:
-        transform 0.5s ease,
-        opacity 0.5s ease;
-}
-
-.memory-card:hover::before {
-    transform:
-        scale(1.7);
-
-    opacity: 0.8;
-}
+/* =========================================
+   MEMORY FOOTER
+========================================= */
 
 .memory-footer {
     position: relative;
@@ -1429,6 +1617,8 @@ button {
 
     align-items: center;
     justify-content: center;
+
+    padding: 20px;
 }
 
 .viewer-backdrop {
@@ -1472,6 +1662,12 @@ button {
     box-shadow:
         0 40px 120px
         rgba(0, 0, 0, 0.8);
+
+    animation:
+        viewerCardAppear
+        .5s
+        cubic-bezier(.16,1,.3,1)
+        forwards;
 }
 
 .viewer-image {
@@ -1486,9 +1682,11 @@ button {
             rgba(0, 0, 0, 0.4)
         );
 
-    background-size: cover;
+    background-size:
+        cover;
 
-    background-position: center;
+    background-position:
+        center;
 
     display: flex;
 
@@ -1566,12 +1764,24 @@ button {
     opacity: 0.5;
 
     transition:
-        opacity 0.3s ease;
+        opacity 0.3s ease,
+        transform 0.3s ease;
 }
 
 .viewer-close:hover,
 .viewer-close:focus-visible {
     opacity: 1;
+
+    transform:
+        scale(1.08);
+}
+
+.viewer-close:focus-visible {
+    outline:
+        1px solid
+        rgba(255,255,255,0.55);
+
+    outline-offset: 3px;
 }
 
 
@@ -1590,6 +1800,8 @@ button {
 
     align-items: center;
     justify-content: center;
+
+    padding: 20px;
 }
 
 .modal-backdrop {
@@ -1601,6 +1813,9 @@ button {
         rgba(0, 0, 0, 0.75);
 
     backdrop-filter:
+        blur(12px);
+
+    -webkit-backdrop-filter:
         blur(12px);
 }
 
@@ -1639,6 +1854,9 @@ button {
     top: 18px;
     right: 22px;
 
+    width: 40px;
+    height: 40px;
+
     border: 0;
 
     background: transparent;
@@ -1652,10 +1870,26 @@ button {
     cursor: pointer;
 
     opacity: 0.5;
+
+    transition:
+        opacity 0.3s ease,
+        transform 0.3s ease;
 }
 
-.close-modal:hover {
+.close-modal:hover,
+.close-modal:focus-visible {
     opacity: 1;
+
+    transform:
+        scale(1.08);
+}
+
+.close-modal:focus-visible {
+    outline:
+        1px solid
+        rgba(255,255,255,0.55);
+
+    outline-offset: 3px;
 }
 
 .modal-eyebrow {
@@ -1717,6 +1951,31 @@ button {
 
 
 /* =========================================
+   VIEWER ANIMATION
+========================================= */
+
+@keyframes viewerCardAppear {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(20px)
+            scale(.97);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+
+}
+
+
+/* =========================================
    SCROLLBARS
 ========================================= */
 
@@ -1739,7 +1998,16 @@ button {
     background:
         rgba(255,255,255,0.15);
 
-    border-radius: 10px;
+    border-radius:
+        10px;
+}
+
+.memory-universe,
+.viewer-card,
+.chapter-content {
+    scrollbar-color:
+        rgba(255,255,255,0.15)
+        rgba(255,255,255,0.02);
 }
 
 
@@ -1827,6 +2095,34 @@ button {
 
 
 /* =========================================
+   TOUCH DEVICES
+========================================= */
+
+@media (hover: none) {
+
+    .constellation:hover {
+        transform: none;
+    }
+
+    .memory-card:hover {
+        transform: none;
+
+        border-color:
+            rgba(255,255,255,0.09);
+
+        box-shadow: none;
+    }
+
+    .memory-card:hover::before {
+        transform: none;
+
+        opacity: 0.35;
+    }
+
+}
+
+
+/* =========================================
    REDUCED MOTION
 ========================================= */
 
@@ -1835,10 +2131,18 @@ button {
     *,
     *::before,
     *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        scroll-behavior: auto !important;
-        transition-duration: 0.01ms !important;
+
+        animation-duration:
+            0.01ms !important;
+
+        animation-iteration-count:
+            1 !important;
+
+        scroll-behavior:
+            auto !important;
+
+        transition-duration:
+            0.01ms !important;
     }
 
 }
