@@ -13,15 +13,30 @@ const LETTER_CONFIG = {
 
     chaseSteps: 5,
 
-    chaseDuration: 5200,
-
     chaseMessage:
         "Some words are worth finding.",
 
     finalMessage:
         "And some are worth keeping.",
 
-    typingSpeed: 28
+    /*
+       Delay between the chase ending
+       and the actual letter reveal.
+    */
+    chaseFinishDelay: 1000,
+
+    /*
+       Delay between the chase fading
+       and restoring the letter.
+    */
+    letterRevealDelay: 650,
+
+    /*
+       Paragraph reveal timing.
+    */
+    paragraphDelay: 750,
+
+    paragraphAnimationDelay: 500
 
 };
 
@@ -36,11 +51,13 @@ const letterState = {
 
     chasing: false,
 
+    revealing: false,
+
     currentStep: 0,
 
-    chaseTimer: null,
+    starElement: null,
 
-    starElement: null
+    chaseElement: null
 
 };
 
@@ -50,11 +67,20 @@ const letterState = {
 ========================================= */
 
 function getLetterChapter() {
-    return document.getElementById("letter-chapter");
+
+    return document.getElementById(
+        "letter-chapter"
+    );
+
 }
 
+
 function getWorld() {
-    return document.getElementById("world");
+
+    return document.getElementById(
+        "world"
+    );
+
 }
 
 
@@ -64,16 +90,56 @@ function getWorld() {
 
 function openLetter() {
 
-    const chapter = getLetterChapter();
+    const chapter =
+        getLetterChapter();
 
     if (!chapter) return;
 
+
+    /*
+       If the letter is already open,
+       don't create another experience.
+    */
+
+    if (letterState.active) {
+        return;
+    }
+
+
     letterState.active = true;
+
+    letterState.chasing = false;
+
+    letterState.revealing = false;
+
     letterState.currentStep = 0;
 
-    chapter.classList.remove("hidden");
 
-    document.body.classList.add("letter-active");
+    /*
+       Make sure the previous experience
+       is completely reset.
+    */
+
+    resetLetter();
+
+
+    /*
+       Show the Letter chapter.
+    */
+
+    chapter.classList.remove(
+        "hidden"
+    );
+
+
+    document.body.classList.add(
+        "letter-active"
+    );
+
+
+    /*
+       Start the V5 letter chase.
+    */
 
     startLetterChase();
 
@@ -86,19 +152,41 @@ function openLetter() {
 
 function closeLetter() {
 
+    const chapter =
+        getLetterChapter();
+
     stopLetterChase();
 
-    const chapter = getLetterChapter();
+
+    /*
+       Hide chapter.
+    */
 
     if (chapter) {
-        chapter.classList.add("hidden");
+
+        chapter.classList.add(
+            "hidden"
+        );
+
     }
 
-    document.body.classList.remove("letter-active");
+
+    document.body.classList.remove(
+        "letter-active"
+    );
+
 
     letterState.active = false;
+
     letterState.chasing = false;
+
+    letterState.revealing = false;
+
     letterState.currentStep = 0;
+
+    letterState.starElement = null;
+
+    letterState.chaseElement = null;
 
 }
 
@@ -109,12 +197,37 @@ function closeLetter() {
 
 function startLetterChase() {
 
-    const chapter = getLetterChapter();
+    const chapter =
+        getLetterChapter();
 
     if (!chapter) return;
 
+
+    /*
+       Always clean an old chase first.
+    */
+
+    removeLetterChase();
+
+
     letterState.chasing = true;
+
+    letterState.revealing = false;
+
     letterState.currentStep = 0;
+
+
+    /*
+       Restore the original letter
+       before hiding it again.
+    */
+
+    restoreOriginalLetter();
+
+
+    /*
+       Build the interactive chase.
+    */
 
     buildLetterChase();
 
@@ -127,48 +240,45 @@ function startLetterChase() {
 
 function buildLetterChase() {
 
-    const chapter = getLetterChapter();
+    const chapter =
+        getLetterChapter();
 
     if (!chapter) return;
 
+
     const content =
-        chapter.querySelector(".letter-content");
+        chapter.querySelector(
+            ".letter-content"
+        );
 
     if (!content) return;
 
 
     /*
-       Preserve the original letter.
-
-       We hide it temporarily while
-       the chase is happening.
+       Hide the original Letter content
+       while the chase is active.
     */
 
-    const originalChildren = [
-        ...content.children
-    ];
-
-    originalChildren.forEach(element => {
-
-        if (
-            !element.classList.contains(
-                "letter-chase"
-            )
-        ) {
-            element.dataset.letterOriginal =
-                element.style.display;
-
-            element.style.display = "none";
-        }
-
-    });
+    hideOriginalLetter(
+        content
+    );
 
 
-    const chase = document.createElement("div");
+    /*
+       Create chase container.
+    */
 
-    chase.className = "letter-chase";
+    const chase =
+        document.createElement(
+            "div"
+        );
+
+    chase.className =
+        "letter-chase";
+
 
     chase.innerHTML = `
+
         <p class="letter-chase-eyebrow">
             BEFORE THE WORDS
         </p>
@@ -189,13 +299,25 @@ function buildLetterChase() {
             ${LETTER_CONFIG.chaseMessage}
         </p>
 
-        <p class="letter-chase-progress">
+        <p
+            class="letter-chase-progress"
+            aria-live="polite"
+        >
             0 / ${LETTER_CONFIG.chaseSteps}
         </p>
+
     `;
 
 
     content.prepend(chase);
+
+
+    /*
+       Store references.
+    */
+
+    letterState.chaseElement =
+        chase;
 
 
     letterState.starElement =
@@ -204,7 +326,16 @@ function buildLetterChase() {
         );
 
 
+    /*
+       Position first star.
+    */
+
     positionChaseStar();
+
+
+    /*
+       Animate chase entrance.
+    */
 
     requestAnimationFrame(() => {
 
@@ -215,10 +346,165 @@ function buildLetterChase() {
     });
 
 
-    letterState.starElement.addEventListener(
-        "click",
-        handleChaseStar
-    );
+    /*
+       Attach listener.
+    */
+
+    if (letterState.starElement) {
+
+        letterState.starElement.addEventListener(
+            "click",
+            handleChaseStar
+        );
+
+    }
+
+}
+
+
+/* =========================================
+   HIDE ORIGINAL LETTER
+========================================= */
+
+function hideOriginalLetter(
+    content
+) {
+
+    [
+        ...content.children
+    ].forEach(element => {
+
+        if (
+            element.classList.contains(
+                "letter-chase"
+            )
+        ) {
+            return;
+        }
+
+
+        /*
+           Save the original display
+           value only once.
+        */
+
+        if (
+            !Object.prototype.hasOwnProperty.call(
+                element.dataset,
+                "letterOriginalDisplay"
+            )
+        ) {
+
+            element.dataset
+                .letterOriginalDisplay =
+                element.style.display;
+
+        }
+
+
+        element.style.display =
+            "none";
+
+    });
+
+}
+
+
+/* =========================================
+   RESTORE ORIGINAL LETTER
+========================================= */
+
+function restoreOriginalLetter() {
+
+    const chapter =
+        getLetterChapter();
+
+    if (!chapter) return;
+
+
+    const content =
+        chapter.querySelector(
+            ".letter-content"
+        );
+
+    if (!content) return;
+
+
+    [
+        ...content.children
+    ].forEach(element => {
+
+        if (
+            Object.prototype.hasOwnProperty.call(
+                element.dataset,
+                "letterOriginalDisplay"
+            )
+        ) {
+
+            element.style.display =
+                element.dataset
+                    .letterOriginalDisplay;
+
+
+            delete element.dataset
+                .letterOriginalDisplay;
+
+        }
+
+    });
+
+}
+
+
+/* =========================================
+   REMOVE CHASE
+========================================= */
+
+function removeLetterChase() {
+
+    const chapter =
+        getLetterChapter();
+
+    if (!chapter) return;
+
+
+    const chase =
+        chapter.querySelector(
+            ".letter-chase"
+        );
+
+
+    if (chase) {
+
+        const star =
+            chase.querySelector(
+                ".letter-chase-star"
+            );
+
+
+        /*
+           Remove listener before removing
+           the element.
+        */
+
+        if (star) {
+
+            star.removeEventListener(
+                "click",
+                handleChaseStar
+            );
+
+        }
+
+
+        chase.remove();
+
+    }
+
+
+    letterState.chaseElement = null;
+
+    letterState.starElement = null;
 
 }
 
@@ -229,13 +515,25 @@ function buildLetterChase() {
 
 function handleChaseStar() {
 
-    if (!letterState.chasing) return;
+    if (
+        !letterState.active ||
+        !letterState.chasing ||
+        letterState.revealing
+    ) {
+        return;
+    }
+
 
     letterState.currentStep++;
 
 
     updateChaseProgress();
 
+
+    /*
+       Five successful clicks complete
+       the chase.
+    */
 
     if (
         letterState.currentStep >=
@@ -266,14 +564,18 @@ function moveChaseStar() {
     if (!star) return;
 
 
+    /*
+       Restart movement animation.
+    */
+
     star.classList.remove(
         "letter-star-moving"
     );
 
 
     /*
-       Force browser reflow so the
-       animation can restart.
+       Force layout so the browser
+       recognizes the animation restart.
     */
 
     void star.offsetWidth;
@@ -303,31 +605,56 @@ function positionChaseStar() {
     const star =
         letterState.starElement;
 
+
     if (!space || !star) return;
 
 
+    /*
+       Carefully chosen positions.
+
+       The final position is intentionally
+       different from the starting position.
+    */
+
     const positions = [
 
-        { left: "50%", top: "28%" },
+        {
+            left: "50%",
+            top: "28%"
+        },
 
-        { left: "25%", top: "48%" },
+        {
+            left: "25%",
+            top: "48%"
+        },
 
-        { left: "72%", top: "34%" },
+        {
+            left: "72%",
+            top: "34%"
+        },
 
-        { left: "38%", top: "70%" },
+        {
+            left: "38%",
+            top: "70%"
+        },
 
-        { left: "65%", top: "67%" }
+        {
+            left: "65%",
+            top: "67%"
+        }
 
     ];
 
 
+    const index =
+        Math.min(
+            letterState.currentStep,
+            positions.length - 1
+        );
+
+
     const position =
-        positions[
-            Math.min(
-                letterState.currentStep,
-                positions.length - 1
-            )
-        ];
+        positions[index];
 
 
     star.style.left =
@@ -340,7 +667,7 @@ function positionChaseStar() {
 
 
 /* =========================================
-   UPDATE PROGRESS
+   UPDATE CHASE PROGRESS
 ========================================= */
 
 function updateChaseProgress() {
@@ -365,20 +692,43 @@ function updateChaseProgress() {
 
 function finishLetterChase() {
 
+    if (
+        !letterState.chasing
+    ) {
+        return;
+    }
+
+
     letterState.chasing = false;
 
+    letterState.revealing = true;
+
+
     const chase =
+        letterState.chaseElement ||
         document.querySelector(
             ".letter-chase"
         );
 
-    if (!chase) return;
 
+    if (!chase) {
+
+        revealLetter();
+
+        return;
+
+    }
+
+
+    /*
+       Change the message.
+    */
 
     const message =
         chase.querySelector(
             ".letter-chase-message"
         );
+
 
     if (message) {
 
@@ -387,6 +737,28 @@ function finishLetterChase() {
 
     }
 
+
+    /*
+       Update progress.
+    */
+
+    const progress =
+        chase.querySelector(
+            ".letter-chase-progress"
+        );
+
+
+    if (progress) {
+
+        progress.textContent =
+            `${LETTER_CONFIG.chaseSteps} / ${LETTER_CONFIG.chaseSteps}`;
+
+    }
+
+
+    /*
+       Disable the star.
+    */
 
     if (letterState.starElement) {
 
@@ -400,11 +772,21 @@ function finishLetterChase() {
     }
 
 
+    /*
+       Let the final message breathe
+       before revealing the actual letter.
+    */
+
     setTimeout(() => {
+
+        if (!letterState.active) {
+            return;
+        }
+
 
         revealLetter();
 
-    }, 1000);
+    }, LETTER_CONFIG.chaseFinishDelay);
 
 }
 
@@ -426,6 +808,11 @@ function revealLetter() {
             ".letter-chase"
         );
 
+
+    /*
+       Begin chase exit.
+    */
+
     if (chase) {
 
         chase.classList.add(
@@ -435,50 +822,31 @@ function revealLetter() {
     }
 
 
+    /*
+       Wait for chase exit before
+       restoring the actual letter.
+    */
+
     setTimeout(() => {
 
-        if (chase) {
-            chase.remove();
+        if (!letterState.active) {
+            return;
         }
 
 
-        const content =
-            chapter.querySelector(
-                ".letter-content"
-            );
-
-        if (!content) return;
+        removeLetterChase();
 
 
-        /*
-           Restore the original
-           Letter elements.
-        */
+        restoreOriginalLetter();
 
-        [
-            ...content.children
-        ].forEach(element => {
 
-            if (
-                element.dataset &&
-                element.dataset.letterOriginal
-                !== undefined
-            ) {
-
-                element.style.display =
-                    element.dataset.letterOriginal;
-
-                delete element.dataset
-                    .letterOriginal;
-
-            }
-
-        });
+        letterState.revealing = false;
 
 
         animateLetterReveal();
 
-    }, 650);
+
+    }, LETTER_CONFIG.letterRevealDelay);
 
 }
 
@@ -516,41 +884,77 @@ function animateLetterReveal() {
         );
 
 
-    [
+    const elements = [
+
         eyebrow,
         title,
         divider,
         paper
-    ].forEach(element => {
 
-        if (!element) return;
+    ];
 
-        element.classList.add(
-            "letter-reveal-element"
+
+    /*
+       Remove old reveal states first.
+       This makes reopening the letter
+       animate correctly.
+    */
+
+    elements.forEach(
+        element => {
+
+            if (!element) return;
+
+            element.classList.remove(
+                "letter-reveal-element",
+                "letter-reveal-visible"
+            );
+
+        }
+    );
+
+
+    /*
+       Force a fresh animation cycle.
+    */
+
+    void chapter.offsetWidth;
+
+
+    elements.forEach(
+        element => {
+
+            if (!element) return;
+
+            element.classList.add(
+                "letter-reveal-element"
+            );
+
+        }
+    );
+
+
+    requestAnimationFrame(() => {
+
+        elements.forEach(
+            element => {
+
+                if (!element) return;
+
+                element.classList.add(
+                    "letter-reveal-visible"
+                );
+
+            }
         );
 
     });
 
 
-    requestAnimationFrame(() => {
-
-        [
-            eyebrow,
-            title,
-            divider,
-            paper
-        ].forEach(element => {
-
-            if (!element) return;
-
-            element.classList.add(
-                "letter-reveal-visible"
-            );
-
-        });
-
-    });
-
+    /*
+       Reveal the actual letter text
+       separately.
+    */
 
     startLetterTextReveal();
 
@@ -572,36 +976,82 @@ function startLetterTextReveal() {
 
 
     const paragraphs =
-        [...letterText.querySelectorAll("p")];
+        [
+            ...letterText.querySelectorAll(
+                "p"
+            )
+        ];
 
+
+    /*
+       Reset paragraph states.
+    */
 
     paragraphs.forEach(
-        (paragraph, paragraphIndex) => {
+        paragraph => {
 
-            paragraph.style.opacity = "0";
+            paragraph.classList.remove(
+                "letter-text-reveal"
+            );
 
-            paragraph.style.transform =
-                "translateY(12px)";
-
-
-            setTimeout(() => {
-
-                paragraph.style.transition =
-                    "opacity 0.8s ease, transform 0.8s ease";
-
-                paragraph.style.opacity =
-                    "1";
-
-                paragraph.style.transform =
-                    "translateY(0)";
-
-            },
-            500 +
-            paragraphIndex * 750);
+            paragraph.classList.remove(
+                "letter-text-visible"
+            );
 
         }
     );
 
+
+    /*
+       Force animation restart.
+    */
+
+    void letterText.offsetWidth;
+
+
+    /*
+       Reveal each paragraph one after
+       another.
+    */
+
+    paragraphs.forEach(
+        (
+            paragraph,
+            paragraphIndex
+        ) => {
+
+            paragraph.classList.add(
+                "letter-text-reveal"
+            );
+
+
+            setTimeout(() => {
+
+                if (!letterState.active) {
+                    return;
+                }
+
+
+                paragraph.classList.add(
+                    "letter-text-visible"
+                );
+
+
+            },
+            LETTER_CONFIG
+                .paragraphAnimationDelay +
+            paragraphIndex *
+                LETTER_CONFIG
+                    .paragraphDelay);
+
+        }
+    );
+
+
+    /*
+       Signature appears after all
+       paragraphs have been revealed.
+    */
 
     const signature =
         document.querySelector(
@@ -611,27 +1061,41 @@ function startLetterTextReveal() {
 
     if (signature) {
 
-        signature.style.opacity = "0";
+        signature.classList.remove(
+            "letter-signature-reveal"
+        );
 
-        signature.style.transform =
-            "translateY(12px)";
+        signature.classList.remove(
+            "letter-signature-visible"
+        );
+
+
+        void signature.offsetWidth;
+
+
+        signature.classList.add(
+            "letter-signature-reveal"
+        );
 
 
         setTimeout(() => {
 
-            signature.style.transition =
-                "opacity 1s ease, transform 1s ease";
+            if (!letterState.active) {
+                return;
+            }
 
-            signature.style.opacity =
-                "0.65";
 
-            signature.style.transform =
-                "translateY(0)";
+            signature.classList.add(
+                "letter-signature-visible"
+            );
+
 
         },
-        500 +
-        paragraphs.length * 750 +
-        500);
+        LETTER_CONFIG
+            .paragraphAnimationDelay +
+        paragraphs.length *
+            LETTER_CONFIG.paragraphDelay +
+        450);
 
     }
 
@@ -644,18 +1108,9 @@ function startLetterTextReveal() {
 
 function stopLetterChase() {
 
-    if (letterState.chaseTimer) {
-
-        clearTimeout(
-            letterState.chaseTimer
-        );
-
-        letterState.chaseTimer = null;
-
-    }
-
-
     letterState.chasing = false;
+
+    letterState.revealing = false;
 
 }
 
@@ -668,10 +1123,31 @@ function resetLetter() {
 
     stopLetterChase();
 
+
     letterState.currentStep = 0;
 
     letterState.starElement = null;
 
+    letterState.chaseElement = null;
+
+
+    /*
+       Remove any existing chase.
+    */
+
+    removeLetterChase();
+
+
+    /*
+       Restore original letter.
+    */
+
+    restoreOriginalLetter();
+
+
+    /*
+       Reset reveal classes.
+    */
 
     const chapter =
         getLetterChapter();
@@ -679,49 +1155,37 @@ function resetLetter() {
     if (!chapter) return;
 
 
-    const chase =
-        chapter.querySelector(
-            ".letter-chase"
+    const revealElements =
+        chapter.querySelectorAll(
+            ".letter-reveal-element, " +
+            ".letter-reveal-visible, " +
+            ".letter-text-reveal, " +
+            ".letter-text-visible, " +
+            ".letter-signature-reveal, " +
+            ".letter-signature-visible"
         );
 
-    if (chase) {
-        chase.remove();
-    }
 
+    revealElements.forEach(
+        element => {
 
-    const content =
-        chapter.querySelector(
-            ".letter-content"
-        );
-
-    if (!content) return;
-
-
-    [
-        ...content.children
-    ].forEach(element => {
-
-        if (
-            element.dataset &&
-            element.dataset.letterOriginal
-            !== undefined
-        ) {
-
-            element.style.display =
-                element.dataset.letterOriginal;
-
-            delete element.dataset
-                .letterOriginal;
+            element.classList.remove(
+                "letter-reveal-element",
+                "letter-reveal-visible",
+                "letter-text-reveal",
+                "letter-text-visible",
+                "letter-signature-reveal",
+                "letter-signature-visible"
+            );
 
         }
-
-    });
+    );
 
 }
 
 
 /* =========================================
-   NAVIGATION LISTENER
+   NAVIGATION — LETTER STAR
 ========================================= */
 
 document.addEventListener(
@@ -741,20 +1205,24 @@ document.addEventListener(
             target.dataset.section;
 
 
-        if (section === "letter") {
-
-            event.preventDefault();
-
-            openLetter();
-
+        if (
+            section !== "letter"
+        ) {
+            return;
         }
+
+
+        event.preventDefault();
+
+
+        openLetter();
 
     }
 );
 
 
 /* =========================================
-   BACK BUTTON
+   NAVIGATION — BACK BUTTON
 ========================================= */
 
 document.addEventListener(
@@ -775,7 +1243,16 @@ document.addEventListener(
             "world"
         ) {
 
-            if (letterState.active) {
+            /*
+               Only close the Letter if
+               the Letter chapter is active.
+            */
+
+            if (
+                letterState.active
+            ) {
+
+                event.preventDefault();
 
                 closeLetter();
 
@@ -802,7 +1279,9 @@ document.addEventListener(
         }
 
 
-        if (!letterState.active) {
+        if (
+            !letterState.active
+        ) {
             return;
         }
 
@@ -854,3 +1333,8 @@ window.Letter = {
     reset: resetLetter
 
 };
+
+
+/* =========================================
+   END — V5 THE LETTER
+========================================= */
