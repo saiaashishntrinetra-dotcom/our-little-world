@@ -1,5 +1,6 @@
 /* =========================================
-   OUR LITTLE WORLD — V2
+   OUR LITTLE WORLD — V3
+   THE UNIVERSE
 ========================================= */
 
 * {
@@ -45,7 +46,7 @@ body {
 
 
 /* =========================================
-   GENERAL SCREEN
+   SCREENS
 ========================================= */
 
 .screen {
@@ -92,9 +93,6 @@ body {
     text-align: center;
 }
 
-
-/* DATE */
-
 .date {
     font-family: Arial, sans-serif;
 
@@ -107,20 +105,14 @@ body {
     margin-bottom: 34px;
 }
 
-
-/* LINE */
-
 .intro-line {
     width: 90px;
     height: 1px;
 
     margin: 0 auto 34px;
 
-    background: rgba(255, 255, 255, 0.55);
+    background: rgba(255,255,255,0.55);
 }
-
-
-/* TITLE */
 
 #intro-title {
     font-size: clamp(2.2rem, 5vw, 4.5rem);
@@ -131,9 +123,6 @@ body {
 
     letter-spacing: -0.035em;
 }
-
-
-/* SUBTITLE */
 
 #intro-subtitle {
     margin-top: 22px;
@@ -154,13 +143,13 @@ body {
     background:
         radial-gradient(
             circle at center,
-            rgba(35, 25, 45, 0.4),
+            rgba(35,25,45,0.4),
             #030305 65%
         );
 }
 
 .reveal-content {
-    width: min(900px, 90%);
+    width: min(900px,90%);
 
     text-align: center;
 
@@ -168,9 +157,6 @@ body {
 
     z-index: 5;
 }
-
-
-/* SMALL TEXT */
 
 .reveal-small {
     font-family: Arial, sans-serif;
@@ -184,11 +170,8 @@ body {
     margin-bottom: 28px;
 }
 
-
-/* NAME */
-
 .trinetra {
-    font-size: clamp(4rem, 12vw, 9rem);
+    font-size: clamp(4rem,12vw,9rem);
 
     font-weight: 400;
 
@@ -197,24 +180,18 @@ body {
     letter-spacing: -0.06em;
 
     text-shadow:
-        0 0 40px rgba(255, 255, 255, 0.08);
+        0 0 40px rgba(255,255,255,0.08);
 }
-
-
-/* MESSAGE */
 
 .reveal-message {
     margin-top: 30px;
 
-    font-size: clamp(1rem, 2vw, 1.3rem);
+    font-size: clamp(1rem,2vw,1.3rem);
 
     letter-spacing: 0.12em;
 
     opacity: 0.65;
 }
-
-
-/* LINE */
 
 .reveal-line {
     width: 70px;
@@ -222,33 +199,30 @@ body {
 
     margin: 34px auto;
 
-    background: rgba(255, 255, 255, 0.35);
+    background: rgba(255,255,255,0.35);
 }
-
-
-/* TITLE */
 
 .reveal-content h2 {
-    font-size: clamp(1.7rem, 4vw, 3rem);
+    font-size: clamp(1.7rem,4vw,3rem);
 
     font-weight: 400;
-
-    letter-spacing: 0.03em;
 }
 
 
-/* ENTER */
+/* =========================================
+   ENTER BUTTON
+========================================= */
 
 #enter-world {
     margin-top: 42px;
 
     padding: 15px 35px;
 
-    border: 1px solid rgba(255, 255, 255, 0.28);
+    border: 1px solid rgba(255,255,255,0.28);
 
     border-radius: 999px;
 
-    background: rgba(255, 255, 255, 0.02);
+    background: rgba(255,255,255,0.02);
 
     color: white;
 
@@ -261,63 +235,461 @@ body {
     cursor: pointer;
 
     transition:
-        transform 0.4s ease,
-        background 0.4s ease,
-        border-color 0.4s ease;
+        transform .4s ease,
+        background .4s ease,
+        border-color .4s ease;
 }
 
 #enter-world:hover {
     transform: translateY(-4px);
 
-    background: rgba(255, 255, 255, 0.08);
+    background: rgba(255,255,255,0.08);
 
-    border-color: rgba(255, 255, 255, 0.7);
+    border-color: rgba(255,255,255,0.7);
 }
 
 
 /* =========================================
-   WORLD
+   UNIVERSE
 ========================================= */
 
 #world {
     background:
         radial-gradient(
             circle at center,
-            #151522,
-            #030305 70%
+            rgba(25,25,40,0.25),
+            #030305 65%,
+            #000000 100%
         );
 }
 
-.world-content {
-    width: min(900px, 90%);
+.universe {
+    position: relative;
+
+    width: 100%;
+    height: 100%;
+
+    max-width: 1400px;
+
+    transition:
+        transform .2s ease-out;
+}
+
+
+/* =========================================
+   CENTER
+========================================= */
+
+.universe-center {
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    transform: translate(-50%,-50%);
+
+    width: min(700px,80%);
+
+    text-align: center;
+
+    z-index: 10;
+
+    pointer-events: none;
+}
+
+.universe-eyebrow {
+    font-family: Arial, sans-serif;
+
+    font-size: .62rem;
+
+    letter-spacing: .55rem;
+
+    opacity: .38;
+
+    margin-bottom: 22px;
+}
+
+.universe-center h1 {
+    font-size: clamp(3rem,7vw,6.5rem);
+
+    font-weight: 400;
+
+    letter-spacing: -.055em;
+
+    line-height: 1;
+}
+
+.universe-subtitle {
+    margin-top: 18px;
+
+    font-size: 1rem;
+
+    letter-spacing: .25rem;
+
+    opacity: .5;
+}
+
+.explore-text {
+    margin-top: 40px;
+
+    font-family: Arial, sans-serif;
+
+    font-size: .62rem;
+
+    text-transform: uppercase;
+
+    letter-spacing: .3rem;
+
+    opacity: .3;
+}
+
+
+/* =========================================
+   CONSTELLATION NODES
+========================================= */
+
+.constellation {
+    position: absolute;
+
+    width: 130px;
+    height: 130px;
+
+    border: 0;
+
+    background: transparent;
+
+    color: white;
+
+    cursor: pointer;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    z-index: 15;
+}
+
+.node-star {
+    position: relative;
+
+    font-size: 2rem;
+
+    z-index: 3;
+
+    transition:
+        transform .5s ease,
+        text-shadow .5s ease;
+}
+
+.node-glow {
+    position: absolute;
+
+    width: 28px;
+    height: 28px;
+
+    border-radius: 50%;
+
+    background: rgba(255,255,255,.12);
+
+    filter: blur(8px);
+
+    transition:
+        transform .5s ease,
+        opacity .5s ease;
+}
+
+.constellation:hover .node-star,
+.constellation:focus-visible .node-star {
+    transform: scale(1.35);
+
+    text-shadow:
+        0 0 15px rgba(255,255,255,.9),
+        0 0 35px rgba(255,255,255,.4);
+}
+
+.constellation:hover .node-glow,
+.constellation:focus-visible .node-glow {
+    transform: scale(3);
+
+    opacity: .8;
+}
+
+
+/* =========================================
+   NODE POSITIONS
+========================================= */
+
+.constellation-letter {
+    left: 16%;
+    top: 29%;
+}
+
+.constellation-memories {
+    right: 16%;
+    top: 28%;
+}
+
+.constellation-music {
+    left: 19%;
+    bottom: 21%;
+}
+
+.constellation-future {
+    right: 18%;
+    bottom: 20%;
+}
+
+
+/* =========================================
+   LABELS
+========================================= */
+
+.node-label {
+    position: absolute;
+
+    top: 88px;
+
+    width: 160px;
+
+    text-align: center;
+
+    font-family: Arial, sans-serif;
+
+    font-size: .58rem;
+
+    text-transform: uppercase;
+
+    letter-spacing: .2rem;
+
+    opacity: .45;
+
+    transition:
+        opacity .4s ease,
+        transform .4s ease;
+}
+
+.constellation:hover .node-label {
+    opacity: .9;
+
+    transform: translateY(4px);
+}
+
+
+/* =========================================
+   CONSTELLATION LINES
+========================================= */
+
+.constellation-line {
+    position: absolute;
+
+    height: 1px;
+
+    transform-origin: left center;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,.16),
+            transparent
+        );
+
+    opacity: .45;
+
+    pointer-events: none;
+
+    z-index: 4;
+}
+
+.line-one {
+    width: 28%;
+
+    left: 24%;
+
+    top: 36%;
+
+    transform: rotate(14deg);
+}
+
+.line-two {
+    width: 28%;
+
+    right: 24%;
+
+    top: 36%;
+
+    transform: rotate(-14deg);
+}
+
+.line-three {
+    width: 26%;
+
+    left: 25%;
+
+    bottom: 31%;
+
+    transform: rotate(-14deg);
+}
+
+.line-four {
+    width: 26%;
+
+    right: 25%;
+
+    bottom: 31%;
+
+    transform: rotate(14deg);
+}
+
+
+/* =========================================
+   DATE
+========================================= */
+
+.universe-date {
+    position: absolute;
+
+    bottom: 25px;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    font-family: Arial, sans-serif;
+
+    font-size: .55rem;
+
+    letter-spacing: .45rem;
+
+    opacity: .22;
+}
+
+
+/* =========================================
+   MODAL
+========================================= */
+
+.modal {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 100;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+}
+
+.modal-backdrop {
+    position: absolute;
+
+    inset: 0;
+
+    background: rgba(0,0,0,.75);
+
+    backdrop-filter: blur(12px);
+}
+
+.modal-card {
+    position: relative;
+
+    z-index: 2;
+
+    width: min(650px,88%);
+
+    padding: 55px 45px;
+
+    border: 1px solid rgba(255,255,255,.12);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(30,30,40,.82),
+            rgba(5,5,10,.94)
+        );
+
+    box-shadow:
+        0 30px 100px rgba(0,0,0,.7);
 
     text-align: center;
 }
 
-.eyebrow {
+.close-modal {
+    position: absolute;
+
+    top: 18px;
+    right: 22px;
+
+    border: 0;
+
+    background: transparent;
+
+    color: white;
+
+    font-size: 2rem;
+
+    font-weight: 200;
+
+    cursor: pointer;
+
+    opacity: .5;
+}
+
+.close-modal:hover {
+    opacity: 1;
+}
+
+.modal-eyebrow {
     font-family: Arial, sans-serif;
 
-    font-size: 0.65rem;
+    font-size: .58rem;
 
-    letter-spacing: 0.5rem;
+    letter-spacing: .4rem;
 
-    opacity: 0.45;
+    opacity: .4;
 
-    margin-bottom: 25px;
+    text-transform: uppercase;
 }
 
-.world-content h1 {
-    font-size: clamp(3rem, 8vw, 7rem);
+.modal-card h2 {
+    margin-top: 20px;
+
+    font-size: clamp(2rem,6vw,4rem);
 
     font-weight: 400;
-
-    letter-spacing: -0.05em;
 }
 
-.world-description {
-    margin-top: 25px;
+.modal-divider {
+    width: 60px;
 
-    font-size: 1rem;
+    height: 1px;
 
-    opacity: 0.55;
+    background: rgba(255,255,255,.3);
+
+    margin: 28px auto;
+}
+
+.modal-card > #modal-text {
+    font-size: 1.05rem;
+
+    line-height: 1.8;
+
+    opacity: .7;
+}
+
+.modal-coming {
+    margin-top: 30px;
+
+    font-family: Arial, sans-serif;
+
+    font-size: .6rem;
+
+    letter-spacing: .15rem;
+
+    opacity: .3;
 }
