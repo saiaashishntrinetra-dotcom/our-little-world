@@ -1,38 +1,49 @@
 /* =========================================
+   OUR LITTLE WORLD — V3 RESPONSIVE
+========================================= */
+
+
+/* =========================================
    MOBILE
 ========================================= */
 
 @media (max-width: 600px) {
 
     .intro-content,
-    .reveal-content,
-    .world-content {
+    .reveal-content {
         width: 88%;
     }
 
-    .date {
-        font-size: 0.65rem;
-        letter-spacing: 0.42rem;
-        margin-bottom: 28px;
-    }
 
-    .intro-line {
+    /* INTRO */
+
+    .date {
+        font-size: .65rem;
+
+        letter-spacing: .42rem;
+
         margin-bottom: 28px;
     }
 
     #intro-title {
         font-size: 2.25rem;
+
         line-height: 1.15;
     }
 
     #intro-subtitle {
-        font-size: 0.95rem;
+        font-size: .95rem;
+
         line-height: 1.5;
     }
 
+
+    /* REVEAL */
+
     .reveal-small {
-        font-size: 0.52rem;
-        letter-spacing: 0.35rem;
+        font-size: .52rem;
+
+        letter-spacing: .35rem;
     }
 
     .trinetra {
@@ -40,7 +51,8 @@
     }
 
     .reveal-message {
-        font-size: 0.95rem;
+        font-size: .95rem;
+
         line-height: 1.5;
     }
 
@@ -48,34 +60,144 @@
         font-size: 1.7rem;
     }
 
-    #enter-world {
-        padding: 14px 30px;
+
+    /* UNIVERSE */
+
+    .universe-center {
+        width: 85%;
     }
 
-    .world-content h1 {
+    .universe-eyebrow {
+        font-size: .5rem;
+
+        letter-spacing: .38rem;
+    }
+
+    .universe-center h1 {
         font-size: 3rem;
+
+        line-height: 1.05;
     }
 
-    .world-description {
-        line-height: 1.7;
-        padding: 0 10px;
+    .universe-subtitle {
+        font-size: .7rem;
+
+        letter-spacing: .16rem;
     }
+
+    .explore-text {
+        margin-top: 30px;
+
+        font-size: .52rem;
+    }
+
+
+    /* NODES */
+
+    .constellation {
+        width: 90px;
+        height: 90px;
+    }
+
+    .node-star {
+        font-size: 1.5rem;
+    }
+
+    .node-label {
+        top: 65px;
+
+        width: 120px;
+
+        font-size: .48rem;
+
+        letter-spacing: .12rem;
+    }
+
+
+    .constellation-letter {
+        left: 5%;
+        top: 22%;
+    }
+
+    .constellation-memories {
+        right: 5%;
+        top: 22%;
+    }
+
+    .constellation-music {
+        left: 7%;
+        bottom: 17%;
+    }
+
+    .constellation-future {
+        right: 7%;
+        bottom: 17%;
+    }
+
+
+    /* LINES */
+
+    .line-one,
+    .line-two,
+    .line-three,
+    .line-four {
+        opacity: .25;
+    }
+
+
+    /* DATE */
+
+    .universe-date {
+        font-size: .45rem;
+
+        letter-spacing: .3rem;
+
+        bottom: 15px;
+    }
+
+
+    /* MODAL */
+
+    .modal-card {
+        width: 88%;
+
+        padding: 45px 25px;
+    }
+
+    .modal-card h2 {
+        font-size: 2.5rem;
+    }
+
+    .modal-card > #modal-text {
+        font-size: .95rem;
+
+        line-height: 1.7;
+    }
+
 }
 
 
 /* =========================================
-   LANDSCAPE PHONES
+   LANDSCAPE PHONE
 ========================================= */
 
-@media (max-height: 500px) and (orientation: landscape) {
+@media (max-height: 500px)
+and (orientation: landscape) {
 
-    .intro-content {
-        transform: scale(0.8);
+    .universe-center {
+        transform:
+            translate(-50%,-50%)
+            scale(.72);
     }
 
-    .reveal-content {
-        transform: scale(0.75);
+    .constellation {
+        transform: scale(.7);
     }
+
+    .node-label {
+        top: 65px;
+    }
+
 }
 
 
@@ -88,8 +210,16 @@
     *,
     *::before,
     *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
+
+        animation-duration:
+            .01ms !important;
+
+        animation-iteration-count:
+            1 !important;
+
+        transition-duration:
+            .01ms !important;
+
     }
+
 }
