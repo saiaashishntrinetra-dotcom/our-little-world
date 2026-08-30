@@ -1,6 +1,11 @@
 /* =========================================
-   OUR LITTLE WORLD — V3
-   THE UNIVERSE
+   OUR LITTLE WORLD
+   V4 — MAIN CSS
+========================================= */
+
+
+/* =========================================
+   RESET
 ========================================= */
 
 * {
@@ -15,6 +20,10 @@ body {
     height: 100%;
 }
 
+html {
+    background: #030305;
+}
+
 body {
     background: #030305;
     color: #ffffff;
@@ -25,6 +34,25 @@ body {
         serif;
 
     overflow: hidden;
+
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+
+
+/* =========================================
+   APP
+========================================= */
+
+#app {
+    position: relative;
+
+    width: 100%;
+    height: 100%;
+
+    overflow: hidden;
+
+    background: #030305;
 }
 
 
@@ -34,6 +62,7 @@ body {
 
 #stars {
     position: fixed;
+
     inset: 0;
 
     width: 100%;
@@ -42,21 +71,25 @@ body {
     pointer-events: none;
 
     z-index: 1;
+
+    overflow: hidden;
 }
 
 
 /* =========================================
-   SCREENS
+   SCREEN SYSTEM
 ========================================= */
 
 .screen {
     position: fixed;
+
     inset: 0;
 
     width: 100%;
     height: 100dvh;
 
     display: flex;
+
     align-items: center;
     justify-content: center;
 
@@ -78,7 +111,7 @@ body {
     background:
         radial-gradient(
             circle at center,
-            rgba(25, 25, 40, 0.35),
+            rgba(35, 35, 55, 0.35),
             transparent 45%
         );
 }
@@ -94,7 +127,7 @@ body {
 }
 
 .date {
-    font-family: Arial, sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
 
     font-size: 0.85rem;
 
@@ -111,11 +144,13 @@ body {
 
     margin: 0 auto 34px;
 
-    background: rgba(255,255,255,0.55);
+    background:
+        rgba(255, 255, 255, 0.55);
 }
 
 #intro-title {
-    font-size: clamp(2.2rem, 5vw, 4.5rem);
+    font-size:
+        clamp(2.2rem, 5vw, 4.5rem);
 
     font-weight: 400;
 
@@ -127,7 +162,8 @@ body {
 #intro-subtitle {
     margin-top: 22px;
 
-    font-size: clamp(1rem, 2vw, 1.35rem);
+    font-size:
+        clamp(1rem, 2vw, 1.35rem);
 
     letter-spacing: 0.08em;
 
@@ -143,23 +179,26 @@ body {
     background:
         radial-gradient(
             circle at center,
-            rgba(35,25,45,0.4),
+            rgba(40, 30, 50, 0.45),
             #030305 65%
         );
 }
 
 .reveal-content {
-    width: min(900px,90%);
-
-    text-align: center;
-
     position: relative;
 
     z-index: 5;
+
+    width: min(900px, 90%);
+
+    text-align: center;
 }
 
 .reveal-small {
-    font-family: Arial, sans-serif;
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
 
     font-size: 0.65rem;
 
@@ -171,7 +210,8 @@ body {
 }
 
 .trinetra {
-    font-size: clamp(4rem,12vw,9rem);
+    font-size:
+        clamp(4rem, 12vw, 9rem);
 
     font-weight: 400;
 
@@ -180,13 +220,15 @@ body {
     letter-spacing: -0.06em;
 
     text-shadow:
-        0 0 40px rgba(255,255,255,0.08);
+        0 0 40px
+        rgba(255, 255, 255, 0.08);
 }
 
 .reveal-message {
     margin-top: 30px;
 
-    font-size: clamp(1rem,2vw,1.3rem);
+    font-size:
+        clamp(1rem, 2vw, 1.3rem);
 
     letter-spacing: 0.12em;
 
@@ -199,11 +241,13 @@ body {
 
     margin: 34px auto;
 
-    background: rgba(255,255,255,0.35);
+    background:
+        rgba(255, 255, 255, 0.35);
 }
 
 .reveal-content h2 {
-    font-size: clamp(1.7rem,4vw,3rem);
+    font-size:
+        clamp(1.7rem, 4vw, 3rem);
 
     font-weight: 400;
 }
@@ -218,15 +262,21 @@ body {
 
     padding: 15px 35px;
 
-    border: 1px solid rgba(255,255,255,0.28);
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.28);
 
     border-radius: 999px;
 
-    background: rgba(255,255,255,0.02);
+    background:
+        rgba(255, 255, 255, 0.02);
 
-    color: white;
+    color: #ffffff;
 
-    font-family: Arial, sans-serif;
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
 
     font-size: 0.72rem;
 
@@ -235,29 +285,31 @@ body {
     cursor: pointer;
 
     transition:
-        transform .4s ease,
-        background .4s ease,
-        border-color .4s ease;
+        transform 0.4s ease,
+        background 0.4s ease,
+        border-color 0.4s ease;
 }
 
 #enter-world:hover {
     transform: translateY(-4px);
 
-    background: rgba(255,255,255,0.08);
+    background:
+        rgba(255, 255, 255, 0.08);
 
-    border-color: rgba(255,255,255,0.7);
+    border-color:
+        rgba(255, 255, 255, 0.7);
 }
 
 
 /* =========================================
-   UNIVERSE
+   V3 — MAIN UNIVERSE
 ========================================= */
 
 #world {
     background:
         radial-gradient(
             circle at center,
-            rgba(25,25,40,0.25),
+            rgba(30, 30, 45, 0.28),
             #030305 65%,
             #000000 100%
         );
@@ -272,12 +324,12 @@ body {
     max-width: 1400px;
 
     transition:
-        transform .2s ease-out;
+        transform 0.2s ease-out;
 }
 
 
 /* =========================================
-   CENTER
+   UNIVERSE CENTER
 ========================================= */
 
 .universe-center {
@@ -286,9 +338,11 @@ body {
     left: 50%;
     top: 50%;
 
-    transform: translate(-50%,-50%);
+    transform:
+        translate(-50%, -50%);
 
-    width: min(700px,80%);
+    width:
+        min(700px, 80%);
 
     text-align: center;
 
@@ -298,23 +352,27 @@ body {
 }
 
 .universe-eyebrow {
-    font-family: Arial, sans-serif;
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
 
-    font-size: .62rem;
+    font-size: 0.62rem;
 
-    letter-spacing: .55rem;
+    letter-spacing: 0.55rem;
 
-    opacity: .38;
+    opacity: 0.38;
 
     margin-bottom: 22px;
 }
 
 .universe-center h1 {
-    font-size: clamp(3rem,7vw,6.5rem);
+    font-size:
+        clamp(3rem, 7vw, 6.5rem);
 
     font-weight: 400;
 
-    letter-spacing: -.055em;
+    letter-spacing: -0.055em;
 
     line-height: 1;
 }
@@ -324,28 +382,31 @@ body {
 
     font-size: 1rem;
 
-    letter-spacing: .25rem;
+    letter-spacing: 0.25rem;
 
-    opacity: .5;
+    opacity: 0.5;
 }
 
 .explore-text {
     margin-top: 40px;
 
-    font-family: Arial, sans-serif;
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
 
-    font-size: .62rem;
+    font-size: 0.62rem;
 
     text-transform: uppercase;
 
-    letter-spacing: .3rem;
+    letter-spacing: 0.3rem;
 
-    opacity: .3;
+    opacity: 0.3;
 }
 
 
 /* =========================================
-   CONSTELLATION NODES
+   CONSTELLATIONS
 ========================================= */
 
 .constellation {
@@ -356,19 +417,23 @@ body {
 
     border: 0;
 
+    padding: 0;
+
     background: transparent;
 
-    color: white;
+    color: #ffffff;
 
     cursor: pointer;
 
     display: flex;
 
     align-items: center;
-
     justify-content: center;
 
     z-index: 15;
+
+    -webkit-tap-highlight-color:
+        transparent;
 }
 
 .node-star {
@@ -379,8 +444,8 @@ body {
     z-index: 3;
 
     transition:
-        transform .5s ease,
-        text-shadow .5s ease;
+        transform 0.5s ease,
+        text-shadow 0.5s ease;
 }
 
 .node-glow {
@@ -391,13 +456,14 @@ body {
 
     border-radius: 50%;
 
-    background: rgba(255,255,255,.12);
+    background:
+        rgba(255, 255, 255, 0.12);
 
     filter: blur(8px);
 
     transition:
-        transform .5s ease,
-        opacity .5s ease;
+        transform 0.5s ease,
+        opacity 0.5s ease;
 }
 
 .constellation:hover .node-star,
@@ -405,20 +471,22 @@ body {
     transform: scale(1.35);
 
     text-shadow:
-        0 0 15px rgba(255,255,255,.9),
-        0 0 35px rgba(255,255,255,.4);
+        0 0 15px
+        rgba(255, 255, 255, 0.9),
+        0 0 35px
+        rgba(255, 255, 255, 0.4);
 }
 
 .constellation:hover .node-glow,
 .constellation:focus-visible .node-glow {
     transform: scale(3);
 
-    opacity: .8;
+    opacity: 0.8;
 }
 
 
 /* =========================================
-   NODE POSITIONS
+   CONSTELLATION POSITIONS
 ========================================= */
 
 .constellation-letter {
@@ -443,7 +511,7 @@ body {
 
 
 /* =========================================
-   LABELS
+   NODE LABEL
 ========================================= */
 
 .node-label {
@@ -455,23 +523,27 @@ body {
 
     text-align: center;
 
-    font-family: Arial, sans-serif;
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
 
-    font-size: .58rem;
+    font-size: 0.58rem;
 
     text-transform: uppercase;
 
-    letter-spacing: .2rem;
+    letter-spacing: 0.2rem;
 
-    opacity: .45;
+    opacity: 0.45;
 
     transition:
-        opacity .4s ease,
-        transform .4s ease;
+        opacity 0.4s ease,
+        transform 0.4s ease;
 }
 
-.constellation:hover .node-label {
-    opacity: .9;
+.constellation:hover .node-label,
+.constellation:focus-visible .node-label {
+    opacity: 0.9;
 
     transform: translateY(4px);
 }
@@ -492,11 +564,11 @@ body {
         linear-gradient(
             90deg,
             transparent,
-            rgba(255,255,255,.16),
+            rgba(255, 255, 255, 0.16),
             transparent
         );
 
-    opacity: .45;
+    opacity: 0.45;
 
     pointer-events: none;
 
@@ -507,7 +579,6 @@ body {
     width: 28%;
 
     left: 24%;
-
     top: 36%;
 
     transform: rotate(14deg);
@@ -517,58 +588,61 @@ body {
     width: 28%;
 
     right: 24%;
-
     top: 36%;
 
-    transform: rotate(-14deg);
+    transform:
+        rotate(-14deg);
 }
 
 .line-three {
     width: 26%;
 
     left: 25%;
-
     bottom: 31%;
 
-    transform: rotate(-14deg);
+    transform:
+        rotate(-14deg);
 }
 
 .line-four {
     width: 26%;
 
     right: 25%;
-
     bottom: 31%;
 
-    transform: rotate(14deg);
+    transform:
+        rotate(14deg);
 }
 
 
 /* =========================================
-   DATE
+   UNIVERSE DATE
 ========================================= */
 
 .universe-date {
     position: absolute;
 
     bottom: 25px;
-
     left: 50%;
 
-    transform: translateX(-50%);
+    transform:
+        translateX(-50%);
 
-    font-family: Arial, sans-serif;
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
 
-    font-size: .55rem;
+    font-size: 0.55rem;
 
-    letter-spacing: .45rem;
+    letter-spacing: 0.45rem;
 
-    opacity: .22;
+    opacity: 0.22;
 }
 
 
 /* =========================================
-   MODAL
+   V3 GENERAL MODAL
 ========================================= */
 
 .modal {
@@ -581,7 +655,6 @@ body {
     display: flex;
 
     align-items: center;
-
     justify-content: center;
 }
 
@@ -590,9 +663,11 @@ body {
 
     inset: 0;
 
-    background: rgba(0,0,0,.75);
+    background:
+        rgba(0, 0, 0, 0.75);
 
-    backdrop-filter: blur(12px);
+    backdrop-filter:
+        blur(12px);
 }
 
 .modal-card {
@@ -600,21 +675,26 @@ body {
 
     z-index: 2;
 
-    width: min(650px,88%);
+    width:
+        min(650px, 88%);
 
-    padding: 55px 45px;
+    padding:
+        55px 45px;
 
-    border: 1px solid rgba(255,255,255,.12);
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.12);
 
     background:
         linear-gradient(
             145deg,
-            rgba(30,30,40,.82),
-            rgba(5,5,10,.94)
+            rgba(30, 30, 40, 0.94),
+            rgba(5, 5, 10, 0.98)
         );
 
     box-shadow:
-        0 30px 100px rgba(0,0,0,.7);
+        0 30px 100px
+        rgba(0, 0, 0, 0.7);
 
     text-align: center;
 }
@@ -629,7 +709,7 @@ body {
 
     background: transparent;
 
-    color: white;
+    color: #ffffff;
 
     font-size: 2rem;
 
@@ -637,7 +717,7 @@ body {
 
     cursor: pointer;
 
-    opacity: .5;
+    opacity: 0.5;
 }
 
 .close-modal:hover {
@@ -645,13 +725,16 @@ body {
 }
 
 .modal-eyebrow {
-    font-family: Arial, sans-serif;
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
 
-    font-size: .58rem;
+    font-size: 0.58rem;
 
-    letter-spacing: .4rem;
+    letter-spacing: 0.4rem;
 
-    opacity: .4;
+    opacity: 0.4;
 
     text-transform: uppercase;
 }
@@ -659,17 +742,18 @@ body {
 .modal-card h2 {
     margin-top: 20px;
 
-    font-size: clamp(2rem,6vw,4rem);
+    font-size:
+        clamp(2rem, 6vw, 4rem);
 
     font-weight: 400;
 }
 
 .modal-divider {
     width: 60px;
-
     height: 1px;
 
-    background: rgba(255,255,255,.3);
+    background:
+        rgba(255, 255, 255, 0.3);
 
     margin: 28px auto;
 }
@@ -679,36 +763,54 @@ body {
 
     line-height: 1.8;
 
-    opacity: .7;
+    opacity: 0.7;
 }
 
 .modal-coming {
     margin-top: 30px;
 
-    font-family: Arial, sans-serif;
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
 
-    font-size: .6rem;
+    font-size: 0.6rem;
 
-    letter-spacing: .15rem;
+    letter-spacing: 0.15rem;
 
-    opacity: .3;
+    opacity: 0.3;
 }
+
+
 /* =========================================
    V4 — MEMORY GALAXY
 ========================================= */
 
 #memory-galaxy {
+    position: fixed;
+
+    inset: 0;
+
     background:
         radial-gradient(
             circle at center,
-            rgba(28, 25, 42, 0.5),
-            #030305 65%,
-            #000000
+            rgba(35, 30, 50, 0.55),
+            #030305 62%,
+            #000000 100%
         );
 
     z-index: 30;
+
+    display: flex;
+
+    align-items: stretch;
+    justify-content: stretch;
 }
 
+
+/* =========================================
+   MEMORY UNIVERSE
+========================================= */
 
 .memory-universe {
     position: relative;
@@ -720,14 +822,17 @@ body {
     overflow-x: hidden;
 
     padding:
-        70px
-        7%
-        80px;
+        70px 7% 80px;
+
+    scroll-behavior: smooth;
+
+    -webkit-overflow-scrolling:
+        touch;
 }
 
 
 /* =========================================
-   BACK BUTTON
+   MEMORY BACK BUTTON
 ========================================= */
 
 .memory-back {
@@ -736,41 +841,49 @@ body {
     top: 30px;
     left: 35px;
 
-    z-index: 50;
+    z-index: 60;
 
     border: 0;
 
     background: transparent;
 
-    color: white;
+    color: #ffffff;
 
-    font-family: Arial, sans-serif;
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
 
-    font-size: .6rem;
+    font-size: 0.6rem;
 
-    letter-spacing: .25rem;
+    letter-spacing: 0.25rem;
 
-    opacity: .45;
+    opacity: 0.45;
 
     cursor: pointer;
 
     transition:
-        opacity .3s ease,
-        transform .3s ease;
+        opacity 0.3s ease,
+        transform 0.3s ease;
 }
 
 .memory-back:hover {
     opacity: 1;
 
-    transform: translateX(-4px);
+    transform:
+        translateX(-4px);
 }
 
 
 /* =========================================
-   HEADING
+   MEMORY HEADING
 ========================================= */
 
 .memory-heading {
+    position: relative;
+
+    z-index: 5;
+
     text-align: center;
 
     padding-top: 25px;
@@ -779,27 +892,27 @@ body {
 }
 
 .memory-heading p {
-    font-family: Arial, sans-serif;
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
 
-    font-size: .58rem;
+    font-size: 0.58rem;
 
-    letter-spacing: .45rem;
+    letter-spacing: 0.45rem;
 
-    opacity: .35;
+    opacity: 0.35;
 
     margin-bottom: 22px;
 }
 
 .memory-heading h1 {
-    font-size: clamp(
-        3rem,
-        7vw,
-        6rem
-    );
+    font-size:
+        clamp(3rem, 7vw, 6rem);
 
     font-weight: 400;
 
-    letter-spacing: -.055em;
+    letter-spacing: -0.055em;
 
     line-height: 1;
 }
@@ -811,9 +924,9 @@ body {
 
     font-size: 1rem;
 
-    letter-spacing: .08rem;
+    letter-spacing: 0.08rem;
 
-    opacity: .45;
+    opacity: 0.45;
 }
 
 
@@ -822,19 +935,23 @@ body {
 ========================================= */
 
 .memory-grid {
-    width: min(
-        1100px,
-        100%
-    );
+    position: relative;
 
-    margin: auto;
+    z-index: 5;
+
+    width:
+        min(1100px, 100%);
+
+    margin: 0 auto;
 
     display: grid;
 
     grid-template-columns:
-        repeat(3, 1fr);
+        repeat(3, minmax(0, 1fr));
 
     gap: 28px;
+
+    padding-bottom: 20px;
 }
 
 
@@ -851,28 +968,33 @@ body {
 
     border:
         1px solid
-        rgba(255,255,255,.09);
+        rgba(255, 255, 255, 0.09);
 
     background:
         linear-gradient(
             145deg,
-            rgba(255,255,255,.055),
-            rgba(255,255,255,.012)
+            rgba(255, 255, 255, 0.055),
+            rgba(255, 255, 255, 0.012)
         );
 
-    backdrop-filter: blur(10px);
+    backdrop-filter:
+        blur(10px);
+
+    -webkit-backdrop-filter:
+        blur(10px);
 
     cursor: pointer;
 
     overflow: hidden;
 
     transition:
-        transform .5s
-        cubic-bezier(.16,1,.3,1),
-        border-color .5s ease,
-        box-shadow .5s ease;
-}
+        transform 0.5s
+        cubic-bezier(.16, 1, .3, 1),
 
+        border-color 0.5s ease,
+
+        box-shadow 0.5s ease;
+}
 
 .memory-card:hover {
     transform:
@@ -880,16 +1002,16 @@ body {
         scale(1.015);
 
     border-color:
-        rgba(255,255,255,.25);
+        rgba(255, 255, 255, 0.25);
 
     box-shadow:
         0 25px 70px
-        rgba(0,0,0,.5);
+        rgba(0, 0, 0, 0.5);
 }
 
 
 /* =========================================
-   CARD IMAGE
+   MEMORY IMAGE
 ========================================= */
 
 .memory-image {
@@ -902,9 +1024,9 @@ body {
     background:
         radial-gradient(
             circle at 50% 40%,
-            rgba(255,255,255,.13),
-            rgba(255,255,255,.02) 45%,
-            rgba(0,0,0,.25)
+            rgba(255, 255, 255, 0.13),
+            rgba(255, 255, 255, 0.02) 45%,
+            rgba(0, 0, 0, 0.25)
         );
 
     background-size: cover;
@@ -914,17 +1036,17 @@ body {
     display: flex;
 
     align-items: center;
-
     justify-content: center;
 
     overflow: hidden;
 }
 
-
 .memory-image-placeholder {
+    display: block;
+
     font-size: 2.5rem;
 
-    opacity: .25;
+    opacity: 0.25;
 
     animation:
         memoryPulse 4s
@@ -934,17 +1056,20 @@ body {
 
 
 /* =========================================
-   CARD TEXT
+   MEMORY CARD TEXT
 ========================================= */
 
 .memory-date {
-    font-family: Arial, sans-serif;
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
 
-    font-size: .52rem;
+    font-size: 0.52rem;
 
-    letter-spacing: .3rem;
+    letter-spacing: 0.3rem;
 
-    opacity: .35;
+    opacity: 0.35;
 
     margin-bottom: 10px;
 }
@@ -954,22 +1079,22 @@ body {
 
     font-weight: 400;
 
-    letter-spacing: -.02em;
+    letter-spacing: -0.02em;
 }
 
 .memory-card p {
     margin-top: 10px;
 
-    font-size: .85rem;
+    font-size: 0.85rem;
 
     line-height: 1.6;
 
-    opacity: .42;
+    opacity: 0.42;
 }
 
 
 /* =========================================
-   CARD STAR
+   MEMORY CARD STAR
 ========================================= */
 
 .memory-card::before {
@@ -980,38 +1105,46 @@ body {
     top: 18px;
     right: 20px;
 
-    font-size: .75rem;
+    font-size: 0.75rem;
 
-    opacity: .35;
+    opacity: 0.35;
 
     transition:
-        transform .5s ease,
-        opacity .5s ease;
+        transform 0.5s ease,
+        opacity 0.5s ease;
 }
 
 .memory-card:hover::before {
-    transform: scale(1.7);
+    transform:
+        scale(1.7);
 
-    opacity: .8;
+    opacity: 0.8;
 }
 
 
 /* =========================================
-   FOOTER
+   MEMORY FOOTER
 ========================================= */
 
 .memory-footer {
+    position: relative;
+
+    z-index: 5;
+
     text-align: center;
 
     margin-top: 70px;
 
-    font-family: Arial, sans-serif;
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
 
-    font-size: .5rem;
+    font-size: 0.5rem;
 
-    letter-spacing: .45rem;
+    letter-spacing: 0.45rem;
 
-    opacity: .2;
+    opacity: 0.2;
 }
 
 
@@ -1029,7 +1162,6 @@ body {
     display: flex;
 
     align-items: center;
-
     justify-content: center;
 }
 
@@ -1039,46 +1171,41 @@ body {
     inset: 0;
 
     background:
-        rgba(0,0,0,.82);
+        rgba(0, 0, 0, 0.82);
 
     backdrop-filter:
         blur(18px);
-}
 
+    -webkit-backdrop-filter:
+        blur(18px);
+}
 
 .viewer-card {
     position: relative;
 
     z-index: 2;
 
-    width: min(
-        900px,
-        90%
-    );
+    width:
+        min(900px, 90%);
 
     max-height: 90vh;
 
-    overflow: auto;
+    overflow-y: auto;
 
     background:
         linear-gradient(
             145deg,
-            rgba(25,25,35,.95),
-            rgba(3,3,7,.98)
+            rgba(25, 25, 35, 0.97),
+            rgba(3, 3, 7, 0.99)
         );
 
     border:
         1px solid
-        rgba(255,255,255,.12);
+        rgba(255, 255, 255, 0.12);
 
     box-shadow:
         0 40px 120px
-        rgba(0,0,0,.8);
-
-    animation:
-        viewerAppear .6s
-        cubic-bezier(.16,1,.3,1)
-        forwards;
+        rgba(0, 0, 0, 0.8);
 }
 
 
@@ -1094,8 +1221,8 @@ body {
     background:
         radial-gradient(
             circle,
-            rgba(255,255,255,.1),
-            rgba(0,0,0,.4)
+            rgba(255, 255, 255, 0.1),
+            rgba(0, 0, 0, 0.4)
         );
 
     background-size: cover;
@@ -1105,7 +1232,6 @@ body {
     display: flex;
 
     align-items: center;
-
     justify-content: center;
 }
 
@@ -1115,17 +1241,21 @@ body {
 ========================================= */
 
 .viewer-info {
-    padding: 35px 45px 45px;
+    padding:
+        35px 45px 45px;
 }
 
 .viewer-info p:first-child {
-    font-family: Arial, sans-serif;
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
 
-    font-size: .55rem;
+    font-size: 0.55rem;
 
-    letter-spacing: .35rem;
+    letter-spacing: 0.35rem;
 
-    opacity: .35;
+    opacity: 0.35;
 }
 
 .viewer-info h2 {
@@ -1138,13 +1268,12 @@ body {
 
 .viewer-info div {
     width: 55px;
-
     height: 1px;
 
     margin: 22px 0;
 
     background:
-        rgba(255,255,255,.3);
+        rgba(255, 255, 255, 0.3);
 }
 
 #viewer-description {
@@ -1152,12 +1281,12 @@ body {
 
     line-height: 1.8;
 
-    opacity: .55;
+    opacity: 0.55;
 }
 
 
 /* =========================================
-   CLOSE
+   VIEWER CLOSE
 ========================================= */
 
 .viewer-close {
@@ -1168,20 +1297,25 @@ body {
 
     z-index: 5;
 
+    width: 40px;
+    height: 40px;
+
     border: 0;
 
     background: transparent;
 
-    color: white;
+    color: #ffffff;
 
     font-size: 2rem;
 
+    font-weight: 200;
+
     cursor: pointer;
 
-    opacity: .5;
+    opacity: 0.5;
 
     transition:
-        opacity .3s ease;
+        opacity 0.3s ease;
 }
 
 .viewer-close:hover {
@@ -1190,43 +1324,59 @@ body {
 
 
 /* =========================================
-   ANIMATION
+   V4 MEMORY ANIMATION
 ========================================= */
 
 @keyframes memoryPulse {
 
-    0%, 100% {
-        opacity: .18;
+    0%,
+    100% {
+        opacity: 0.18;
 
-        transform: scale(1);
+        transform:
+            scale(1);
     }
 
     50% {
-        opacity: .4;
+        opacity: 0.4;
 
-        transform: scale(1.15);
+        transform:
+            scale(1.15);
     }
 }
 
-@keyframes viewerAppear {
 
-    from {
-        opacity: 0;
+/* =========================================
+   SCROLLBAR
+========================================= */
 
-        transform:
-            scale(.94)
-            translateY(20px);
+.memory-universe::-webkit-scrollbar,
+.viewer-card::-webkit-scrollbar {
+    width: 5px;
+}
 
-        filter: blur(8px);
-    }
+.memory-universe::-webkit-scrollbar-track,
+.viewer-card::-webkit-scrollbar-track {
+    background:
+        rgba(255,255,255,0.02);
+}
 
-    to {
-        opacity: 1;
+.memory-universe::-webkit-scrollbar-thumb,
+.viewer-card::-webkit-scrollbar-thumb {
+    background:
+        rgba(255,255,255,0.15);
 
-        transform:
-            scale(1)
-            translateY(0);
+    border-radius: 10px;
+}
 
-        filter: blur(0);
-    }
+
+/* =========================================
+   SELECTION
+========================================= */
+
+::selection {
+    background:
+        rgba(255,255,255,0.2);
+
+    color: #ffffff;
 }
