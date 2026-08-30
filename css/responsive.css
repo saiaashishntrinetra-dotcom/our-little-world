@@ -1,1 +1,61 @@
+/* =========================================
+   MOBILE
+========================================= */
 
+@media (max-width: 600px) {
+
+    .intro-content {
+        padding: 25px;
+    }
+
+    .date {
+        font-size: 0.7rem;
+        letter-spacing: 0.45rem;
+        margin-bottom: 25px;
+    }
+
+    .intro-line {
+        margin-bottom: 25px;
+    }
+
+    #intro-title {
+        font-size: 2rem;
+    }
+
+    #intro-subtitle {
+        font-size: 1rem;
+    }
+
+    .world-content {
+        padding: 25px;
+    }
+
+    .world-content h1 {
+        font-size: 4rem;
+    }
+
+    .world-description {
+        font-size: 1rem;
+    }
+
+    #enter-world {
+        padding: 15px 24px;
+        font-size: 0.75rem;
+    }
+}
+
+
+/* =========================================
+   REDUCED MOTION
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
