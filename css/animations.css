@@ -1,1 +1,82 @@
+/* =========================================
+   CINEMATIC ANIMATIONS
+========================================= */
 
+.fade-in {
+    animation: fadeIn 2s ease forwards;
+}
+
+.fade-out {
+    animation: fadeOut 2s ease forwards;
+}
+
+.line-grow {
+    animation: lineGrow 1.5s ease forwards;
+}
+
+.subtitle-reveal {
+    animation: subtitleReveal 2s ease forwards;
+}
+
+.world-enter {
+    animation: worldEnter 2s ease forwards;
+}
+
+
+/* =========================================
+   KEYFRAMES
+========================================= */
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes lineGrow {
+    from {
+        width: 0;
+    }
+
+    to {
+        width: 90px;
+    }
+}
+
+@keyframes subtitleReveal {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 0.7;
+        transform: translateY(0);
+    }
+}
+
+@keyframes worldEnter {
+    from {
+        opacity: 0;
+        transform: scale(1.03);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
