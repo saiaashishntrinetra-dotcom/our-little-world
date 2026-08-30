@@ -223,3 +223,89 @@ and (orientation: landscape) {
     }
 
 }
+
+
+/* =========================================
+   V4 MEMORY MOBILE
+========================================= */
+
+@media (max-width: 700px) {
+
+    .memory-universe {
+        padding:
+            65px
+            20px
+            70px;
+    }
+
+    .memory-back {
+        top: 22px;
+        left: 20px;
+
+        font-size: .52rem;
+    }
+
+    .memory-heading {
+        margin-bottom: 40px;
+    }
+
+    .memory-heading p {
+        font-size: .48rem;
+
+        letter-spacing: .3rem;
+    }
+
+    .memory-heading h1 {
+        font-size: 3rem;
+    }
+
+    .memory-heading span {
+        font-size: .82rem;
+
+        line-height: 1.5;
+    }
+
+
+    .memory-grid {
+        grid-template-columns: 1fr;
+
+        gap: 20px;
+    }
+
+
+    .memory-card {
+        min-height: 290px;
+    }
+
+
+    .memory-image {
+        height: 190px;
+    }
+
+
+    .viewer-card {
+        width: 92%;
+
+        max-height: 85vh;
+    }
+
+    .viewer-image {
+        height: 300px;
+    }
+
+    .viewer-info {
+        padding:
+            25px
+            25px
+            30px;
+    }
+
+    .viewer-info h2 {
+        font-size: 2rem;
+    }
+
+    #viewer-description {
+        font-size: .9rem;
+    }
+
+}
