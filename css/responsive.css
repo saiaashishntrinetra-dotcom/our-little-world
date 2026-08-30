@@ -74,6 +74,35 @@
         width: 88%;
     }
 
+
+    /* =====================================
+       V5 — LETTER
+    ====================================== */
+
+    .letter-content {
+        width: 82%;
+    }
+
+    .letter-paper {
+        width: 100%;
+        max-width: 760px;
+    }
+
+    .letter-chase {
+        width: 82%;
+    }
+
+    .letter-chase-space {
+        height: 360px;
+    }
+
+    .letter-chase-star {
+        width: 48px;
+        height: 48px;
+
+        font-size: 1.45rem;
+    }
+
 }
 
 
@@ -357,6 +386,242 @@
         letter-spacing: 0.27rem;
 
         white-space: nowrap;
+    }
+
+
+    /* =====================================
+       V5 — LETTER CHAPTER
+    ====================================== */
+
+    #letter-chapter {
+        width: 100%;
+        height: 100dvh;
+
+        min-height: 100dvh;
+
+        overflow-y: auto;
+        overflow-x: hidden;
+
+        -webkit-overflow-scrolling: touch;
+
+        overscroll-behavior: contain;
+    }
+
+    .letter-content {
+        width: 90%;
+
+        padding:
+            78px 0 55px;
+    }
+
+    .letter-content h1 {
+        font-size:
+            clamp(2.6rem, 13vw, 4.4rem);
+
+        line-height: 1.02;
+
+        text-align: center;
+    }
+
+    .letter-content .chapter-eyebrow {
+        font-size: 0.46rem;
+
+        letter-spacing: 0.28rem;
+
+        text-align: center;
+    }
+
+    .letter-content .chapter-divider {
+        width: 48px;
+
+        margin:
+            22px auto 28px;
+    }
+
+
+    /* =====================================
+       LETTER PAPER
+    ====================================== */
+
+    .letter-paper {
+        width: 100%;
+
+        max-width: none;
+
+        padding:
+            30px 22px 34px;
+
+        border-radius: 4px;
+
+        box-sizing: border-box;
+    }
+
+    .letter-opening {
+        font-size: 1rem;
+
+        line-height: 1.7;
+
+        margin-bottom: 24px;
+    }
+
+    .letter-text {
+        font-size: 0.88rem;
+
+        line-height: 1.9;
+    }
+
+    .letter-text p {
+        margin-bottom: 20px;
+    }
+
+    .letter-signature {
+        margin-top: 28px;
+
+        font-size: 0.9rem;
+    }
+
+
+    /* =====================================
+       LETTER BACK BUTTON
+    ====================================== */
+
+    .letter-content
+    ~ .chapter-back,
+    .chapter-back {
+        top: 15px;
+        left: 12px;
+
+        min-width: 72px;
+        min-height: 40px;
+
+        padding:
+            9px 11px;
+
+        font-size: 0.45rem;
+
+        letter-spacing: 0.18rem;
+
+        touch-action: manipulation;
+
+        z-index: 20;
+    }
+
+
+    /* =====================================
+       LETTER CHASE
+    ====================================== */
+
+    .letter-chase {
+        width: 92%;
+
+        min-height: 100dvh;
+
+        padding:
+            72px 0 40px;
+
+        box-sizing: border-box;
+
+        display: flex;
+
+        flex-direction: column;
+
+        align-items: center;
+    }
+
+    .letter-chase-eyebrow {
+        margin-top: 8px;
+
+        font-size: 0.46rem;
+
+        letter-spacing: 0.24rem;
+
+        line-height: 1.6;
+
+        text-align: center;
+    }
+
+    .letter-chase-space {
+        position: relative;
+
+        width: 100%;
+
+        height:
+            min(58dvh, 430px);
+
+        min-height: 280px;
+
+        margin:
+            18px auto 8px;
+    }
+
+    .letter-chase-star {
+        position: absolute;
+
+        width: 50px;
+        height: 50px;
+
+        margin: -25px 0 0 -25px;
+
+        padding: 0;
+
+        border: 0;
+
+        background: transparent;
+
+        color: #ffffff;
+
+        font-size: 1.45rem;
+
+        line-height: 1;
+
+        cursor: pointer;
+
+        touch-action: manipulation;
+
+        -webkit-tap-highlight-color:
+            transparent;
+
+        z-index: 5;
+    }
+
+    .letter-chase-message {
+        width: 90%;
+
+        margin:
+            18px auto 10px;
+
+        font-size: 0.8rem;
+
+        line-height: 1.7;
+
+        text-align: center;
+    }
+
+    .letter-chase-progress {
+        margin-top: 6px;
+
+        font-size: 0.46rem;
+
+        letter-spacing: 0.18rem;
+
+        text-align: center;
+
+        opacity: .6;
+    }
+
+
+    /* =====================================
+       LETTER CHASE COMPLETION
+    ====================================== */
+
+    .letter-chase-complete {
+        pointer-events: none;
+
+        filter:
+            drop-shadow(
+                0 0 18px
+                rgba(255,255,255,.7)
+            );
     }
 
 
@@ -772,6 +1037,73 @@
 
 
     /* -------------------------------------
+       LETTER
+    -------------------------------------- */
+
+    .letter-content {
+        width: 92%;
+
+        padding:
+            72px 0 45px;
+    }
+
+    .letter-content h1 {
+        font-size: 2.45rem;
+    }
+
+    .letter-paper {
+        padding:
+            26px 18px 30px;
+    }
+
+    .letter-opening {
+        font-size: 0.94rem;
+    }
+
+    .letter-text {
+        font-size: 0.82rem;
+
+        line-height: 1.85;
+    }
+
+    .letter-text p {
+        margin-bottom: 18px;
+    }
+
+    .letter-signature {
+        font-size: 0.84rem;
+    }
+
+    .letter-chase {
+        width: 94%;
+    }
+
+    .letter-chase-space {
+        height: 52dvh;
+
+        min-height: 250px;
+    }
+
+    .letter-chase-star {
+        width: 46px;
+        height: 46px;
+
+        margin:
+            -23px 0 0 -23px;
+
+        font-size: 1.3rem;
+    }
+
+    .letter-chase-message {
+        font-size: 0.74rem;
+    }
+
+    .letter-chase-progress {
+        font-size: 0.42rem;
+    }
+
+
+    /* -------------------------------------
        MEMORY
     -------------------------------------- */
 
@@ -867,6 +1199,109 @@
 
     .memory-universe {
         padding-top: 58px;
+    }
+
+
+    /* =====================================
+       LETTER — LANDSCAPE
+    ====================================== */
+
+    .letter-content {
+        padding:
+            62px 0 35px;
+    }
+
+    .letter-content h1 {
+        font-size: 2.6rem;
+    }
+
+    .letter-paper {
+        max-width: 760px;
+
+        padding:
+            24px 30px 28px;
+    }
+
+    .letter-text {
+        font-size: 0.82rem;
+
+        line-height: 1.7;
+    }
+
+    .letter-chase {
+        padding:
+            58px 0 25px;
+    }
+
+    .letter-chase-space {
+        height: 55vh;
+
+        min-height: 190px;
+    }
+
+    .letter-chase-message {
+        margin-top: 8px;
+    }
+
+}
+
+
+/* =========================================
+   ACCESSIBILITY / TOUCH
+========================================= */
+
+@media (hover: none) {
+
+    .constellation:hover {
+        filter: none;
+    }
+
+    .memory-card:hover {
+        transform: none;
+    }
+
+}
+
+
+/* =========================================
+   SAFE AREA SUPPORT
+========================================= */
+
+@media (max-width: 700px) {
+
+    .chapter-back,
+    .memory-back {
+        top:
+            max(12px, env(safe-area-inset-top));
+
+    }
+
+    .letter-content,
+    .memory-universe {
+        padding-bottom:
+            max(
+                45px,
+                env(safe-area-inset-bottom)
+            );
+    }
+
+}
+
+
+/* =========================================
+   REDUCED MOTION SUPPORT
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .letter-chase-star,
+    .letter-chase,
+    .letter-paper,
+    .letter-reveal-element {
+
+        animation: none !important;
+
+        transition: none !important;
     }
 
 }
