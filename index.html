@@ -92,7 +92,6 @@
 
     <!-- =========================================
          V5 EFFECT LAYERS
-         JS will populate these dynamically.
     ========================================== -->
 
     <div
@@ -413,7 +412,7 @@
 
 
     <!-- =========================================
-         LETTER CHAPTER
+         V5 — LETTER CHAPTER
     ========================================== -->
 
     <section
@@ -422,34 +421,57 @@
         aria-label="Our Letter"
     >
 
+        <!-- BACK TO UNIVERSE -->
+
         <button
             class="chapter-back"
             data-back="world"
             type="button"
+            aria-label="Back to Our Little World"
         >
             ← BACK
         </button>
 
+
         <div class="chapter-content letter-content">
+
+
+            <!-- LETTER INTRO -->
 
             <p class="chapter-eyebrow">
                 A LETTER
             </p>
 
+
             <h1>
                 For Trinetra
             </h1>
+
 
             <div
                 class="chapter-divider"
                 aria-hidden="true"
             ></div>
 
-            <div class="letter-paper">
+
+            <!-- =================================
+                 LETTER PAPER
+            ================================== -->
+
+            <article
+                class="letter-paper"
+                aria-label="A letter from Aashish to Trinetra"
+            >
 
                 <p class="letter-opening">
                     Dear Trinetra,
                 </p>
+
+
+                <!--
+                    letter.js controls the content
+                    and reveal behaviour of this area.
+                -->
 
                 <div
                     id="letter-text"
@@ -468,11 +490,15 @@
 
                 </div>
 
+
+                <!-- SIGNATURE -->
+
                 <p class="letter-signature">
                     — Aashish
                 </p>
 
-            </div>
+            </article>
+
 
         </div>
 
@@ -481,6 +507,7 @@
 
     <!-- =========================================
          MEMORY GALAXY
+         V4 — RETAINED
     ========================================== -->
 
     <section
@@ -495,6 +522,7 @@
                 id="close-memories"
                 class="memory-back"
                 type="button"
+                aria-label="Back to Our Little World"
             >
                 ← BACK
             </button>
@@ -535,6 +563,7 @@
 
     <!-- =========================================
          MEMORY VIEWER
+         V4 — RETAINED
     ========================================== -->
 
     <div
@@ -547,6 +576,7 @@
             class="viewer-backdrop"
             aria-hidden="true"
         ></div>
+
 
         <div
             class="viewer-card"
@@ -593,7 +623,8 @@
 
 
     <!-- =========================================
-         SOUNDTRACK CHAPTER
+         V6 — SOUNDTRACK
+         NOT BUILT YET
     ========================================== -->
 
     <section
@@ -657,7 +688,8 @@
 
 
     <!-- =========================================
-         FUTURE CHAPTER
+         V8 — FUTURE
+         NOT BUILT YET
     ========================================== -->
 
     <section
@@ -719,9 +751,8 @@
 
 
     <!-- =========================================
-         LEGACY SECTION MODAL
-         Temporarily retained for JS compatibility.
-         Will be removed in a later V5 pass.
+         LEGACY MODAL
+         RETAINED FOR COMPATIBILITY
     ========================================== -->
 
     <div
@@ -734,6 +765,7 @@
             class="modal-backdrop"
             aria-hidden="true"
         ></div>
+
 
         <div
             class="modal-card"
@@ -750,6 +782,7 @@
             >
                 ×
             </button>
+
 
             <p
                 id="modal-eyebrow"
@@ -781,16 +814,28 @@
      JAVASCRIPT
 ========================================== -->
 
+<!-- V3 — Universe -->
 <script
     src="js/universe.js"
     defer
 ></script>
 
+
+<!-- V4 — Memories -->
 <script
     src="js/memories.js"
     defer
 ></script>
 
+
+<!-- V5 — Letter -->
+<script
+    src="js/letter.js"
+    defer
+></script>
+
+
+<!-- Main application controller -->
 <script
     src="js/app.js"
     defer
