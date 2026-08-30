@@ -1,6 +1,7 @@
 /* =========================================
-   OUR LITTLE WORLD — V5
-   THE LIVING UNIVERSE
+   OUR LITTLE WORLD
+   V5 — THE LIVING UNIVERSE
+   UNIVERSE.JS
 ========================================= */
 
 
@@ -13,6 +14,53 @@ const starContainer =
 
 const universe =
     document.querySelector(".universe");
+
+const world =
+    document.getElementById("world");
+
+
+/* =========================================
+   CONFIGURATION
+========================================= */
+
+const UNIVERSE_CONFIG = {
+
+    desktopStars: 240,
+
+    mobileStars: 130,
+
+    parallaxStrength: 14,
+
+    parallaxSmoothing: 0.035,
+
+    starParallaxStrength: 0.35,
+
+    burstParticles: 8,
+
+    shootingStarMinDelay: 7000,
+
+    shootingStarMaxDelay: 16000
+
+};
+
+
+/* =========================================
+   STATE
+========================================= */
+
+const universeState = {
+
+    targetX: 0,
+
+    targetY: 0,
+
+    currentX: 0,
+
+    currentY: 0,
+
+    shootingStarTimer: null
+
+};
 
 
 /* =========================================
@@ -29,14 +77,16 @@ if (!starContainer) {
 
 
     /* =====================================
-       STAR CONFIGURATION
+       STAR COUNT
     ====================================== */
 
     const isMobile =
         window.innerWidth <= 700;
 
     const starAmount =
-        isMobile ? 130 : 240;
+        isMobile
+            ? UNIVERSE_CONFIG.mobileStars
+            : UNIVERSE_CONFIG.desktopStars;
 
 
     /* =====================================
@@ -49,7 +99,11 @@ if (!starContainer) {
             document.createDocumentFragment();
 
 
-        for (let i = 0; i < amount; i++) {
+        for (
+            let i = 0;
+            i < amount;
+            i++
+        ) {
 
             const star =
                 document.createElement("span");
@@ -121,8 +175,21 @@ if (!starContainer) {
                 depth.toFixed(2);
 
 
+            /*
+             * Store the base transform
+             * separately so parallax does
+             * not destroy the star scale.
+             */
+
+            star.dataset.scale =
+                (
+                    0.7 +
+                    depth * 0.8
+                ).toFixed(3);
+
+
             star.style.transform =
-                `scale(${0.7 + depth * 0.8})`;
+                `translate3d(0, 0, 0) scale(${star.dataset.scale})`;
 
 
             /* -----------------------------
@@ -145,10 +212,14 @@ if (!starContainer) {
             ------------------------------ */
 
             star.style.zIndex =
-                depth > 0.75 ? "1" : "2";
+                depth > 0.75
+                    ? "1"
+                    : "2";
 
 
-            fragment.appendChild(star);
+            fragment.appendChild(
+                star
+            );
 
         }
 
@@ -160,19 +231,14 @@ if (!starContainer) {
     }
 
 
-    createStars(starAmount);
+    createStars(
+        starAmount
+    );
 
 
     /* =====================================
-       PARALLAX SYSTEM
+       PARALLAX INPUT
     ====================================== */
-
-    let targetX = 0;
-    let targetY = 0;
-
-    let currentX = 0;
-    let currentY = 0;
-
 
     function updateParallax(x, y) {
 
@@ -184,11 +250,22 @@ if (!starContainer) {
         }
 
 
-        targetX =
-            (x / window.innerWidth - 0.5) * 14;
+        universeState.targetX =
+            (
+                x /
+                window.innerWidth -
+                0.5
+            ) *
+            UNIVERSE_CONFIG.parallaxStrength;
 
-        targetY =
-            (y / window.innerHeight - 0.5) * 14;
+
+        universeState.targetY =
+            (
+                y /
+                window.innerHeight -
+                0.5
+            ) *
+            UNIVERSE_CONFIG.parallaxStrength;
 
     }
 
@@ -207,7 +284,9 @@ if (!starContainer) {
             );
 
         },
-        { passive: true }
+        {
+            passive: true
+        }
     );
 
 
@@ -237,7 +316,9 @@ if (!starContainer) {
             );
 
         },
-        { passive: true }
+        {
+            passive: true
+        }
     );
 
 
@@ -247,19 +328,33 @@ if (!starContainer) {
 
     function animateUniverse() {
 
-        currentX +=
-            (targetX - currentX) * 0.035;
+        universeState.currentX +=
+            (
+                universeState.targetX -
+                universeState.currentX
+            ) *
+            UNIVERSE_CONFIG.parallaxSmoothing;
 
-        currentY +=
-            (targetY - currentY) * 0.035;
 
+        universeState.currentY +=
+            (
+                universeState.targetY -
+                universeState.currentY
+            ) *
+            UNIVERSE_CONFIG.parallaxSmoothing;
+
+
+        /*
+         * Only apply parallax when the
+         * universe element exists.
+         */
 
         if (universe) {
 
             universe.style.transform =
                 `translate3d(
-                    ${currentX}px,
-                    ${currentY}px,
+                    ${universeState.currentX}px,
+                    ${universeState.currentY}px,
                     0
                 )`;
 
@@ -292,22 +387,42 @@ if (!starContainer) {
 
             const depth =
                 parseFloat(
-                    star.dataset.depth || "0.5"
+                    star.dataset.depth ||
+                    "0.5"
                 );
 
 
+            const scale =
+                star.dataset.scale ||
+                "1";
+
+
             const movementX =
-                currentX * depth * 0.35;
+                universeState.currentX *
+                depth *
+                UNIVERSE_CONFIG.starParallaxStrength;
+
 
             const movementY =
-                currentY * depth * 0.35;
+                universeState.currentY *
+                depth *
+                UNIVERSE_CONFIG.starParallaxStrength;
 
 
-            star.style.marginLeft =
-                `${movementX}px`;
+            /*
+             * Use transform instead of
+             * margin movement.
+             *
+             * This is smoother and avoids
+             * layout recalculation.
+             */
 
-            star.style.marginTop =
-                `${movementY}px`;
+            star.style.transform =
+                `translate3d(
+                    ${movementX}px,
+                    ${movementY}px,
+                    0
+                ) scale(${scale})`;
 
         });
 
@@ -329,7 +444,9 @@ if (!starContainer) {
     function createStarBurst(x, y) {
 
         const burst =
-            document.createElement("div");
+            document.createElement(
+                "div"
+            );
 
 
         burst.className =
@@ -352,18 +469,16 @@ if (!starContainer) {
            PARTICLES
         ------------------------------ */
 
-        const particleCount =
-            8;
-
-
         for (
             let i = 0;
-            i < particleCount;
+            i < UNIVERSE_CONFIG.burstParticles;
             i++
         ) {
 
             const particle =
-                document.createElement("span");
+                document.createElement(
+                    "span"
+                );
 
 
             particle.className =
@@ -371,12 +486,16 @@ if (!starContainer) {
 
 
             const angle =
-                (Math.PI * 2 / particleCount)
-                * i;
+                (
+                    Math.PI * 2 /
+                    UNIVERSE_CONFIG.burstParticles
+                ) *
+                i;
 
 
             const distance =
-                20 + Math.random() * 25;
+                20 +
+                Math.random() * 25;
 
 
             particle.style.setProperty(
@@ -400,7 +519,11 @@ if (!starContainer) {
 
         setTimeout(() => {
 
-            burst.remove();
+            if (burst.parentNode) {
+
+                burst.remove();
+
+            }
 
         }, 900);
 
@@ -408,7 +531,7 @@ if (!starContainer) {
 
 
     /* =====================================
-       CLICK / TAP BURSTS
+       BACKGROUND CLICK BURSTS
     ====================================== */
 
     window.addEventListener(
@@ -416,13 +539,34 @@ if (!starContainer) {
         event => {
 
             /*
-             * Don't create bursts when
-             * clicking UI buttons.
+             * Never create a burst when
+             * clicking buttons or controls.
              */
 
             if (
                 event.target.closest(
                     "button"
+                )
+            ) {
+                return;
+            }
+
+
+            /*
+             * Don't create background
+             * bursts inside the Letter,
+             * Memory Viewer, or modal.
+             */
+
+            if (
+                event.target.closest(
+                    "#letter-chapter"
+                ) ||
+                event.target.closest(
+                    "#memory-viewer"
+                ) ||
+                event.target.closest(
+                    "#section-modal"
                 )
             ) {
                 return;
@@ -444,11 +588,15 @@ if (!starContainer) {
 
     function createShootingStar() {
 
-        if (!document.body) return;
+        if (!document.body) {
+            return;
+        }
 
 
         const shootingStar =
-            document.createElement("div");
+            document.createElement(
+                "div"
+            );
 
 
         shootingStar.className =
@@ -457,6 +605,7 @@ if (!starContainer) {
 
         shootingStar.style.top =
             `${Math.random() * 45}%`;
+
 
         shootingStar.style.left =
             `${Math.random() * 85 + 5}%`;
@@ -473,9 +622,33 @@ if (!starContainer) {
 
         setTimeout(() => {
 
-            shootingStar.remove();
+            if (
+                shootingStar.parentNode
+            ) {
+
+                shootingStar.remove();
+
+            }
 
         }, 2500);
+
+    }
+
+
+    /* =====================================
+       CHECK WORLD VISIBILITY
+    ====================================== */
+
+    function isWorldActive() {
+
+        if (!world) {
+            return false;
+        }
+
+
+        return !world.classList.contains(
+            "hidden"
+        );
 
     }
 
@@ -487,33 +660,34 @@ if (!starContainer) {
     function scheduleShootingStar() {
 
         const delay =
-            7000 +
-            Math.random() * 9000;
+            UNIVERSE_CONFIG.shootingStarMinDelay +
+            Math.random() *
+            (
+                UNIVERSE_CONFIG.shootingStarMaxDelay -
+                UNIVERSE_CONFIG.shootingStarMinDelay
+            );
 
 
-        setTimeout(() => {
+        universeState.shootingStarTimer =
+            setTimeout(() => {
 
-            /*
-             * Only create them when
-             * the World screen is active.
-             */
+                /*
+                 * Shooting stars belong to
+                 * the main universe only.
+                 */
 
-            if (
-                universe &&
-                !document
-                    .getElementById("world")
-                    ?.classList
-                    .contains("hidden")
-            ) {
+                if (
+                    isWorldActive()
+                ) {
 
-                createShootingStar();
+                    createShootingStar();
 
-            }
+                }
 
 
-            scheduleShootingStar();
+                scheduleShootingStar();
 
-        }, delay);
+            }, delay);
 
     }
 
@@ -522,7 +696,7 @@ if (!starContainer) {
 
 
     /* =====================================
-       CONSTELLATION NODE EFFECT
+       CONSTELLATION STAR BURSTS
     ====================================== */
 
     const nodes =
@@ -535,7 +709,7 @@ if (!starContainer) {
 
         node.addEventListener(
             "click",
-            event => {
+            () => {
 
                 const rect =
                     node.getBoundingClientRect();
@@ -556,7 +730,19 @@ if (!starContainer) {
 
 
     /* =====================================
-       RESET PARALLAX WHEN LEAVING
+       RESET PARALLAX
+    ====================================== */
+
+    function resetParallax() {
+
+        universeState.targetX = 0;
+        universeState.targetY = 0;
+
+    }
+
+
+    /* =====================================
+       PAGE VISIBILITY
     ====================================== */
 
     document.addEventListener(
@@ -568,8 +754,7 @@ if (!starContainer) {
                 "hidden"
             ) {
 
-                targetX = 0;
-                targetY = 0;
+                resetParallax();
 
             }
 
@@ -585,17 +770,30 @@ if (!starContainer) {
         "resize",
         () => {
 
-            /*
-             * Keep the universe stable
-             * when rotating the phone.
-             */
-
-            targetX = 0;
-            targetY = 0;
+            resetParallax();
 
         },
-        { passive: true }
+        {
+            passive: true
+        }
     );
+
+
+    /* =====================================
+       PUBLIC API
+    ====================================== */
+
+    window.Universe = {
+
+        createStarBurst,
+
+        createShootingStar,
+
+        resetParallax,
+
+        isWorldActive
+
+    };
 
 
     /* =====================================
