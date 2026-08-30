@@ -1,6 +1,6 @@
 /* =========================================
    OUR LITTLE WORLD
-   V4 — MAIN CSS
+   V5 — MAIN CSS
 ========================================= */
 
 
@@ -37,6 +37,10 @@ body {
 
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
+}
+
+button {
+    font: inherit;
 }
 
 
@@ -77,10 +81,40 @@ body {
 
 
 /* =========================================
+   AMBIENT GLOW
+========================================= */
+
+#ambient-glow {
+    position: fixed;
+
+    inset: -20%;
+
+    z-index: 0;
+
+    pointer-events: none;
+
+    background:
+        radial-gradient(
+            circle at 50% 50%,
+            rgba(90, 80, 120, 0.08),
+            transparent 35%
+        );
+
+    filter: blur(35px);
+
+    animation:
+        ambientBreathing 10s
+        ease-in-out
+        infinite;
+}
+
+
+/* =========================================
    SCREEN SYSTEM
 ========================================= */
 
-.screen {
+.screen,
+.chapter-screen {
     position: fixed;
 
     inset: 0;
@@ -127,7 +161,10 @@ body {
 }
 
 .date {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
 
     font-size: 0.85rem;
 
@@ -168,6 +205,30 @@ body {
     letter-spacing: 0.08em;
 
     opacity: 0.7;
+}
+
+.intro-scroll-hint {
+    margin-top: 55px;
+
+    display: flex;
+
+    justify-content: center;
+}
+
+.intro-scroll-hint span {
+    display: block;
+
+    width: 1px;
+    height: 38px;
+
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(255,255,255,0.65),
+            transparent
+        );
+
+    opacity: 0.35;
 }
 
 
@@ -287,7 +348,8 @@ body {
     transition:
         transform 0.4s ease,
         background 0.4s ease,
-        border-color 0.4s ease;
+        border-color 0.4s ease,
+        box-shadow 0.4s ease;
 }
 
 #enter-world:hover {
@@ -298,11 +360,23 @@ body {
 
     border-color:
         rgba(255, 255, 255, 0.7);
+
+    box-shadow:
+        0 10px 35px
+        rgba(255,255,255,0.08);
+}
+
+#enter-world:focus-visible {
+    outline:
+        1px solid
+        rgba(255,255,255,0.8);
+
+    outline-offset: 5px;
 }
 
 
 /* =========================================
-   V3 — MAIN UNIVERSE
+   MAIN UNIVERSE
 ========================================= */
 
 #world {
@@ -325,6 +399,63 @@ body {
 
     transition:
         transform 0.2s ease-out;
+}
+
+
+/* =========================================
+   ORBIT RINGS
+========================================= */
+
+.universe-orbit {
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    border:
+        1px solid
+        rgba(255,255,255,0.045);
+
+    border-radius: 50%;
+
+    pointer-events: none;
+
+    transform:
+        translate(-50%, -50%);
+}
+
+.orbit-one {
+    width: 420px;
+    height: 420px;
+
+    animation:
+        orbitDrift 24s
+        linear
+        infinite;
+}
+
+.orbit-two {
+    width: 650px;
+    height: 650px;
+
+    opacity: 0.65;
+
+    animation:
+        orbitDriftReverse 34s
+        linear
+        infinite;
+}
+
+.orbit-three {
+    width: 880px;
+    height: 880px;
+
+    opacity: 0.35;
+
+    animation:
+        orbitDrift 46s
+        linear
+        infinite;
 }
 
 
@@ -434,6 +565,15 @@ body {
 
     -webkit-tap-highlight-color:
         transparent;
+
+    transition:
+        transform 0.5s
+        cubic-bezier(.16,1,.3,1);
+}
+
+.constellation:hover,
+.constellation:focus-visible {
+    transform: scale(1.05);
 }
 
 .node-star {
@@ -590,8 +730,7 @@ body {
     right: 24%;
     top: 36%;
 
-    transform:
-        rotate(-14deg);
+    transform: rotate(-14deg);
 }
 
 .line-three {
@@ -600,8 +739,7 @@ body {
     left: 25%;
     bottom: 31%;
 
-    transform:
-        rotate(-14deg);
+    transform: rotate(-14deg);
 }
 
 .line-four {
@@ -610,8 +748,7 @@ body {
     right: 25%;
     bottom: 31%;
 
-    transform:
-        rotate(14deg);
+    transform: rotate(14deg);
 }
 
 
@@ -642,7 +779,804 @@ body {
 
 
 /* =========================================
-   V3 GENERAL MODAL
+   CHAPTER SYSTEM
+========================================= */
+
+.chapter-screen {
+    z-index: 40;
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(35,30,50,0.55),
+            #030305 62%,
+            #000000 100%
+        );
+}
+
+.chapter-content {
+    position: relative;
+
+    width:
+        min(850px, 88%);
+
+    max-height: 90vh;
+
+    overflow-y: auto;
+
+    padding:
+        80px 20px;
+
+    text-align: center;
+
+    scrollbar-width: thin;
+}
+
+.chapter-eyebrow {
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    font-size: 0.58rem;
+
+    letter-spacing: 0.5rem;
+
+    opacity: 0.35;
+
+    margin-bottom: 24px;
+}
+
+.chapter-content h1 {
+    font-size:
+        clamp(3rem, 8vw, 6.5rem);
+
+    font-weight: 400;
+
+    line-height: 1;
+
+    letter-spacing: -0.055em;
+}
+
+.chapter-divider {
+    width: 65px;
+    height: 1px;
+
+    margin: 35px auto;
+
+    background:
+        rgba(255,255,255,0.3);
+}
+
+.chapter-description {
+    max-width: 600px;
+
+    margin: 0 auto;
+
+    font-size:
+        clamp(1rem, 2vw, 1.2rem);
+
+    line-height: 1.8;
+
+    opacity: 0.5;
+}
+
+
+/* =========================================
+   CHAPTER BACK
+========================================= */
+
+.chapter-back {
+    position: fixed;
+
+    top: 30px;
+    left: 35px;
+
+    z-index: 60;
+
+    border: 0;
+
+    background: transparent;
+
+    color: #ffffff;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    font-size: 0.6rem;
+
+    letter-spacing: 0.25rem;
+
+    opacity: 0.45;
+
+    cursor: pointer;
+
+    transition:
+        opacity 0.3s ease,
+        transform 0.3s ease;
+}
+
+.chapter-back:hover,
+.chapter-back:focus-visible {
+    opacity: 1;
+
+    transform:
+        translateX(-4px);
+}
+
+
+/* =========================================
+   LETTER
+========================================= */
+
+.letter-paper {
+    width:
+        min(680px, 100%);
+
+    margin:
+        10px auto 0;
+
+    padding:
+        55px 55px 60px;
+
+    text-align: left;
+
+    border:
+        1px solid
+        rgba(255,255,255,0.09);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,0.045),
+            rgba(255,255,255,0.012)
+        );
+
+    box-shadow:
+        0 30px 90px
+        rgba(0,0,0,0.4);
+}
+
+.letter-opening {
+    font-size: 1.25rem;
+
+    margin-bottom: 30px;
+
+    opacity: 0.8;
+}
+
+.letter-text {
+    font-size: 1.05rem;
+
+    line-height: 2;
+
+    opacity: 0.62;
+}
+
+.letter-text p + p {
+    margin-top: 24px;
+}
+
+.letter-signature {
+    margin-top: 40px;
+
+    text-align: right;
+
+    font-size: 1.1rem;
+
+    opacity: 0.65;
+}
+
+
+/* =========================================
+   SOUNDTRACK
+========================================= */
+
+.soundtrack-list {
+    width:
+        min(650px, 100%);
+
+    margin: 45px auto 0;
+}
+
+.track-placeholder {
+    min-height: 180px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    border:
+        1px solid
+        rgba(255,255,255,0.08);
+
+    background:
+        rgba(255,255,255,0.025);
+}
+
+.track-placeholder span {
+    font-size: 2rem;
+
+    opacity: 0.35;
+
+    margin-bottom: 18px;
+}
+
+.track-placeholder p {
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    font-size: 0.65rem;
+
+    letter-spacing: 0.25rem;
+
+    text-transform: uppercase;
+
+    opacity: 0.35;
+}
+
+
+/* =========================================
+   FUTURE
+========================================= */
+
+.future-timeline {
+    margin-top: 55px;
+
+    min-height: 220px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+}
+
+.future-star {
+    font-size: 2.5rem;
+
+    text-shadow:
+        0 0 25px
+        rgba(255,255,255,0.4);
+}
+
+.future-line {
+    width: 1px;
+    height: 100px;
+
+    margin: 15px 0;
+
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(255,255,255,0.4),
+            transparent
+        );
+}
+
+.future-timeline p {
+    font-size: 1rem;
+
+    letter-spacing: 0.12rem;
+
+    opacity: 0.45;
+}
+
+
+/* =========================================
+   MEMORY GALAXY
+========================================= */
+
+#memory-galaxy {
+    position: fixed;
+
+    inset: 0;
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(35, 30, 50, 0.55),
+            #030305 62%,
+            #000000 100%
+        );
+
+    z-index: 30;
+
+    display: flex;
+
+    align-items: stretch;
+    justify-content: stretch;
+}
+
+.memory-universe {
+    position: relative;
+
+    width: 100%;
+    height: 100%;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    padding:
+        70px 7% 80px;
+
+    scroll-behavior: smooth;
+
+    -webkit-overflow-scrolling:
+        touch;
+}
+
+.memory-back {
+    position: fixed;
+
+    top: 30px;
+    left: 35px;
+
+    z-index: 60;
+
+    border: 0;
+
+    background: transparent;
+
+    color: #ffffff;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    font-size: 0.6rem;
+
+    letter-spacing: 0.25rem;
+
+    opacity: 0.45;
+
+    cursor: pointer;
+
+    transition:
+        opacity 0.3s ease,
+        transform 0.3s ease;
+}
+
+.memory-back:hover,
+.memory-back:focus-visible {
+    opacity: 1;
+
+    transform:
+        translateX(-4px);
+}
+
+.memory-heading {
+    position: relative;
+
+    z-index: 5;
+
+    text-align: center;
+
+    padding-top: 25px;
+
+    margin-bottom: 65px;
+}
+
+.memory-heading p {
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    font-size: 0.58rem;
+
+    letter-spacing: 0.45rem;
+
+    opacity: 0.35;
+
+    margin-bottom: 22px;
+}
+
+.memory-heading h1 {
+    font-size:
+        clamp(3rem, 7vw, 6rem);
+
+    font-weight: 400;
+
+    letter-spacing: -0.055em;
+
+    line-height: 1;
+}
+
+.memory-heading span {
+    display: block;
+
+    margin-top: 22px;
+
+    font-size: 1rem;
+
+    letter-spacing: 0.08rem;
+
+    opacity: 0.45;
+}
+
+
+/* =========================================
+   MEMORY GRID
+========================================= */
+
+.memory-grid {
+    position: relative;
+
+    z-index: 5;
+
+    width:
+        min(1100px, 100%);
+
+    margin: 0 auto;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 28px;
+
+    padding-bottom: 20px;
+}
+
+
+/* =========================================
+   MEMORY CARD
+========================================= */
+
+.memory-card {
+    position: relative;
+
+    min-height: 310px;
+
+    padding: 25px;
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.09);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255, 255, 255, 0.055),
+            rgba(255, 255, 255, 0.012)
+        );
+
+    backdrop-filter:
+        blur(10px);
+
+    -webkit-backdrop-filter:
+        blur(10px);
+
+    cursor: pointer;
+
+    overflow: hidden;
+
+    transition:
+        transform 0.5s
+        cubic-bezier(.16, 1, .3, 1),
+        border-color 0.5s ease,
+        box-shadow 0.5s ease;
+}
+
+.memory-card:hover,
+.memory-card:focus-visible {
+    transform:
+        translateY(-10px)
+        scale(1.015);
+
+    border-color:
+        rgba(255, 255, 255, 0.25);
+
+    box-shadow:
+        0 25px 70px
+        rgba(0, 0, 0, 0.5);
+}
+
+.memory-card:focus-visible {
+    outline:
+        1px solid
+        rgba(255,255,255,0.5);
+
+    outline-offset: 3px;
+}
+
+
+/* =========================================
+   MEMORY IMAGE
+========================================= */
+
+.memory-image {
+    width: 100%;
+
+    height: 190px;
+
+    margin-bottom: 22px;
+
+    background:
+        radial-gradient(
+            circle at 50% 40%,
+            rgba(255, 255, 255, 0.13),
+            rgba(255, 255, 255, 0.02) 45%,
+            rgba(0, 0, 0, 0.25)
+        );
+
+    background-size: cover;
+
+    background-position: center;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+}
+
+.memory-image-placeholder {
+    display: block;
+
+    font-size: 2.5rem;
+
+    opacity: 0.25;
+
+    animation:
+        memoryPulse 4s
+        ease-in-out
+        infinite;
+}
+
+.memory-date {
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    font-size: 0.52rem;
+
+    letter-spacing: 0.3rem;
+
+    opacity: 0.35;
+
+    margin-bottom: 10px;
+}
+
+.memory-card h2 {
+    font-size: 1.55rem;
+
+    font-weight: 400;
+
+    letter-spacing: -0.02em;
+}
+
+.memory-card p {
+    margin-top: 10px;
+
+    font-size: 0.85rem;
+
+    line-height: 1.6;
+
+    opacity: 0.42;
+}
+
+.memory-card::before {
+    content: "✦";
+
+    position: absolute;
+
+    top: 18px;
+    right: 20px;
+
+    font-size: 0.75rem;
+
+    opacity: 0.35;
+
+    transition:
+        transform 0.5s ease,
+        opacity 0.5s ease;
+}
+
+.memory-card:hover::before {
+    transform:
+        scale(1.7);
+
+    opacity: 0.8;
+}
+
+.memory-footer {
+    position: relative;
+
+    z-index: 5;
+
+    text-align: center;
+
+    margin-top: 70px;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    font-size: 0.5rem;
+
+    letter-spacing: 0.45rem;
+
+    opacity: 0.2;
+}
+
+
+/* =========================================
+   MEMORY VIEWER
+========================================= */
+
+.memory-viewer {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 200;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+}
+
+.viewer-backdrop {
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        rgba(0, 0, 0, 0.82);
+
+    backdrop-filter:
+        blur(18px);
+
+    -webkit-backdrop-filter:
+        blur(18px);
+}
+
+.viewer-card {
+    position: relative;
+
+    z-index: 2;
+
+    width:
+        min(900px, 90%);
+
+    max-height: 90vh;
+
+    overflow-y: auto;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(25, 25, 35, 0.97),
+            rgba(3, 3, 7, 0.99)
+        );
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.12);
+
+    box-shadow:
+        0 40px 120px
+        rgba(0, 0, 0, 0.8);
+}
+
+.viewer-image {
+    width: 100%;
+
+    height: 470px;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255, 255, 255, 0.1),
+            rgba(0, 0, 0, 0.4)
+        );
+
+    background-size: cover;
+
+    background-position: center;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+}
+
+.viewer-info {
+    padding:
+        35px 45px 45px;
+}
+
+.viewer-info p:first-child {
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    font-size: 0.55rem;
+
+    letter-spacing: 0.35rem;
+
+    opacity: 0.35;
+}
+
+.viewer-info h2 {
+    margin-top: 14px;
+
+    font-size: 2.5rem;
+
+    font-weight: 400;
+}
+
+.viewer-info div {
+    width: 55px;
+    height: 1px;
+
+    margin: 22px 0;
+
+    background:
+        rgba(255, 255, 255, 0.3);
+}
+
+#viewer-description {
+    font-size: 1rem;
+
+    line-height: 1.8;
+
+    opacity: 0.55;
+}
+
+.viewer-close {
+    position: absolute;
+
+    top: 15px;
+    right: 20px;
+
+    z-index: 5;
+
+    width: 40px;
+    height: 40px;
+
+    border: 0;
+
+    background: transparent;
+
+    color: #ffffff;
+
+    font-size: 2rem;
+
+    font-weight: 200;
+
+    cursor: pointer;
+
+    opacity: 0.5;
+
+    transition:
+        opacity 0.3s ease;
+}
+
+.viewer-close:hover,
+.viewer-close:focus-visible {
+    opacity: 1;
+}
+
+
+/* =========================================
+   LEGACY MODAL
 ========================================= */
 
 .modal {
@@ -783,549 +1717,95 @@ body {
 
 
 /* =========================================
-   V4 — MEMORY GALAXY
+   SCROLLBARS
 ========================================= */
 
-#memory-galaxy {
-    position: fixed;
+.memory-universe::-webkit-scrollbar,
+.viewer-card::-webkit-scrollbar,
+.chapter-content::-webkit-scrollbar {
+    width: 5px;
+}
 
-    inset: 0;
-
+.memory-universe::-webkit-scrollbar-track,
+.viewer-card::-webkit-scrollbar-track,
+.chapter-content::-webkit-scrollbar-track {
     background:
-        radial-gradient(
-            circle at center,
-            rgba(35, 30, 50, 0.55),
-            #030305 62%,
-            #000000 100%
-        );
+        rgba(255,255,255,0.02);
+}
 
-    z-index: 30;
+.memory-universe::-webkit-scrollbar-thumb,
+.viewer-card::-webkit-scrollbar-thumb,
+.chapter-content::-webkit-scrollbar-thumb {
+    background:
+        rgba(255,255,255,0.15);
 
-    display: flex;
-
-    align-items: stretch;
-    justify-content: stretch;
+    border-radius: 10px;
 }
 
 
 /* =========================================
-   MEMORY UNIVERSE
+   SELECTION
 ========================================= */
 
-.memory-universe {
-    position: relative;
-
-    width: 100%;
-    height: 100%;
-
-    overflow-y: auto;
-    overflow-x: hidden;
-
-    padding:
-        70px 7% 80px;
-
-    scroll-behavior: smooth;
-
-    -webkit-overflow-scrolling:
-        touch;
-}
-
-
-/* =========================================
-   MEMORY BACK BUTTON
-========================================= */
-
-.memory-back {
-    position: fixed;
-
-    top: 30px;
-    left: 35px;
-
-    z-index: 60;
-
-    border: 0;
-
-    background: transparent;
+::selection {
+    background:
+        rgba(255,255,255,0.2);
 
     color: #ffffff;
-
-    font-family:
-        Arial,
-        Helvetica,
-        sans-serif;
-
-    font-size: 0.6rem;
-
-    letter-spacing: 0.25rem;
-
-    opacity: 0.45;
-
-    cursor: pointer;
-
-    transition:
-        opacity 0.3s ease,
-        transform 0.3s ease;
-}
-
-.memory-back:hover {
-    opacity: 1;
-
-    transform:
-        translateX(-4px);
 }
 
 
 /* =========================================
-   MEMORY HEADING
+   MOTION
 ========================================= */
 
-.memory-heading {
-    position: relative;
+@keyframes ambientBreathing {
 
-    z-index: 5;
+    0%,
+    100% {
+        opacity: 0.55;
 
-    text-align: center;
+        transform:
+            scale(1);
+    }
 
-    padding-top: 25px;
+    50% {
+        opacity: 1;
 
-    margin-bottom: 65px;
+        transform:
+            scale(1.08);
+    }
 }
 
-.memory-heading p {
-    font-family:
-        Arial,
-        Helvetica,
-        sans-serif;
+@keyframes orbitDrift {
 
-    font-size: 0.58rem;
+    from {
+        transform:
+            translate(-50%, -50%)
+            rotate(0deg);
+    }
 
-    letter-spacing: 0.45rem;
-
-    opacity: 0.35;
-
-    margin-bottom: 22px;
+    to {
+        transform:
+            translate(-50%, -50%)
+            rotate(360deg);
+    }
 }
 
-.memory-heading h1 {
-    font-size:
-        clamp(3rem, 7vw, 6rem);
+@keyframes orbitDriftReverse {
 
-    font-weight: 400;
+    from {
+        transform:
+            translate(-50%, -50%)
+            rotate(360deg);
+    }
 
-    letter-spacing: -0.055em;
-
-    line-height: 1;
+    to {
+        transform:
+            translate(-50%, -50%)
+            rotate(0deg);
+    }
 }
-
-.memory-heading span {
-    display: block;
-
-    margin-top: 22px;
-
-    font-size: 1rem;
-
-    letter-spacing: 0.08rem;
-
-    opacity: 0.45;
-}
-
-
-/* =========================================
-   MEMORY GRID
-========================================= */
-
-.memory-grid {
-    position: relative;
-
-    z-index: 5;
-
-    width:
-        min(1100px, 100%);
-
-    margin: 0 auto;
-
-    display: grid;
-
-    grid-template-columns:
-        repeat(3, minmax(0, 1fr));
-
-    gap: 28px;
-
-    padding-bottom: 20px;
-}
-
-
-/* =========================================
-   MEMORY CARD
-========================================= */
-
-.memory-card {
-    position: relative;
-
-    min-height: 310px;
-
-    padding: 25px;
-
-    border:
-        1px solid
-        rgba(255, 255, 255, 0.09);
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(255, 255, 255, 0.055),
-            rgba(255, 255, 255, 0.012)
-        );
-
-    backdrop-filter:
-        blur(10px);
-
-    -webkit-backdrop-filter:
-        blur(10px);
-
-    cursor: pointer;
-
-    overflow: hidden;
-
-    transition:
-        transform 0.5s
-        cubic-bezier(.16, 1, .3, 1),
-
-        border-color 0.5s ease,
-
-        box-shadow 0.5s ease;
-}
-
-.memory-card:hover {
-    transform:
-        translateY(-10px)
-        scale(1.015);
-
-    border-color:
-        rgba(255, 255, 255, 0.25);
-
-    box-shadow:
-        0 25px 70px
-        rgba(0, 0, 0, 0.5);
-}
-
-
-/* =========================================
-   MEMORY IMAGE
-========================================= */
-
-.memory-image {
-    width: 100%;
-
-    height: 190px;
-
-    margin-bottom: 22px;
-
-    background:
-        radial-gradient(
-            circle at 50% 40%,
-            rgba(255, 255, 255, 0.13),
-            rgba(255, 255, 255, 0.02) 45%,
-            rgba(0, 0, 0, 0.25)
-        );
-
-    background-size: cover;
-
-    background-position: center;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    overflow: hidden;
-}
-
-.memory-image-placeholder {
-    display: block;
-
-    font-size: 2.5rem;
-
-    opacity: 0.25;
-
-    animation:
-        memoryPulse 4s
-        ease-in-out
-        infinite;
-}
-
-
-/* =========================================
-   MEMORY CARD TEXT
-========================================= */
-
-.memory-date {
-    font-family:
-        Arial,
-        Helvetica,
-        sans-serif;
-
-    font-size: 0.52rem;
-
-    letter-spacing: 0.3rem;
-
-    opacity: 0.35;
-
-    margin-bottom: 10px;
-}
-
-.memory-card h2 {
-    font-size: 1.55rem;
-
-    font-weight: 400;
-
-    letter-spacing: -0.02em;
-}
-
-.memory-card p {
-    margin-top: 10px;
-
-    font-size: 0.85rem;
-
-    line-height: 1.6;
-
-    opacity: 0.42;
-}
-
-
-/* =========================================
-   MEMORY CARD STAR
-========================================= */
-
-.memory-card::before {
-    content: "✦";
-
-    position: absolute;
-
-    top: 18px;
-    right: 20px;
-
-    font-size: 0.75rem;
-
-    opacity: 0.35;
-
-    transition:
-        transform 0.5s ease,
-        opacity 0.5s ease;
-}
-
-.memory-card:hover::before {
-    transform:
-        scale(1.7);
-
-    opacity: 0.8;
-}
-
-
-/* =========================================
-   MEMORY FOOTER
-========================================= */
-
-.memory-footer {
-    position: relative;
-
-    z-index: 5;
-
-    text-align: center;
-
-    margin-top: 70px;
-
-    font-family:
-        Arial,
-        Helvetica,
-        sans-serif;
-
-    font-size: 0.5rem;
-
-    letter-spacing: 0.45rem;
-
-    opacity: 0.2;
-}
-
-
-/* =========================================
-   MEMORY VIEWER
-========================================= */
-
-.memory-viewer {
-    position: fixed;
-
-    inset: 0;
-
-    z-index: 200;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-}
-
-.viewer-backdrop {
-    position: absolute;
-
-    inset: 0;
-
-    background:
-        rgba(0, 0, 0, 0.82);
-
-    backdrop-filter:
-        blur(18px);
-
-    -webkit-backdrop-filter:
-        blur(18px);
-}
-
-.viewer-card {
-    position: relative;
-
-    z-index: 2;
-
-    width:
-        min(900px, 90%);
-
-    max-height: 90vh;
-
-    overflow-y: auto;
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(25, 25, 35, 0.97),
-            rgba(3, 3, 7, 0.99)
-        );
-
-    border:
-        1px solid
-        rgba(255, 255, 255, 0.12);
-
-    box-shadow:
-        0 40px 120px
-        rgba(0, 0, 0, 0.8);
-}
-
-
-/* =========================================
-   VIEWER IMAGE
-========================================= */
-
-.viewer-image {
-    width: 100%;
-
-    height: 470px;
-
-    background:
-        radial-gradient(
-            circle,
-            rgba(255, 255, 255, 0.1),
-            rgba(0, 0, 0, 0.4)
-        );
-
-    background-size: cover;
-
-    background-position: center;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-}
-
-
-/* =========================================
-   VIEWER INFO
-========================================= */
-
-.viewer-info {
-    padding:
-        35px 45px 45px;
-}
-
-.viewer-info p:first-child {
-    font-family:
-        Arial,
-        Helvetica,
-        sans-serif;
-
-    font-size: 0.55rem;
-
-    letter-spacing: 0.35rem;
-
-    opacity: 0.35;
-}
-
-.viewer-info h2 {
-    margin-top: 14px;
-
-    font-size: 2.5rem;
-
-    font-weight: 400;
-}
-
-.viewer-info div {
-    width: 55px;
-    height: 1px;
-
-    margin: 22px 0;
-
-    background:
-        rgba(255, 255, 255, 0.3);
-}
-
-#viewer-description {
-    font-size: 1rem;
-
-    line-height: 1.8;
-
-    opacity: 0.55;
-}
-
-
-/* =========================================
-   VIEWER CLOSE
-========================================= */
-
-.viewer-close {
-    position: absolute;
-
-    top: 15px;
-    right: 20px;
-
-    z-index: 5;
-
-    width: 40px;
-    height: 40px;
-
-    border: 0;
-
-    background: transparent;
-
-    color: #ffffff;
-
-    font-size: 2rem;
-
-    font-weight: 200;
-
-    cursor: pointer;
-
-    opacity: 0.5;
-
-    transition:
-        opacity 0.3s ease;
-}
-
-.viewer-close:hover {
-    opacity: 1;
-}
-
-
-/* =========================================
-   V4 MEMORY ANIMATION
-========================================= */
 
 @keyframes memoryPulse {
 
@@ -1347,36 +1827,18 @@ body {
 
 
 /* =========================================
-   SCROLLBAR
+   REDUCED MOTION
 ========================================= */
 
-.memory-universe::-webkit-scrollbar,
-.viewer-card::-webkit-scrollbar {
-    width: 5px;
-}
+@media (prefers-reduced-motion: reduce) {
 
-.memory-universe::-webkit-scrollbar-track,
-.viewer-card::-webkit-scrollbar-track {
-    background:
-        rgba(255,255,255,0.02);
-}
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+    }
 
-.memory-universe::-webkit-scrollbar-thumb,
-.viewer-card::-webkit-scrollbar-thumb {
-    background:
-        rgba(255,255,255,0.15);
-
-    border-radius: 10px;
-}
-
-
-/* =========================================
-   SELECTION
-========================================= */
-
-::selection {
-    background:
-        rgba(255,255,255,0.2);
-
-    color: #ffffff;
 }
