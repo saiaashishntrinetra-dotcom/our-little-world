@@ -1,9 +1,16 @@
 /* =========================================
    OUR LITTLE WORLD
-   V4 — MAIN APPLICATION
+   V5 — MAIN APPLICATION
+   APP.JS
+========================================= */
+
+
+/* =========================================
+   APPLICATION INITIALIZATION
 ========================================= */
 
 document.addEventListener("DOMContentLoaded", () => {
+
 
     /* =====================================
        MAIN SCREENS
@@ -27,13 +34,25 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (!intro || !reveal) return;
 
-        intro.classList.add("screen-exit");
+
+        intro.classList.add(
+            "screen-exit"
+        );
+
 
         setTimeout(() => {
 
-            intro.classList.add("hidden");
+            intro.classList.add(
+                "hidden"
+            );
 
-            reveal.classList.remove("hidden");
+            intro.classList.remove(
+                "screen-exit"
+            );
+
+            reveal.classList.remove(
+                "hidden"
+            );
 
         }, 1800);
 
@@ -45,7 +64,9 @@ document.addEventListener("DOMContentLoaded", () => {
     ====================================== */
 
     const enterButton =
-        document.getElementById("enter-world");
+        document.getElementById(
+            "enter-world"
+        );
 
 
     if (enterButton) {
@@ -54,11 +75,18 @@ document.addEventListener("DOMContentLoaded", () => {
             "click",
             () => {
 
-                if (!reveal || !world) return;
+                if (
+                    !reveal ||
+                    !world
+                ) {
+                    return;
+                }
+
 
                 reveal.classList.add(
                     "screen-exit"
                 );
+
 
                 setTimeout(() => {
 
@@ -83,7 +111,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =====================================
-       MODAL ELEMENTS
+       LEGACY MODAL
+       
+       Still used temporarily by
+       Music / Future.
+
+       LETTER IS NOT handled here.
+       letter.js owns the Letter chapter.
     ====================================== */
 
     const modal =
@@ -118,28 +152,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =====================================
-       OTHER UNIVERSE SECTIONS
+       LEGACY SECTION DATA
     ====================================== */
 
     const sections = {
 
-        letter: {
-
-            eyebrow: "A LETTER",
-
-            title: "For Trinetra",
-
-            text:
-                "Some things are easier to write than say. This space will hold the words I want you to keep."
-
-        },
-
-
         music: {
 
-            eyebrow: "OUR SOUNDTRACK",
+            eyebrow:
+                "OUR SOUNDTRACK",
 
-            title: "Songs",
+            title:
+                "Songs",
 
             text:
                 "Some songs become attached to people. This will be the soundtrack of our little world."
@@ -149,9 +173,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
         future: {
 
-            eyebrow: "THE FUTURE",
+            eyebrow:
+                "THE FUTURE",
 
-            title: "Next Chapters",
+            title:
+                "Next Chapters",
 
             text:
                 "We haven't written these chapters yet. That's what makes them exciting."
@@ -162,13 +188,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =====================================
-       OPEN NORMAL MODAL
+       OPEN LEGACY MODAL
     ====================================== */
 
     function openModal(section) {
 
         const content =
             sections[section];
+
 
         if (
             !content ||
@@ -204,12 +231,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =====================================
-       CLOSE NORMAL MODAL
+       CLOSE LEGACY MODAL
     ====================================== */
 
     function closeSectionModal() {
 
         if (!modal) return;
+
 
         modal.classList.add(
             "hidden"
@@ -223,6 +251,10 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
+    /* =====================================
+       MODAL CLOSE BUTTON
+    ====================================== */
+
     if (closeModal) {
 
         closeModal.addEventListener(
@@ -232,6 +264,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     }
 
+
+    /* =====================================
+       MODAL BACKDROP
+    ====================================== */
 
     if (modalBackdrop) {
 
@@ -265,6 +301,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
                     /* =========================
+                       LETTER
+                       
+                       IMPORTANT:
+                       Do NOT open the old modal.
+                       letter.js handles this.
+                    ========================= */
+
+                    if (
+                        section === "letter"
+                    ) {
+
+                        return;
+
+                    }
+
+
+                    /* =========================
                        MEMORIES
                     ========================= */
 
@@ -280,10 +333,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
                     /* =========================
-                       LETTER / MUSIC / FUTURE
+                       MUSIC / FUTURE
                     ========================= */
 
-                    openModal(section);
+                    if (
+                        section === "music" ||
+                        section === "future"
+                    ) {
+
+                        openModal(section);
+
+                        return;
+
+                    }
 
                 }
             );
@@ -307,6 +369,10 @@ document.addEventListener("DOMContentLoaded", () => {
         );
 
 
+    /* =====================================
+       OPEN MEMORY GALAXY
+    ====================================== */
+
     function openMemoryGalaxy() {
 
         if (
@@ -318,7 +384,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
         /*
-         * Fade out the main universe
+         * Close any legacy modal first.
+         */
+
+        closeSectionModal();
+
+
+        /*
+         * Fade out universe.
          */
 
         world.classList.add(
@@ -338,7 +411,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
             /*
-             * Show Memory Galaxy
+             * Show Memory Galaxy.
              */
 
             memoryGalaxy.classList.remove(
@@ -347,13 +420,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
             /*
-             * Scroll back to top
+             * Reset scroll position.
              */
 
             const memoryUniverse =
                 memoryGalaxy.querySelector(
                     ".memory-universe"
                 );
+
 
             if (memoryUniverse) {
 
@@ -381,7 +455,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
         /*
-         * Fade Memory Galaxy out
+         * Fade memory screen.
          */
 
         memoryGalaxy.classList.add(
@@ -401,7 +475,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
             /*
-             * Return to Universe
+             * Return to universe.
              */
 
             world.classList.remove(
@@ -412,6 +486,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     }
 
+
+    /* =====================================
+       MEMORY BACK BUTTON
+    ====================================== */
 
     if (closeMemories) {
 
@@ -431,9 +509,10 @@ document.addEventListener("DOMContentLoaded", () => {
         "keydown",
         event => {
 
-            /*
-             * ESC closes normal modal
-             */
+
+            /* =============================
+               ESC → CLOSE MODAL
+            ============================= */
 
             if (
                 event.key === "Escape"
@@ -449,25 +528,27 @@ document.addEventListener("DOMContentLoaded", () => {
 
     /* =====================================
        PREVENT DOUBLE-TAP ZOOM
-       ON INTERACTIVE ELEMENTS
+       ON BUTTONS
     ====================================== */
 
     document
         .querySelectorAll(
             "button"
         )
-        .forEach(button => {
+        .forEach(
+            button => {
 
-            button.addEventListener(
-                "dblclick",
-                event => {
+                button.addEventListener(
+                    "dblclick",
+                    event => {
 
-                    event.preventDefault();
+                        event.preventDefault();
 
-                }
-            );
+                    }
+                );
 
-        });
+            }
+        );
 
 
     /* =====================================
@@ -479,11 +560,8 @@ document.addEventListener("DOMContentLoaded", () => {
         () => {
 
             /*
-             * If the user leaves the page,
-             * don't reset the experience.
-             *
-             * This keeps the current screen
-             * when they return.
+             * Keep the current experience
+             * when the user returns.
              */
 
             if (
@@ -502,11 +580,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =====================================
-       DEBUG MESSAGE
+       DEBUG / READY
     ====================================== */
 
-   console.log(
-    "🌌 Our Little World — V5 loaded."
-);
+    console.log(
+        "🌌 Our Little World — V5 Application loaded."
+    );
 
 });
