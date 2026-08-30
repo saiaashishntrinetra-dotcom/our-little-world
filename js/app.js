@@ -505,8 +505,8 @@ document.addEventListener("DOMContentLoaded", () => {
        DEBUG MESSAGE
     ====================================== */
 
-    console.log(
-        "🌌 Our Little World — V4 loaded."
-    );
+   console.log(
+    "🌌 Our Little World — V5 loaded."
+);
 
 });
