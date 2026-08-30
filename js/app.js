@@ -1,51 +1,52 @@
 /* =========================================
-   OUR LITTLE WORLD
-   APPLICATION
+   OUR LITTLE WORLD — V2
+   CINEMATIC EXPERIENCE
 ========================================= */
 
 document.addEventListener("DOMContentLoaded", () => {
 
     const intro = document.getElementById("intro");
+    const reveal = document.getElementById("reveal");
     const world = document.getElementById("world");
 
-    const title = document.getElementById("intro-title");
-    const subtitle = document.getElementById("intro-subtitle");
-    const line = document.querySelector(".intro-line");
-
-    const enterButton = document.getElementById("enter-world");
+    const enterButton =
+        document.getElementById("enter-world");
 
 
-    /* -------------------------------
-       INTRO SEQUENCE
-    -------------------------------- */
+    /* =====================================
+       INTRO → REVEAL
+    ====================================== */
 
     setTimeout(() => {
-        line.classList.add("line-grow");
-    }, 500);
 
-
-    setTimeout(() => {
-        subtitle.classList.add("subtitle-reveal");
-    }, 1800);
-
-
-    /* -------------------------------
-       ENTER WORLD
-    -------------------------------- */
-
-    enterButton.addEventListener("click", () => {
-
-        intro.classList.add("fade-out");
+        intro.classList.add("screen-exit");
 
         setTimeout(() => {
 
             intro.classList.add("hidden");
 
+            reveal.classList.remove("hidden");
+
+        }, 1800);
+
+    }, 6000);
+
+
+    /* =====================================
+       REVEAL → WORLD
+    ====================================== */
+
+    enterButton.addEventListener("click", () => {
+
+        reveal.classList.add("screen-exit");
+
+        setTimeout(() => {
+
+            reveal.classList.add("hidden");
+
             world.classList.remove("hidden");
 
-            world.classList.add("world-enter");
-
-        }, 1500);
+        }, 1800);
 
     });
 
