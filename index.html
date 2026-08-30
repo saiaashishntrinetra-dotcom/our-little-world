@@ -36,18 +36,27 @@
 <main id="app">
 
 
-    <!-- ======================================
-         STAR FIELD
-    ======================================= -->
+    <!-- =========================================
+         AMBIENT UNIVERSE
+    ========================================== -->
 
-    <div id="stars"></div>
+    <div id="stars" aria-hidden="true"></div>
+
+    <div
+        id="ambient-glow"
+        aria-hidden="true"
+    ></div>
 
 
-    <!-- ======================================
-         V2 INTRO
-    ======================================= -->
+    <!-- =========================================
+         INTRO
+    ========================================== -->
 
-    <section id="intro" class="screen">
+    <section
+        id="intro"
+        class="screen"
+        aria-label="Introduction"
+    >
 
         <div class="intro-content">
 
@@ -55,7 +64,10 @@
                 12.08.2026
             </p>
 
-            <div class="intro-line"></div>
+            <div
+                class="intro-line"
+                aria-hidden="true"
+            ></div>
 
             <h1 id="intro-title">
                 Some dates are just dates.
@@ -65,16 +77,27 @@
                 Some become memories.
             </p>
 
+            <div
+                class="intro-scroll-hint"
+                aria-hidden="true"
+            >
+                <span></span>
+            </div>
+
         </div>
 
     </section>
 
 
-    <!-- ======================================
-         V2 REVEAL
-    ======================================= -->
+    <!-- =========================================
+         REVEAL
+    ========================================== -->
 
-    <section id="reveal" class="screen hidden">
+    <section
+        id="reveal"
+        class="screen hidden"
+        aria-label="Reveal"
+    >
 
         <div class="reveal-content">
 
@@ -90,13 +113,19 @@
                 I made something for you.
             </p>
 
-            <div class="reveal-line"></div>
+            <div
+                class="reveal-line"
+                aria-hidden="true"
+            ></div>
 
             <h2>
                 Our Little World
             </h2>
 
-            <button id="enter-world">
+            <button
+                id="enter-world"
+                type="button"
+            >
                 ENTER
             </button>
 
@@ -105,17 +134,41 @@
     </section>
 
 
-    <!-- ======================================
-         V3 — MAIN UNIVERSE
-    ======================================= -->
+    <!-- =========================================
+         MAIN UNIVERSE
+    ========================================== -->
 
-    <section id="world" class="screen hidden">
+    <section
+        id="world"
+        class="screen hidden"
+        aria-label="Our Little World"
+    >
 
         <div class="universe">
 
 
             <!-- =================================
-                 CENTRAL TITLE
+                 ORBIT / ATMOSPHERE
+            ================================== -->
+
+            <div
+                class="universe-orbit orbit-one"
+                aria-hidden="true"
+            ></div>
+
+            <div
+                class="universe-orbit orbit-two"
+                aria-hidden="true"
+            ></div>
+
+            <div
+                class="universe-orbit orbit-three"
+                aria-hidden="true"
+            ></div>
+
+
+            <!-- =================================
+                 CENTRAL UNIVERSE
             ================================== -->
 
             <div class="universe-center">
@@ -140,18 +193,25 @@
 
 
             <!-- =================================
-                 CONSTELLATION — LETTER
+                 LETTER
             ================================== -->
 
             <button
                 class="constellation constellation-letter"
                 data-section="letter"
-                aria-label="Open our letter"
+                type="button"
+                aria-label="Open Our Letter"
             >
 
-                <span class="node-glow"></span>
+                <span
+                    class="node-glow"
+                    aria-hidden="true"
+                ></span>
 
-                <span class="node-star">
+                <span
+                    class="node-star"
+                    aria-hidden="true"
+                >
                     ✦
                 </span>
 
@@ -163,18 +223,25 @@
 
 
             <!-- =================================
-                 CONSTELLATION — MEMORIES
+                 MEMORIES
             ================================== -->
 
             <button
                 class="constellation constellation-memories"
                 data-section="memories"
-                aria-label="Open our memories"
+                type="button"
+                aria-label="Open Our Memories"
             >
 
-                <span class="node-glow"></span>
+                <span
+                    class="node-glow"
+                    aria-hidden="true"
+                ></span>
 
-                <span class="node-star">
+                <span
+                    class="node-star"
+                    aria-hidden="true"
+                >
                     ✦
                 </span>
 
@@ -186,18 +253,25 @@
 
 
             <!-- =================================
-                 CONSTELLATION — MUSIC
+                 SOUNDTRACK
             ================================== -->
 
             <button
                 class="constellation constellation-music"
                 data-section="music"
-                aria-label="Open our soundtrack"
+                type="button"
+                aria-label="Open Our Soundtrack"
             >
 
-                <span class="node-glow"></span>
+                <span
+                    class="node-glow"
+                    aria-hidden="true"
+                ></span>
 
-                <span class="node-star">
+                <span
+                    class="node-star"
+                    aria-hidden="true"
+                >
                     ✦
                 </span>
 
@@ -209,18 +283,25 @@
 
 
             <!-- =================================
-                 CONSTELLATION — FUTURE
+                 FUTURE
             ================================== -->
 
             <button
                 class="constellation constellation-future"
                 data-section="future"
-                aria-label="Open future chapters"
+                type="button"
+                aria-label="Open Future Chapters"
             >
 
-                <span class="node-glow"></span>
+                <span
+                    class="node-glow"
+                    aria-hidden="true"
+                ></span>
 
-                <span class="node-star">
+                <span
+                    class="node-star"
+                    aria-hidden="true"
+                >
                     ✦
                 </span>
 
@@ -232,62 +313,128 @@
 
 
             <!-- =================================
-                 DECORATIVE CONSTELLATION LINES
+                 CONSTELLATION CONNECTIONS
             ================================== -->
 
-            <div class="constellation-line line-one"></div>
+            <div
+                class="constellation-line line-one"
+                aria-hidden="true"
+            ></div>
 
-            <div class="constellation-line line-two"></div>
+            <div
+                class="constellation-line line-two"
+                aria-hidden="true"
+            ></div>
 
-            <div class="constellation-line line-three"></div>
+            <div
+                class="constellation-line line-three"
+                aria-hidden="true"
+            ></div>
 
-            <div class="constellation-line line-four"></div>
+            <div
+                class="constellation-line line-four"
+                aria-hidden="true"
+            ></div>
 
 
             <!-- =================================
-                 BOTTOM DATE
+                 UNIVERSE DATE
             ================================== -->
 
             <div class="universe-date">
                 12 • 08 • 2026
             </div>
 
+        </div>
+
+    </section>
+
+
+    <!-- =========================================
+         LETTER CHAPTER
+    ========================================== -->
+
+    <section
+        id="letter-chapter"
+        class="chapter-screen hidden"
+        aria-label="Our Letter"
+    >
+
+        <button
+            class="chapter-back"
+            data-back="world"
+            type="button"
+        >
+            ← BACK
+        </button>
+
+        <div class="chapter-content letter-content">
+
+            <p class="chapter-eyebrow">
+                A LETTER
+            </p>
+
+            <h1>
+                For Trinetra
+            </h1>
+
+            <div
+                class="chapter-divider"
+                aria-hidden="true"
+            ></div>
+
+            <div class="letter-paper">
+
+                <p class="letter-opening">
+                    Dear Trinetra,
+                </p>
+
+                <div
+                    id="letter-text"
+                    class="letter-text"
+                >
+                    <p>
+                        Some things are easier to write
+                        than say.
+                    </p>
+
+                    <p>
+                        This little space is for the words
+                        I want you to keep.
+                    </p>
+                </div>
+
+                <p class="letter-signature">
+                    — Aashish
+                </p>
+
+            </div>
 
         </div>
 
     </section>
 
 
-    <!-- ======================================
-         V4 — MEMORY GALAXY
-         
-         IMPORTANT:
-         THIS MUST BE OUTSIDE #world
-    ======================================= -->
+    <!-- =========================================
+         MEMORY GALAXY
+    ========================================== -->
 
     <section
         id="memory-galaxy"
         class="screen hidden"
+        aria-label="Our Memories"
     >
 
         <div class="memory-universe">
 
-
-            <!-- =================================
-                 BACK BUTTON
-            ================================== -->
-
             <button
                 id="close-memories"
                 class="memory-back"
+                type="button"
             >
                 ← BACK
             </button>
 
-
-            <!-- =================================
-                 MEMORY HEADING
-            ================================== -->
 
             <div class="memory-heading">
 
@@ -306,74 +453,55 @@
             </div>
 
 
-            <!-- =================================
-                 MEMORY GRID
-            ================================== -->
-
             <div
                 id="memory-grid"
                 class="memory-grid"
-            >
+            ></div>
 
-                <!--
-                    Memories are generated
-                    by memories.js
-                -->
-
-            </div>
-
-
-            <!-- =================================
-                 MEMORY FOOTER
-            ================================== -->
 
             <div class="memory-footer">
                 12 • 08 • 2026
             </div>
-
 
         </div>
 
     </section>
 
 
-    <!-- ======================================
+    <!-- =========================================
          MEMORY VIEWER
-         
-         ALSO OUTSIDE #world
-    ======================================= -->
+    ========================================== -->
 
     <div
         id="memory-viewer"
         class="memory-viewer hidden"
+        aria-hidden="true"
     >
 
         <div class="viewer-backdrop"></div>
 
-
-        <div class="viewer-card">
-
-
-            <!-- CLOSE -->
+        <div
+            class="viewer-card"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="viewer-title"
+        >
 
             <button
                 id="close-viewer"
                 class="viewer-close"
+                type="button"
                 aria-label="Close memory"
             >
                 ×
             </button>
 
 
-            <!-- IMAGE -->
-
             <div
                 id="viewer-image"
                 class="viewer-image"
             ></div>
 
-
-            <!-- INFORMATION -->
 
             <div class="viewer-info">
 
@@ -387,15 +515,128 @@
 
             </div>
 
-
         </div>
 
     </div>
 
 
-    <!-- ======================================
-         V3 — CONTENT MODAL
-    ======================================= -->
+    <!-- =========================================
+         SOUNDTRACK CHAPTER
+    ========================================== -->
+
+    <section
+        id="music-chapter"
+        class="chapter-screen hidden"
+        aria-label="Our Soundtrack"
+    >
+
+        <button
+            class="chapter-back"
+            data-back="world"
+            type="button"
+        >
+            ← BACK
+        </button>
+
+        <div class="chapter-content music-content">
+
+            <p class="chapter-eyebrow">
+                OUR SOUNDTRACK
+            </p>
+
+            <h1>
+                Songs That Stay
+            </h1>
+
+            <div
+                class="chapter-divider"
+                aria-hidden="true"
+            ></div>
+
+            <p class="chapter-description">
+                Some songs become attached to people,
+                places, and moments.
+            </p>
+
+            <div
+                id="soundtrack-list"
+                class="soundtrack-list"
+            >
+
+                <div class="track-placeholder">
+                    <span>✦</span>
+                    <p>
+                        Our soundtrack is waiting.
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================
+         FUTURE CHAPTER
+    ========================================== -->
+
+    <section
+        id="future-chapter"
+        class="chapter-screen hidden"
+        aria-label="Future Chapters"
+    >
+
+        <button
+            class="chapter-back"
+            data-back="world"
+            type="button"
+        >
+            ← BACK
+        </button>
+
+        <div class="chapter-content future-content">
+
+            <p class="chapter-eyebrow">
+                THE FUTURE
+            </p>
+
+            <h1>
+                Next Chapters
+            </h1>
+
+            <div
+                class="chapter-divider"
+                aria-hidden="true"
+            ></div>
+
+            <p class="chapter-description">
+                We haven't written these chapters yet.
+            </p>
+
+            <div class="future-timeline">
+
+                <div class="future-star">
+                    ✦
+                </div>
+
+                <div class="future-line"></div>
+
+                <p>
+                    Maybe that's the beautiful part.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================
+         LEGACY SECTION MODAL
+         Kept for compatibility during V5
+    ========================================== -->
 
     <div
         id="section-modal"
@@ -405,50 +646,36 @@
 
         <div class="modal-backdrop"></div>
 
-
-        <div class="modal-card">
-
-
-            <!-- CLOSE -->
+        <div
+            class="modal-card"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="modal-title"
+        >
 
             <button
                 id="close-modal"
                 class="close-modal"
+                type="button"
                 aria-label="Close"
             >
                 ×
             </button>
-
-
-            <!-- EYEBROW -->
 
             <p
                 id="modal-eyebrow"
                 class="modal-eyebrow"
             ></p>
 
-
-            <!-- TITLE -->
-
             <h2 id="modal-title"></h2>
-
-
-            <!-- DIVIDER -->
 
             <div class="modal-divider"></div>
 
-
-            <!-- TEXT -->
-
             <p id="modal-text"></p>
-
-
-            <!-- COMING SOON -->
 
             <p class="modal-coming">
                 This chapter is waiting to be written.
             </p>
-
 
         </div>
 
@@ -458,9 +685,9 @@
 </main>
 
 
-<!-- ======================================
+<!-- =========================================
      JAVASCRIPT
-======================================= -->
+========================================== -->
 
 <script src="js/universe.js"></script>
 
