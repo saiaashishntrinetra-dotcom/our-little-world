@@ -1,8 +1,13 @@
 /* =========================================
-   OUR LITTLE WORLD — V3
+   OUR LITTLE WORLD
+   V4 — MAIN APPLICATION
 ========================================= */
 
 document.addEventListener("DOMContentLoaded", () => {
+
+    /* =====================================
+       MAIN SCREENS
+    ====================================== */
 
     const intro =
         document.getElementById("intro");
@@ -13,30 +18,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const world =
         document.getElementById("world");
 
-    const enterButton =
-        document.getElementById("enter-world");
-
-    const modal =
-        document.getElementById("section-modal");
-
-    const closeModal =
-        document.getElementById("close-modal");
-
-    const modalTitle =
-        document.getElementById("modal-title");
-
-    const modalEyebrow =
-        document.getElementById("modal-eyebrow");
-
-    const modalText =
-        document.getElementById("modal-text");
-
 
     /* =====================================
-       INTRO → REVEAL
+       V2 → REVEAL
     ====================================== */
 
     setTimeout(() => {
+
+        if (!intro || !reveal) return;
 
         intro.classList.add("screen-exit");
 
@@ -52,107 +41,179 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =====================================
-       REVEAL → UNIVERSE
+       ENTER OUR WORLD
     ====================================== */
 
-    enterButton.addEventListener("click", () => {
+    const enterButton =
+        document.getElementById("enter-world");
 
-        reveal.classList.add("screen-exit");
 
-        setTimeout(() => {
+    if (enterButton) {
 
-            reveal.classList.add("hidden");
+        enterButton.addEventListener(
+            "click",
+            () => {
 
-            world.classList.remove("hidden");
+                if (!reveal || !world) return;
 
-        }, 1800);
+                reveal.classList.add(
+                    "screen-exit"
+                );
 
-    });
+                setTimeout(() => {
+
+                    reveal.classList.add(
+                        "hidden"
+                    );
+
+                    reveal.classList.remove(
+                        "screen-exit"
+                    );
+
+                    world.classList.remove(
+                        "hidden"
+                    );
+
+                }, 1800);
+
+            }
+        );
+
+    }
 
 
     /* =====================================
-       CONSTELLATION CONTENT
+       MODAL ELEMENTS
+    ====================================== */
+
+    const modal =
+        document.getElementById(
+            "section-modal"
+        );
+
+    const closeModal =
+        document.getElementById(
+            "close-modal"
+        );
+
+    const modalTitle =
+        document.getElementById(
+            "modal-title"
+        );
+
+    const modalEyebrow =
+        document.getElementById(
+            "modal-eyebrow"
+        );
+
+    const modalText =
+        document.getElementById(
+            "modal-text"
+        );
+
+    const modalBackdrop =
+        document.querySelector(
+            ".modal-backdrop"
+        );
+
+
+    /* =====================================
+       OTHER UNIVERSE SECTIONS
     ====================================== */
 
     const sections = {
 
         letter: {
+
             eyebrow: "A LETTER",
+
             title: "For Trinetra",
+
             text:
                 "Some things are easier to write than say. This space will hold the words I want you to keep."
+
         },
 
-        memories: {
-            eyebrow: "OUR MEMORIES",
-            title: "The Moments",
-            text:
-                "Every little moment that became part of our story will have a place here."
-        },
 
         music: {
+
             eyebrow: "OUR SOUNDTRACK",
+
             title: "Songs",
+
             text:
                 "Some songs become attached to people. This will be the soundtrack of our little world."
+
         },
 
+
         future: {
+
             eyebrow: "THE FUTURE",
+
             title: "Next Chapters",
+
             text:
                 "We haven't written these chapters yet. That's what makes them exciting."
+
         }
 
     };
 
 
     /* =====================================
-       OPEN CONSTELLATION
+       OPEN NORMAL MODAL
     ====================================== */
 
-    document
-        .querySelectorAll(".constellation")
-        .forEach(button => {
+    function openModal(section) {
 
-            button.addEventListener("click", () => {
+        const content =
+            sections[section];
 
-                const section =
-                    button.dataset.section;
+        if (
+            !content ||
+            !modal ||
+            !modalTitle ||
+            !modalEyebrow ||
+            !modalText
+        ) {
+            return;
+        }
 
-                const content =
-                    sections[section];
 
-                if (!content) return;
+        modalEyebrow.textContent =
+            content.eyebrow;
 
-                modalEyebrow.textContent =
-                    content.eyebrow;
+        modalTitle.textContent =
+            content.title;
 
-                modalTitle.textContent =
-                    content.title;
+        modalText.textContent =
+            content.text;
 
-                modalText.textContent =
-                    content.text;
 
-                modal.classList.remove("hidden");
+        modal.classList.remove(
+            "hidden"
+        );
 
-                modal.setAttribute(
-                    "aria-hidden",
-                    "false"
-                );
+        modal.setAttribute(
+            "aria-hidden",
+            "false"
+        );
 
-            });
-
-        });
+    }
 
 
     /* =====================================
-       CLOSE MODAL
+       CLOSE NORMAL MODAL
     ====================================== */
 
-    function closeSection() {
+    function closeSectionModal() {
 
-        modal.classList.add("hidden");
+        if (!modal) return;
+
+        modal.classList.add(
+            "hidden"
+        );
 
         modal.setAttribute(
             "aria-hidden",
@@ -161,31 +222,291 @@ document.addEventListener("DOMContentLoaded", () => {
 
     }
 
-    closeModal.addEventListener(
-        "click",
-        closeSection
+
+    if (closeModal) {
+
+        closeModal.addEventListener(
+            "click",
+            closeSectionModal
+        );
+
+    }
+
+
+    if (modalBackdrop) {
+
+        modalBackdrop.addEventListener(
+            "click",
+            closeSectionModal
+        );
+
+    }
+
+
+    /* =====================================
+       CONSTELLATION NAVIGATION
+    ====================================== */
+
+    const constellationButtons =
+        document.querySelectorAll(
+            ".constellation"
+        );
+
+
+    constellationButtons.forEach(
+        button => {
+
+            button.addEventListener(
+                "click",
+                () => {
+
+                    const section =
+                        button.dataset.section;
+
+
+                    /* =========================
+                       MEMORIES
+                    ========================= */
+
+                    if (
+                        section === "memories"
+                    ) {
+
+                        openMemoryGalaxy();
+
+                        return;
+
+                    }
+
+
+                    /* =========================
+                       LETTER / MUSIC / FUTURE
+                    ========================= */
+
+                    openModal(section);
+
+                }
+            );
+
+        }
     );
 
 
-    document
-        .querySelector(".modal-backdrop")
-        .addEventListener(
-            "click",
-            closeSection
+    /* =====================================
+       MEMORY GALAXY
+    ====================================== */
+
+    const memoryGalaxy =
+        document.getElementById(
+            "memory-galaxy"
         );
 
+    const closeMemories =
+        document.getElementById(
+            "close-memories"
+        );
+
+
+    function openMemoryGalaxy() {
+
+        if (
+            !world ||
+            !memoryGalaxy
+        ) {
+            return;
+        }
+
+
+        /*
+         * Fade out the main universe
+         */
+
+        world.classList.add(
+            "screen-exit"
+        );
+
+
+        setTimeout(() => {
+
+            world.classList.add(
+                "hidden"
+            );
+
+            world.classList.remove(
+                "screen-exit"
+            );
+
+
+            /*
+             * Show Memory Galaxy
+             */
+
+            memoryGalaxy.classList.remove(
+                "hidden"
+            );
+
+
+            /*
+             * Scroll back to top
+             */
+
+            const memoryUniverse =
+                memoryGalaxy.querySelector(
+                    ".memory-universe"
+                );
+
+            if (memoryUniverse) {
+
+                memoryUniverse.scrollTop = 0;
+
+            }
+
+        }, 900);
+
+    }
+
+
+    /* =====================================
+       CLOSE MEMORY GALAXY
+    ====================================== */
+
+    function closeMemoryGalaxy() {
+
+        if (
+            !memoryGalaxy ||
+            !world
+        ) {
+            return;
+        }
+
+
+        /*
+         * Fade Memory Galaxy out
+         */
+
+        memoryGalaxy.classList.add(
+            "screen-exit"
+        );
+
+
+        setTimeout(() => {
+
+            memoryGalaxy.classList.add(
+                "hidden"
+            );
+
+            memoryGalaxy.classList.remove(
+                "screen-exit"
+            );
+
+
+            /*
+             * Return to Universe
+             */
+
+            world.classList.remove(
+                "hidden"
+            );
+
+        }, 900);
+
+    }
+
+
+    if (closeMemories) {
+
+        closeMemories.addEventListener(
+            "click",
+            closeMemoryGalaxy
+        );
+
+    }
+
+
+    /* =====================================
+       KEYBOARD CONTROLS
+    ====================================== */
 
     document.addEventListener(
         "keydown",
         event => {
 
-            if (event.key === "Escape") {
+            /*
+             * ESC closes normal modal
+             */
 
-                closeSection();
+            if (
+                event.key === "Escape"
+            ) {
+
+                closeSectionModal();
 
             }
 
         }
+    );
+
+
+    /* =====================================
+       PREVENT DOUBLE-TAP ZOOM
+       ON INTERACTIVE ELEMENTS
+    ====================================== */
+
+    document
+        .querySelectorAll(
+            "button"
+        )
+        .forEach(button => {
+
+            button.addEventListener(
+                "dblclick",
+                event => {
+
+                    event.preventDefault();
+
+                }
+            );
+
+        });
+
+
+    /* =====================================
+       PAGE VISIBILITY
+    ====================================== */
+
+    document.addEventListener(
+        "visibilitychange",
+        () => {
+
+            /*
+             * If the user leaves the page,
+             * don't reset the experience.
+             *
+             * This keeps the current screen
+             * when they return.
+             */
+
+            if (
+                document.visibilityState ===
+                "visible"
+            ) {
+
+                console.log(
+                    "Welcome back to Our Little World."
+                );
+
+            }
+
+        }
+    );
+
+
+    /* =====================================
+       DEBUG MESSAGE
+    ====================================== */
+
+    console.log(
+        "🌌 Our Little World — V4 loaded."
     );
 
 });
