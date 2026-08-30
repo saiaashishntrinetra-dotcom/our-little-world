@@ -1,5 +1,11 @@
 /* =========================================
-   V3 ANIMATIONS
+   OUR LITTLE WORLD — V5
+   LIVING UNIVERSE ANIMATIONS
+========================================= */
+
+
+/* =========================================
+   INTRO
 ========================================= */
 
 .intro-content {
@@ -17,6 +23,11 @@
         subtitleAppear 2s ease 1s forwards;
 }
 
+
+/* =========================================
+   REVEAL
+========================================= */
+
 .reveal-content {
     animation:
         revealAppear 3s
@@ -31,12 +42,22 @@
         forwards;
 }
 
+
+/* =========================================
+   UNIVERSE
+========================================= */
+
 .universe-center {
     animation:
         universeAppear 2.5s
         cubic-bezier(.16,1,.3,1)
         forwards;
 }
+
+
+/* =========================================
+   CONSTELLATIONS
+========================================= */
 
 .constellation {
     animation:
@@ -61,6 +82,304 @@
     animation-delay: .9s;
 }
 
+
+/* =========================================
+   V5 — LIVING STARS
+========================================= */
+
+.universe-star {
+    animation:
+        starTwinkle
+        4s
+        ease-in-out
+        infinite;
+
+    will-change:
+        opacity,
+        transform;
+}
+
+
+/* =========================================
+   STAR TWINKLE
+========================================= */
+
+@keyframes starTwinkle {
+
+    0% {
+        opacity: .2;
+        transform: scale(.75);
+    }
+
+    25% {
+        opacity: .5;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.15);
+    }
+
+    75% {
+        opacity: .45;
+        transform: scale(.9);
+    }
+
+    100% {
+        opacity: .2;
+        transform: scale(.75);
+    }
+
+}
+
+
+/* =========================================
+   V5 — STAR BURST
+========================================= */
+
+.star-burst {
+    position: fixed;
+
+    width: 8px;
+    height: 8px;
+
+    margin-left: -4px;
+    margin-top: -4px;
+
+    border-radius: 50%;
+
+    background: #ffffff;
+
+    pointer-events: none;
+
+    z-index: 9999;
+
+    animation:
+        burstCore
+        .8s
+        ease-out
+        forwards;
+
+    box-shadow:
+        0 0 10px rgba(255,255,255,.8),
+        0 0 30px rgba(255,255,255,.35);
+}
+
+
+@keyframes burstCore {
+
+    0% {
+        opacity: 1;
+        transform: scale(.4);
+    }
+
+    35% {
+        opacity: 1;
+        transform: scale(1.5);
+    }
+
+    100% {
+        opacity: 0;
+        transform: scale(3);
+    }
+
+}
+
+
+/* =========================================
+   BURST PARTICLES
+========================================= */
+
+.burst-particle {
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    width: 3px;
+    height: 3px;
+
+    margin-left: -1.5px;
+    margin-top: -1.5px;
+
+    border-radius: 50%;
+
+    background: #ffffff;
+
+    pointer-events: none;
+
+    animation:
+        burstParticle
+        .75s
+        cubic-bezier(.16,1,.3,1)
+        forwards;
+
+    box-shadow:
+        0 0 8px
+        rgba(255,255,255,.8);
+}
+
+
+@keyframes burstParticle {
+
+    0% {
+        opacity: 1;
+
+        transform:
+            translate(0,0)
+            scale(1);
+    }
+
+    100% {
+        opacity: 0;
+
+        transform:
+            translate(var(--x),var(--y))
+            scale(.15);
+    }
+
+}
+
+
+/* =========================================
+   V5 — SHOOTING STAR
+========================================= */
+
+.shooting-star {
+    position: fixed;
+
+    width: 100px;
+    height: 1px;
+
+    pointer-events: none;
+
+    z-index: 999;
+
+    transform:
+        rotate(-35deg);
+
+    transform-origin:
+        left center;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,.9),
+            rgba(255,255,255,.1)
+        );
+
+    box-shadow:
+        0 0 8px
+        rgba(255,255,255,.45);
+
+    animation:
+        shootingStar
+        1.6s
+        ease-out
+        forwards;
+}
+
+
+@keyframes shootingStar {
+
+    0% {
+        opacity: 0;
+
+        transform:
+            translate3d(0,0,0)
+            rotate(-35deg)
+            scaleX(.2);
+    }
+
+    10% {
+        opacity: 1;
+
+        transform:
+            translate3d(0,0,0)
+            rotate(-35deg)
+            scaleX(1);
+    }
+
+    75% {
+        opacity: .8;
+    }
+
+    100% {
+        opacity: 0;
+
+        transform:
+            translate3d(260px,180px,0)
+            rotate(-35deg)
+            scaleX(1.4);
+    }
+
+}
+
+
+/* =========================================
+   V5 — CONSTELLATION GLOW
+========================================= */
+
+.constellation {
+
+    transition:
+        transform .5s
+            cubic-bezier(.16,1,.3,1),
+
+        filter .5s ease;
+}
+
+
+.constellation:hover {
+
+    filter:
+        drop-shadow(
+            0 0 15px
+            rgba(255,255,255,.18)
+        );
+}
+
+
+/* =========================================
+   V5 — NODE PULSE
+========================================= */
+
+.node-glow {
+
+    animation:
+        nodePulse
+        3.5s
+        ease-in-out
+        infinite;
+}
+
+
+@keyframes nodePulse {
+
+    0%,
+    100% {
+        opacity: .35;
+
+        transform:
+            scale(1);
+    }
+
+    50% {
+        opacity: .7;
+
+        transform:
+            scale(1.35);
+    }
+
+}
+
+
+/* =========================================
+   MODAL
+========================================= */
+
 .modal-card {
     animation:
         modalAppear .5s
@@ -70,133 +389,304 @@
 
 
 /* =========================================
-   KEYFRAMES
+   INTRO APPEAR
 ========================================= */
 
 @keyframes introAppear {
 
     from {
         opacity: 0;
-        transform: translateY(20px);
+
+        transform:
+            translateY(20px);
     }
 
     to {
         opacity: 1;
-        transform: translateY(0);
+
+        transform:
+            translateY(0);
     }
+
 }
+
+
+/* =========================================
+   LINE GLOW
+========================================= */
 
 @keyframes lineGlow {
 
     from {
         width: 0;
+
         opacity: 0;
     }
 
     to {
         width: 90px;
+
         opacity: 1;
     }
+
 }
+
+
+/* =========================================
+   SUBTITLE APPEAR
+========================================= */
 
 @keyframes subtitleAppear {
 
     from {
         opacity: 0;
-        transform: translateY(12px);
+
+        transform:
+            translateY(12px);
     }
 
     to {
         opacity: .7;
-        transform: translateY(0);
+
+        transform:
+            translateY(0);
     }
+
 }
+
+
+/* =========================================
+   REVEAL APPEAR
+========================================= */
 
 @keyframes revealAppear {
 
     from {
         opacity: 0;
-        transform: scale(1.04);
-        filter: blur(8px);
+
+        transform:
+            scale(1.04);
+
+        filter:
+            blur(8px);
     }
 
     to {
         opacity: 1;
-        transform: scale(1);
-        filter: blur(0);
+
+        transform:
+            scale(1);
+
+        filter:
+            blur(0);
     }
+
 }
+
+
+/* =========================================
+   NAME REVEAL
+========================================= */
 
 @keyframes nameReveal {
 
     from {
         opacity: 0;
-        letter-spacing: .15em;
-        filter: blur(12px);
+
+        letter-spacing:
+            .15em;
+
+        filter:
+            blur(12px);
     }
 
     to {
         opacity: 1;
-        letter-spacing: -.06em;
-        filter: blur(0);
+
+        letter-spacing:
+            -.06em;
+
+        filter:
+            blur(0);
     }
+
 }
+
+
+/* =========================================
+   UNIVERSE APPEAR
+========================================= */
 
 @keyframes universeAppear {
 
     from {
         opacity: 0;
-        transform: translate(-50%,-50%) scale(.96);
-        filter: blur(8px);
+
+        transform:
+            translate(-50%,-50%)
+            scale(.96);
+
+        filter:
+            blur(8px);
     }
 
     to {
         opacity: 1;
-        transform: translate(-50%,-50%) scale(1);
-        filter: blur(0);
+
+        transform:
+            translate(-50%,-50%)
+            scale(1);
+
+        filter:
+            blur(0);
     }
+
 }
+
+
+/* =========================================
+   NODE APPEAR
+========================================= */
 
 @keyframes nodeAppear {
 
     from {
         opacity: 0;
-        transform: scale(.4);
+
+        transform:
+            scale(.4);
     }
 
     to {
         opacity: 1;
-        transform: scale(1);
+
+        transform:
+            scale(1);
     }
+
 }
+
+
+/* =========================================
+   MODAL APPEAR
+========================================= */
 
 @keyframes modalAppear {
 
     from {
         opacity: 0;
-        transform: translateY(20px) scale(.96);
+
+        transform:
+            translateY(20px)
+            scale(.96);
     }
 
     to {
         opacity: 1;
-        transform: translateY(0) scale(1);
+
+        transform:
+            translateY(0)
+            scale(1);
     }
+
 }
 
+
+/* =========================================
+   SCREEN EXIT
+========================================= */
+
 .screen-exit {
+
     animation:
-        screenExit 1.8s ease forwards;
+        screenExit
+        1.8s
+        ease
+        forwards;
 }
+
 
 @keyframes screenExit {
 
     from {
         opacity: 1;
-        filter: blur(0);
+
+        filter:
+            blur(0);
     }
 
     to {
         opacity: 0;
-        filter: blur(10px);
+
+        filter:
+            blur(10px);
     }
+
+}
+
+
+/* =========================================
+   V5 — MEMORY CARD ENTRANCE
+========================================= */
+
+.memory-card {
+
+    animation:
+        memoryCardAppear
+        .8s
+        cubic-bezier(.16,1,.3,1)
+        backwards;
+}
+
+
+@keyframes memoryCardAppear {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(30px)
+            scale(.96);
+
+        filter:
+            blur(5px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+
+        filter:
+            blur(0);
+    }
+
+}
+
+
+/* =========================================
+   ACCESSIBILITY
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+
+        animation-duration:
+            .01ms !important;
+
+        animation-iteration-count:
+            1 !important;
+
+        transition-duration:
+            .01ms !important;
+
+        scroll-behavior:
+            auto !important;
+    }
+
 }
