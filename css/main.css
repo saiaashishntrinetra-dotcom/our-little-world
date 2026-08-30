@@ -1,1 +1,223 @@
+/* =========================================
+   OUR LITTLE WORLD
+   MAIN STYLES
+========================================= */
 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    background: #050508;
+    color: #ffffff;
+    font-family: Georgia, "Times New Roman", serif;
+    overflow: hidden;
+}
+
+
+/* =========================================
+   GENERAL
+========================================= */
+
+.screen {
+    position: fixed;
+    inset: 0;
+
+    width: 100%;
+    height: 100dvh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+}
+
+.hidden {
+    display: none;
+}
+
+
+/* =========================================
+   INTRO
+========================================= */
+
+#intro {
+    background:
+        radial-gradient(
+            circle at center,
+            #10101a 0%,
+            #050508 45%,
+            #000000 100%
+        );
+}
+
+.intro-content {
+    position: relative;
+    z-index: 10;
+
+    text-align: center;
+
+    max-width: 800px;
+    padding: 30px;
+}
+
+
+/* DATE */
+
+.date {
+    font-family: Arial, sans-serif;
+
+    font-size: 0.85rem;
+    letter-spacing: 0.7rem;
+
+    opacity: 0.65;
+
+    margin-bottom: 35px;
+}
+
+
+/* LINE */
+
+.intro-line {
+    width: 0;
+    height: 1px;
+
+    background: rgba(255, 255, 255, 0.6);
+
+    margin: 0 auto 35px;
+}
+
+
+/* TITLE */
+
+#intro-title {
+    font-size: clamp(2rem, 5vw, 4rem);
+
+    font-weight: 400;
+    letter-spacing: -0.03em;
+
+    line-height: 1.15;
+}
+
+
+/* SUBTITLE */
+
+#intro-subtitle {
+    margin-top: 20px;
+
+    font-size: clamp(1rem, 2vw, 1.4rem);
+
+    opacity: 0;
+
+    letter-spacing: 0.08em;
+}
+
+
+/* =========================================
+   WORLD
+========================================= */
+
+#world {
+    background:
+        radial-gradient(
+            circle at center,
+            #151522,
+            #050508 65%,
+            #000000
+        );
+}
+
+.world-content {
+    text-align: center;
+    padding: 30px;
+
+    max-width: 700px;
+}
+
+.eyebrow {
+    font-family: Arial, sans-serif;
+
+    font-size: 0.7rem;
+
+    letter-spacing: 0.5rem;
+
+    opacity: 0.5;
+
+    margin-bottom: 25px;
+}
+
+.world-content h1 {
+    font-size: clamp(4rem, 12vw, 9rem);
+
+    font-weight: 400;
+
+    letter-spacing: -0.05em;
+}
+
+.world-description {
+    margin-top: 20px;
+
+    font-size: 1.1rem;
+
+    opacity: 0.65;
+}
+
+
+/* =========================================
+   BUTTON
+========================================= */
+
+#enter-world {
+    margin-top: 45px;
+
+    padding: 16px 30px;
+
+    background: transparent;
+
+    border: 1px solid rgba(255, 255, 255, 0.25);
+
+    color: white;
+
+    border-radius: 999px;
+
+    cursor: pointer;
+
+    font-size: 0.85rem;
+
+    letter-spacing: 0.15em;
+
+    transition:
+        background 0.3s ease,
+        border-color 0.3s ease,
+        transform 0.3s ease;
+}
+
+#enter-world:hover {
+    background: rgba(255, 255, 255, 0.08);
+
+    border-color: rgba(255, 255, 255, 0.6);
+
+    transform: translateY(-3px);
+}
+
+
+/* =========================================
+   STAR FIELD
+========================================= */
+
+#stars {
+    position: absolute;
+
+    inset: 0;
+
+    pointer-events: none;
+}
