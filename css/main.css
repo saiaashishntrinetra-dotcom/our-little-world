@@ -693,3 +693,540 @@ body {
 
     opacity: .3;
 }
+/* =========================================
+   V4 — MEMORY GALAXY
+========================================= */
+
+#memory-galaxy {
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(28, 25, 42, 0.5),
+            #030305 65%,
+            #000000
+        );
+
+    z-index: 30;
+}
+
+
+.memory-universe {
+    position: relative;
+
+    width: 100%;
+    height: 100%;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    padding:
+        70px
+        7%
+        80px;
+}
+
+
+/* =========================================
+   BACK BUTTON
+========================================= */
+
+.memory-back {
+    position: fixed;
+
+    top: 30px;
+    left: 35px;
+
+    z-index: 50;
+
+    border: 0;
+
+    background: transparent;
+
+    color: white;
+
+    font-family: Arial, sans-serif;
+
+    font-size: .6rem;
+
+    letter-spacing: .25rem;
+
+    opacity: .45;
+
+    cursor: pointer;
+
+    transition:
+        opacity .3s ease,
+        transform .3s ease;
+}
+
+.memory-back:hover {
+    opacity: 1;
+
+    transform: translateX(-4px);
+}
+
+
+/* =========================================
+   HEADING
+========================================= */
+
+.memory-heading {
+    text-align: center;
+
+    padding-top: 25px;
+
+    margin-bottom: 65px;
+}
+
+.memory-heading p {
+    font-family: Arial, sans-serif;
+
+    font-size: .58rem;
+
+    letter-spacing: .45rem;
+
+    opacity: .35;
+
+    margin-bottom: 22px;
+}
+
+.memory-heading h1 {
+    font-size: clamp(
+        3rem,
+        7vw,
+        6rem
+    );
+
+    font-weight: 400;
+
+    letter-spacing: -.055em;
+
+    line-height: 1;
+}
+
+.memory-heading span {
+    display: block;
+
+    margin-top: 22px;
+
+    font-size: 1rem;
+
+    letter-spacing: .08rem;
+
+    opacity: .45;
+}
+
+
+/* =========================================
+   MEMORY GRID
+========================================= */
+
+.memory-grid {
+    width: min(
+        1100px,
+        100%
+    );
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 28px;
+}
+
+
+/* =========================================
+   MEMORY CARD
+========================================= */
+
+.memory-card {
+    position: relative;
+
+    min-height: 310px;
+
+    padding: 25px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.09);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.055),
+            rgba(255,255,255,.012)
+        );
+
+    backdrop-filter: blur(10px);
+
+    cursor: pointer;
+
+    overflow: hidden;
+
+    transition:
+        transform .5s
+        cubic-bezier(.16,1,.3,1),
+        border-color .5s ease,
+        box-shadow .5s ease;
+}
+
+
+.memory-card:hover {
+    transform:
+        translateY(-10px)
+        scale(1.015);
+
+    border-color:
+        rgba(255,255,255,.25);
+
+    box-shadow:
+        0 25px 70px
+        rgba(0,0,0,.5);
+}
+
+
+/* =========================================
+   CARD IMAGE
+========================================= */
+
+.memory-image {
+    width: 100%;
+
+    height: 190px;
+
+    margin-bottom: 22px;
+
+    background:
+        radial-gradient(
+            circle at 50% 40%,
+            rgba(255,255,255,.13),
+            rgba(255,255,255,.02) 45%,
+            rgba(0,0,0,.25)
+        );
+
+    background-size: cover;
+
+    background-position: center;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    overflow: hidden;
+}
+
+
+.memory-image-placeholder {
+    font-size: 2.5rem;
+
+    opacity: .25;
+
+    animation:
+        memoryPulse 4s
+        ease-in-out
+        infinite;
+}
+
+
+/* =========================================
+   CARD TEXT
+========================================= */
+
+.memory-date {
+    font-family: Arial, sans-serif;
+
+    font-size: .52rem;
+
+    letter-spacing: .3rem;
+
+    opacity: .35;
+
+    margin-bottom: 10px;
+}
+
+.memory-card h2 {
+    font-size: 1.55rem;
+
+    font-weight: 400;
+
+    letter-spacing: -.02em;
+}
+
+.memory-card p {
+    margin-top: 10px;
+
+    font-size: .85rem;
+
+    line-height: 1.6;
+
+    opacity: .42;
+}
+
+
+/* =========================================
+   CARD STAR
+========================================= */
+
+.memory-card::before {
+    content: "✦";
+
+    position: absolute;
+
+    top: 18px;
+    right: 20px;
+
+    font-size: .75rem;
+
+    opacity: .35;
+
+    transition:
+        transform .5s ease,
+        opacity .5s ease;
+}
+
+.memory-card:hover::before {
+    transform: scale(1.7);
+
+    opacity: .8;
+}
+
+
+/* =========================================
+   FOOTER
+========================================= */
+
+.memory-footer {
+    text-align: center;
+
+    margin-top: 70px;
+
+    font-family: Arial, sans-serif;
+
+    font-size: .5rem;
+
+    letter-spacing: .45rem;
+
+    opacity: .2;
+}
+
+
+/* =========================================
+   MEMORY VIEWER
+========================================= */
+
+.memory-viewer {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 200;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+}
+
+.viewer-backdrop {
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        rgba(0,0,0,.82);
+
+    backdrop-filter:
+        blur(18px);
+}
+
+
+.viewer-card {
+    position: relative;
+
+    z-index: 2;
+
+    width: min(
+        900px,
+        90%
+    );
+
+    max-height: 90vh;
+
+    overflow: auto;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(25,25,35,.95),
+            rgba(3,3,7,.98)
+        );
+
+    border:
+        1px solid
+        rgba(255,255,255,.12);
+
+    box-shadow:
+        0 40px 120px
+        rgba(0,0,0,.8);
+
+    animation:
+        viewerAppear .6s
+        cubic-bezier(.16,1,.3,1)
+        forwards;
+}
+
+
+/* =========================================
+   VIEWER IMAGE
+========================================= */
+
+.viewer-image {
+    width: 100%;
+
+    height: 470px;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255,255,255,.1),
+            rgba(0,0,0,.4)
+        );
+
+    background-size: cover;
+
+    background-position: center;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+}
+
+
+/* =========================================
+   VIEWER INFO
+========================================= */
+
+.viewer-info {
+    padding: 35px 45px 45px;
+}
+
+.viewer-info p:first-child {
+    font-family: Arial, sans-serif;
+
+    font-size: .55rem;
+
+    letter-spacing: .35rem;
+
+    opacity: .35;
+}
+
+.viewer-info h2 {
+    margin-top: 14px;
+
+    font-size: 2.5rem;
+
+    font-weight: 400;
+}
+
+.viewer-info div {
+    width: 55px;
+
+    height: 1px;
+
+    margin: 22px 0;
+
+    background:
+        rgba(255,255,255,.3);
+}
+
+#viewer-description {
+    font-size: 1rem;
+
+    line-height: 1.8;
+
+    opacity: .55;
+}
+
+
+/* =========================================
+   CLOSE
+========================================= */
+
+.viewer-close {
+    position: absolute;
+
+    top: 15px;
+    right: 20px;
+
+    z-index: 5;
+
+    border: 0;
+
+    background: transparent;
+
+    color: white;
+
+    font-size: 2rem;
+
+    cursor: pointer;
+
+    opacity: .5;
+
+    transition:
+        opacity .3s ease;
+}
+
+.viewer-close:hover {
+    opacity: 1;
+}
+
+
+/* =========================================
+   ANIMATION
+========================================= */
+
+@keyframes memoryPulse {
+
+    0%, 100% {
+        opacity: .18;
+
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: .4;
+
+        transform: scale(1.15);
+    }
+}
+
+@keyframes viewerAppear {
+
+    from {
+        opacity: 0;
+
+        transform:
+            scale(.94)
+            translateY(20px);
+
+        filter: blur(8px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            scale(1)
+            translateY(0);
+
+        filter: blur(0);
+    }
+}
