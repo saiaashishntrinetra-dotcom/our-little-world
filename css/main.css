@@ -1135,11 +1135,20 @@ button {
 
 /* =========================================
    SOUNDTRACK
+   V6.2 — MUSIC PLAYER
 ========================================= */
 
-.music-content {
+.soundtrack-list {
     width:
-        min(900px, 92%);
+        min(650px, 100%);
+
+    margin: 42px auto 0;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 10px;
 }
 
 
@@ -1151,17 +1160,17 @@ button {
     position: relative;
 
     width:
-        min(700px, 100%);
+        min(650px, 100%);
 
     margin:
-        50px auto 0;
+        45px auto 0;
 
     padding:
-        48px 45px 42px;
+        42px 45px 38px;
 
     border:
         1px solid
-        rgba(255,255,255,0.1);
+        rgba(255,255,255,0.11);
 
     background:
         linear-gradient(
@@ -1170,25 +1179,20 @@ button {
             rgba(255,255,255,0.012)
         );
 
-    box-shadow:
-        0 30px 100px
-        rgba(0,0,0,0.5);
-
     backdrop-filter:
         blur(18px);
 
     -webkit-backdrop-filter:
         blur(18px);
 
+    box-shadow:
+        0 30px 100px
+        rgba(0,0,0,0.45);
+
     overflow: hidden;
 
     isolation: isolate;
 }
-
-
-/* =========================================
-   PLAYER ATMOSPHERE
-========================================= */
 
 .music-player::before {
     content: "";
@@ -1198,8 +1202,8 @@ button {
     left: 50%;
     top: 50%;
 
-    width: 360px;
-    height: 360px;
+    width: 300px;
+    height: 300px;
 
     transform:
         translate(-50%, -50%);
@@ -1209,22 +1213,13 @@ button {
     background:
         radial-gradient(
             circle,
-            rgba(255,255,255,0.06),
+            rgba(255,255,255,0.045),
             transparent 68%
         );
-
-    filter:
-        blur(8px);
 
     pointer-events: none;
 
     z-index: -2;
-
-    animation:
-        musicBreathing
-        8s
-        ease-in-out
-        infinite;
 }
 
 .music-player::after {
@@ -1237,8 +1232,8 @@ button {
     background:
         radial-gradient(
             ellipse at center,
-            transparent 35%,
-            rgba(0,0,0,0.25) 100%
+            transparent 25%,
+            rgba(0,0,0,0.2) 100%
         );
 
     pointer-events: none;
@@ -1248,36 +1243,36 @@ button {
 
 
 /* =========================================
-   PLAYER ORBIT
+   MUSIC ORBIT
 ========================================= */
 
 .music-player-orbit {
     position: absolute;
 
     left: 50%;
-    top: 48px;
+    top: 43%;
 
-    width: 150px;
-    height: 150px;
+    width: 125px;
+    height: 125px;
 
     transform:
-        translateX(-50%);
+        translate(-50%, -50%);
 
     border:
         1px solid
-        rgba(255,255,255,0.09);
+        rgba(255,255,255,0.07);
 
     border-radius: 50%;
 
     pointer-events: none;
-
-    opacity: 0.8;
 
     animation:
         musicOrbit
         18s
         linear
         infinite;
+
+    z-index: 0;
 }
 
 .music-player-orbit::before,
@@ -1289,24 +1284,28 @@ button {
     left: 50%;
     top: 50%;
 
-    width: 100%;
-    height: 45%;
-
-    border:
-        1px solid
-        rgba(255,255,255,0.07);
-
     border-radius: 50%;
 
     transform:
-        translate(-50%, -50%)
-        rotate(55deg);
+        translate(-50%, -50%);
+}
+
+.music-player-orbit::before {
+    width: 85px;
+    height: 85px;
+
+    border:
+        1px solid
+        rgba(255,255,255,0.04);
 }
 
 .music-player-orbit::after {
-    transform:
-        translate(-50%, -50%)
-        rotate(-55deg);
+    width: 155px;
+    height: 155px;
+
+    border:
+        1px solid
+        rgba(255,255,255,0.025);
 }
 
 .music-player-orbit span {
@@ -1318,54 +1317,55 @@ button {
     width: 6px;
     height: 6px;
 
-    transform:
-        translateX(-50%);
+    margin-left: -3px;
 
     border-radius: 50%;
 
     background: #ffffff;
 
     box-shadow:
-        0 0 10px
-        rgba(255,255,255,0.9),
-        0 0 25px
-        rgba(255,255,255,0.4);
+        0 0 8px
+        rgba(255,255,255,0.8),
+        0 0 20px
+        rgba(255,255,255,0.25);
 }
 
 
 /* =========================================
-   PLAYER STAR
+   MUSIC STAR
 ========================================= */
 
 .music-player-star {
     position: relative;
 
-    width: 72px;
-    height: 72px;
+    width: 90px;
+    height: 90px;
 
     margin:
-        18px auto 34px;
+        0 auto 25px;
 
     display: flex;
 
     align-items: center;
     justify-content: center;
 
-    font-size: 2rem;
+    font-size: 2.1rem;
 
-    z-index: 3;
+    opacity: 0.85;
 
     text-shadow:
         0 0 15px
-        rgba(255,255,255,0.8),
-        0 0 40px
-        rgba(255,255,255,0.35);
+        rgba(255,255,255,0.35),
+        0 0 35px
+        rgba(255,255,255,0.12);
 
     animation:
         musicStarPulse
         4s
         ease-in-out
         infinite;
+
+    z-index: 2;
 }
 
 .music-player-star::before {
@@ -1373,23 +1373,21 @@ button {
 
     position: absolute;
 
-    inset: 0;
-
-    border:
-        1px solid
-        rgba(255,255,255,0.12);
+    inset: 18px;
 
     border-radius: 50%;
 
-    box-shadow:
-        0 0 35px
-        rgba(255,255,255,0.05);
+    background:
+        radial-gradient(
+            circle,
+            rgba(255,255,255,0.12),
+            transparent 70%
+        );
 
-    animation:
-        musicStarRing
-        4s
-        ease-in-out
-        infinite;
+    filter:
+        blur(8px);
+
+    z-index: -1;
 }
 
 
@@ -1400,7 +1398,7 @@ button {
 .music-now-playing {
     position: relative;
 
-    z-index: 4;
+    z-index: 5;
 
     text-align: center;
 }
@@ -1411,30 +1409,33 @@ button {
         Helvetica,
         sans-serif;
 
-    font-size: 0.55rem;
+    font-size: 0.52rem;
 
-    letter-spacing: 0.45rem;
+    letter-spacing: 0.4rem;
 
     text-transform: uppercase;
 
-    opacity: 0.35;
+    opacity: 0.3;
 
-    margin-bottom: 14px;
+    margin-bottom: 12px;
 }
 
-.music-now-playing h2 {
+#music-track-title {
     font-size:
-        clamp(1.7rem, 4vw, 2.6rem);
+        clamp(1.55rem, 4vw, 2.15rem);
 
     font-weight: 400;
 
-    line-height: 1.15;
+    line-height: 1.2;
 
     letter-spacing: -0.025em;
+
+    transition:
+        opacity 0.3s ease;
 }
 
 #music-track-artist {
-    margin-top: 10px;
+    margin-top: 9px;
 
     font-family:
         Arial,
@@ -1443,11 +1444,11 @@ button {
 
     font-size: 0.62rem;
 
-    letter-spacing: 0.22rem;
+    letter-spacing: 0.18rem;
 
     text-transform: uppercase;
 
-    opacity: 0.35;
+    opacity: 0.38;
 }
 
 
@@ -1458,13 +1459,12 @@ button {
 .music-progress {
     position: relative;
 
-    z-index: 4;
-
-    width:
-        min(560px, 100%);
+    width: 100%;
 
     margin:
-        38px auto 0;
+        35px auto 0;
+
+    z-index: 5;
 }
 
 #music-progress {
@@ -1475,14 +1475,14 @@ button {
     width: 100%;
     height: 2px;
 
+    display: block;
+
     margin: 0;
-
-    border: 0;
-
-    border-radius: 999px;
 
     background:
         rgba(255,255,255,0.12);
+
+    border: 0;
 
     outline: none;
 
@@ -1492,19 +1492,14 @@ button {
 #music-progress::-webkit-slider-runnable-track {
     height: 2px;
 
-    border-radius: 999px;
-
     background:
-        rgba(255,255,255,0.12);
-}
-
-#music-progress::-moz-range-track {
-    height: 2px;
+        linear-gradient(
+            90deg,
+            rgba(255,255,255,0.65),
+            rgba(255,255,255,0.2)
+        );
 
     border-radius: 999px;
-
-    background:
-        rgba(255,255,255,0.12);
 }
 
 #music-progress::-webkit-slider-thumb {
@@ -1524,12 +1519,43 @@ button {
     background: #ffffff;
 
     box-shadow:
-        0 0 12px
-        rgba(255,255,255,0.6);
+        0 0 8px
+        rgba(255,255,255,0.5);
+
+    cursor: pointer;
 
     transition:
-        transform 0.25s ease,
-        box-shadow 0.25s ease;
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+#music-progress:hover::-webkit-slider-thumb {
+    transform:
+        scale(1.35);
+
+    box-shadow:
+        0 0 12px
+        rgba(255,255,255,0.75);
+}
+
+#music-progress::-moz-range-track {
+    height: 2px;
+
+    background:
+        rgba(255,255,255,0.12);
+
+    border: 0;
+
+    border-radius: 999px;
+}
+
+#music-progress::-moz-range-progress {
+    height: 2px;
+
+    background:
+        rgba(255,255,255,0.65);
+
+    border-radius: 999px;
 }
 
 #music-progress::-moz-range-thumb {
@@ -1543,25 +1569,28 @@ button {
     background: #ffffff;
 
     box-shadow:
-        0 0 12px
-        rgba(255,255,255,0.6);
+        0 0 8px
+        rgba(255,255,255,0.5);
 
     cursor: pointer;
 }
 
-#music-progress:hover::-webkit-slider-thumb {
-    transform:
-        scale(1.4);
+#music-progress:focus-visible {
+    outline:
+        1px solid
+        rgba(255,255,255,0.55);
 
-    box-shadow:
-        0 0 18px
-        rgba(255,255,255,0.85);
+    outline-offset: 6px;
 }
+
+
+/* =========================================
+   MUSIC TIME
+========================================= */
 
 .music-time {
     display: flex;
 
-    align-items: center;
     justify-content: space-between;
 
     margin-top: 10px;
@@ -1571,7 +1600,7 @@ button {
         Helvetica,
         sans-serif;
 
-    font-size: 0.5rem;
+    font-size: 0.52rem;
 
     letter-spacing: 0.08rem;
 
@@ -1586,16 +1615,16 @@ button {
 .music-controls {
     position: relative;
 
-    z-index: 4;
-
     display: flex;
 
     align-items: center;
     justify-content: center;
 
-    gap: 28px;
+    gap: 22px;
 
-    margin-top: 30px;
+    margin-top: 28px;
+
+    z-index: 5;
 }
 
 .music-controls button {
@@ -1606,6 +1635,8 @@ button {
 
     align-items: center;
     justify-content: center;
+
+    padding: 0;
 
     border:
         1px solid
@@ -1623,32 +1654,32 @@ button {
         Helvetica,
         sans-serif;
 
-    font-size: 0.65rem;
+    font-size: 0.62rem;
 
     cursor: pointer;
 
     opacity: 0.6;
 
     transition:
-        transform 0.35s ease,
-        opacity 0.35s ease,
-        background 0.35s ease,
-        border-color 0.35s ease,
-        box-shadow 0.35s ease;
+        transform 0.3s ease,
+        opacity 0.3s ease,
+        background 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
 }
 
 .music-controls button:hover,
 .music-controls button:focus-visible {
-    opacity: 1;
-
     transform:
         scale(1.08);
+
+    opacity: 1;
 
     background:
         rgba(255,255,255,0.08);
 
     border-color:
-        rgba(255,255,255,0.3);
+        rgba(255,255,255,0.28);
 
     box-shadow:
         0 8px 25px
@@ -1663,16 +1694,16 @@ button {
 .music-controls button:focus-visible {
     outline:
         1px solid
-        rgba(255,255,255,0.65);
+        rgba(255,255,255,0.7);
 
     outline-offset: 4px;
 }
 
 .music-controls .music-play {
-    width: 64px;
-    height: 64px;
+    width: 58px;
+    height: 58px;
 
-    font-size: 0.9rem;
+    font-size: 0.8rem;
 
     opacity: 0.9;
 
@@ -1680,17 +1711,17 @@ button {
         rgba(255,255,255,0.2);
 
     background:
-        rgba(255,255,255,0.055);
+        rgba(255,255,255,0.07);
 
     box-shadow:
         0 0 30px
-        rgba(255,255,255,0.05);
+        rgba(255,255,255,0.04);
 }
 
 .music-controls .music-play:hover,
 .music-controls .music-play:focus-visible {
     background:
-        rgba(255,255,255,0.12);
+        rgba(255,255,255,0.13);
 
     border-color:
         rgba(255,255,255,0.45);
@@ -1702,41 +1733,24 @@ button {
 
 
 /* =========================================
-   SOUNDTRACK PLAYLIST
+   PLAYLIST TRACK
 ========================================= */
-
-.soundtrack-list {
-    width:
-        min(700px, 100%);
-
-    margin:
-        28px auto 0;
-
-    display: flex;
-
-    flex-direction: column;
-
-    gap: 8px;
-}
 
 .soundtrack-track {
     position: relative;
 
     width: 100%;
 
-    min-height: 70px;
+    min-height: 68px;
 
-    display: grid;
-
-    grid-template-columns:
-        45px
-        1fr
-        45px;
+    display: flex;
 
     align-items: center;
 
+    gap: 17px;
+
     padding:
-        12px 18px;
+        14px 18px;
 
     border:
         1px solid
@@ -1754,9 +1768,10 @@ button {
     overflow: hidden;
 
     transition:
-        transform 0.35s ease,
-        border-color 0.35s ease,
+        transform 0.35s
+        cubic-bezier(.16,1,.3,1),
         background 0.35s ease,
+        border-color 0.35s ease,
         box-shadow 0.35s ease;
 }
 
@@ -1767,21 +1782,17 @@ button {
 
     left: 0;
     top: 0;
+    bottom: 0;
 
-    width: 2px;
-    height: 100%;
+    width: 1px;
 
     background:
         rgba(255,255,255,0.5);
 
     opacity: 0;
 
-    transform:
-        scaleY(0.3);
-
     transition:
-        opacity 0.35s ease,
-        transform 0.35s ease;
+        opacity 0.35s ease;
 }
 
 .soundtrack-track:hover,
@@ -1789,15 +1800,21 @@ button {
     transform:
         translateX(5px);
 
-    border-color:
-        rgba(255,255,255,0.16);
-
     background:
         rgba(255,255,255,0.045);
 
+    border-color:
+        rgba(255,255,255,0.13);
+
     box-shadow:
-        0 10px 35px
+        0 12px 35px
         rgba(0,0,0,0.2);
+}
+
+.soundtrack-track:hover::before,
+.soundtrack-track:focus-visible::before,
+.soundtrack-track.active::before {
+    opacity: 1;
 }
 
 .soundtrack-track:focus-visible {
@@ -1805,52 +1822,62 @@ button {
         1px solid
         rgba(255,255,255,0.45);
 
-    outline-offset: 2px;
+    outline-offset: 3px;
 }
 
-.soundtrack-track.active {
-    border-color:
-        rgba(255,255,255,0.16);
 
-    background:
-        rgba(255,255,255,0.04);
+/* =========================================
+   TRACK STAR
+========================================= */
+
+.track-star {
+    width: 25px;
+
+    flex:
+        0 0 25px;
+
+    font-size: 0.85rem;
+
+    text-align: center;
+
+    opacity: 0.25;
+
+    transition:
+        transform 0.35s ease,
+        opacity 0.35s ease,
+        text-shadow 0.35s ease;
 }
 
-.soundtrack-track.active::before {
-    opacity: 0.8;
+.soundtrack-track:hover .track-star,
+.soundtrack-track:focus-visible .track-star,
+.soundtrack-track.active .track-star {
+    opacity: 0.75;
 
     transform:
-        scaleY(1);
+        scale(1.15);
+
+    text-shadow:
+        0 0 10px
+        rgba(255,255,255,0.45);
 }
 
-.soundtrack-track.playing::before {
+.soundtrack-track.playing .track-star {
     animation:
-        trackPulse
-        1.5s
+        playlistStarPulse
+        1.8s
         ease-in-out
         infinite;
 }
 
-.track-star {
-    font-size: 0.9rem;
 
-    opacity: 0.35;
-
-    transition:
-        transform 0.35s ease,
-        opacity 0.35s ease;
-}
-
-.soundtrack-track.active .track-star,
-.soundtrack-track:hover .track-star {
-    opacity: 0.9;
-
-    transform:
-        scale(1.25);
-}
+/* =========================================
+   TRACK INFO
+========================================= */
 
 .track-info {
     min-width: 0;
+
+    flex: 1;
 
     display: flex;
 
@@ -1860,7 +1887,7 @@ button {
 }
 
 .track-title {
-    font-size: 0.98rem;
+    font-size: 0.95rem;
 
     line-height: 1.3;
 
@@ -1870,9 +1897,14 @@ button {
 
     text-overflow: ellipsis;
 
-    opacity: 0.8;
+    opacity: 0.75;
+
+    transition:
+        opacity 0.3s ease;
 }
 
+.soundtrack-track:hover .track-title,
+.soundtrack-track:focus-visible .track-title,
 .soundtrack-track.active .track-title {
     opacity: 1;
 }
@@ -1883,28 +1915,105 @@ button {
         Helvetica,
         sans-serif;
 
-    font-size: 0.5rem;
-
-    text-transform: uppercase;
+    font-size: 0.48rem;
 
     letter-spacing: 0.18rem;
 
-    opacity: 0.3;
+    text-transform: uppercase;
+
+    opacity: 0.28;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
 }
 
+
+/* =========================================
+   TRACK NUMBER
+========================================= */
+
 .track-number {
-    justify-self: end;
+    flex:
+        0 0 auto;
 
     font-family:
         Arial,
         Helvetica,
         sans-serif;
 
-    font-size: 0.52rem;
+    font-size: 0.5rem;
 
     letter-spacing: 0.12rem;
 
     opacity: 0.22;
+
+    transition:
+        opacity 0.3s ease;
+}
+
+.soundtrack-track:hover .track-number,
+.soundtrack-track:focus-visible .track-number,
+.soundtrack-track.active .track-number {
+    opacity: 0.55;
+}
+
+
+/* =========================================
+   ACTIVE TRACK
+========================================= */
+
+.soundtrack-track.active {
+    background:
+        rgba(255,255,255,0.035);
+
+    border-color:
+        rgba(255,255,255,0.16);
+}
+
+.soundtrack-track.active .track-title {
+    opacity: 0.95;
+}
+
+.soundtrack-track.playing {
+    box-shadow:
+        inset 0 0 35px
+        rgba(255,255,255,0.018);
+}
+
+
+/* =========================================
+   MUSIC CHAPTER ACTIVE STATE
+========================================= */
+
+#music-chapter.music-active .music-player {
+    animation:
+        musicPlayerAppear
+        0.8s
+        cubic-bezier(.16,1,.3,1)
+        forwards;
+}
+
+#music-chapter.music-active .soundtrack-track {
+    animation:
+        playlistAppear
+        0.6s
+        cubic-bezier(.16,1,.3,1)
+        backwards;
+}
+
+#music-chapter.music-active .soundtrack-track:nth-child(1) {
+    animation-delay: 0.15s;
+}
+
+#music-chapter.music-active .soundtrack-track:nth-child(2) {
+    animation-delay: 0.23s;
+}
+
+#music-chapter.music-active .soundtrack-track:nth-child(3) {
+    animation-delay: 0.31s;
 }
 
 
@@ -2673,6 +2782,98 @@ button {
 
 
 /* =========================================
+   MUSIC ANIMATIONS
+========================================= */
+
+@keyframes musicPlayerAppear {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(18px)
+            scale(.985);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+}
+
+@keyframes playlistAppear {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(12px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+}
+
+@keyframes musicOrbit {
+
+    from {
+        transform:
+            translate(-50%, -50%)
+            rotate(0deg);
+    }
+
+    to {
+        transform:
+            translate(-50%, -50%)
+            rotate(360deg);
+    }
+}
+
+@keyframes musicStarPulse {
+
+    0%,
+    100% {
+        transform:
+            scale(1);
+
+        opacity: 0.65;
+    }
+
+    50% {
+        transform:
+            scale(1.12);
+
+        opacity: 1;
+    }
+}
+
+@keyframes playlistStarPulse {
+
+    0%,
+    100% {
+        transform:
+            scale(1);
+
+        opacity: 0.65;
+    }
+
+    50% {
+        transform:
+            scale(1.3);
+
+        opacity: 1;
+    }
+}
+
+
+/* =========================================
    VIEWER ANIMATION
 ========================================= */
 
@@ -2694,94 +2895,6 @@ button {
             scale(1);
     }
 
-}
-
-
-/* =========================================
-   MUSIC ANIMATIONS
-========================================= */
-
-@keyframes musicBreathing {
-
-    0%,
-    100% {
-        opacity: 0.55;
-
-        transform:
-            translate(-50%, -50%)
-            scale(0.92);
-    }
-
-    50% {
-        opacity: 1;
-
-        transform:
-            translate(-50%, -50%)
-            scale(1.08);
-    }
-}
-
-@keyframes musicOrbit {
-
-    from {
-        transform:
-            translateX(-50%)
-            rotate(0deg);
-    }
-
-    to {
-        transform:
-            translateX(-50%)
-            rotate(360deg);
-    }
-}
-
-@keyframes musicStarPulse {
-
-    0%,
-    100% {
-        transform:
-            scale(0.95);
-
-        opacity: 0.65;
-    }
-
-    50% {
-        transform:
-            scale(1.08);
-
-        opacity: 1;
-    }
-}
-
-@keyframes musicStarRing {
-
-    0%,
-    100% {
-        transform:
-            scale(0.95);
-
-        opacity: 0.35;
-    }
-
-    50% {
-        transform:
-            scale(1.15);
-
-        opacity: 0.8;
-    }
-}
-
-@keyframes trackPulse {
-
-    0%,
-    100% {
-        opacity: 0.35;
-    }
-
-    50% {
-        opacity: 1;
-    }
 }
 
 
@@ -2905,6 +3018,149 @@ button {
 
 
 /* =========================================
+   MOBILE MUSIC PLAYER
+========================================= */
+
+@media (max-width: 700px) {
+
+    .music-player {
+        width: 100%;
+
+        padding:
+            32px 22px 28px;
+
+        margin-top: 35px;
+    }
+
+    .music-player-star {
+        width: 75px;
+        height: 75px;
+
+        font-size: 1.8rem;
+
+        margin-bottom: 20px;
+    }
+
+    .music-player-orbit {
+        width: 105px;
+        height: 105px;
+    }
+
+    .music-player-orbit::before {
+        width: 72px;
+        height: 72px;
+    }
+
+    .music-player-orbit::after {
+        width: 135px;
+        height: 135px;
+    }
+
+    .music-progress {
+        margin-top: 30px;
+    }
+
+    .music-controls {
+        gap: 17px;
+
+        margin-top: 25px;
+    }
+
+    .music-controls button {
+        width: 40px;
+        height: 40px;
+    }
+
+    .music-controls .music-play {
+        width: 54px;
+        height: 54px;
+    }
+
+    .soundtrack-list {
+        margin-top: 30px;
+    }
+
+    .soundtrack-track {
+        min-height: 64px;
+
+        padding:
+            12px 14px;
+
+        gap: 12px;
+    }
+
+    .track-star {
+        flex-basis: 20px;
+
+        width: 20px;
+    }
+
+    .track-title {
+        font-size: 0.88rem;
+    }
+
+    .track-artist {
+        font-size: 0.43rem;
+
+        letter-spacing: 0.14rem;
+    }
+
+    .track-number {
+        font-size: 0.45rem;
+    }
+}
+
+
+/* =========================================
+   SMALL MOBILE
+========================================= */
+
+@media (max-width: 420px) {
+
+    .music-player {
+        padding:
+            28px 17px 24px;
+    }
+
+    .music-player-star {
+        width: 68px;
+        height: 68px;
+
+        font-size: 1.65rem;
+    }
+
+    #music-track-title {
+        font-size: 1.4rem;
+    }
+
+    #music-track-artist {
+        font-size: 0.55rem;
+
+        letter-spacing: 0.13rem;
+    }
+
+    .music-controls {
+        gap: 13px;
+    }
+
+    .music-controls button {
+        width: 38px;
+        height: 38px;
+    }
+
+    .music-controls .music-play {
+        width: 50px;
+        height: 50px;
+    }
+
+    .soundtrack-track {
+        padding:
+            11px 12px;
+    }
+}
+
+
+/* =========================================
    TOUCH DEVICES
 ========================================= */
 
@@ -2932,163 +3188,25 @@ button {
     .soundtrack-track:hover {
         transform: none;
 
-        border-color:
-            rgba(255,255,255,0.055);
-
         background:
             rgba(255,255,255,0.018);
+
+        border-color:
+            rgba(255,255,255,0.055);
 
         box-shadow: none;
     }
 
-}
+    .music-controls button:hover {
+        transform: none;
 
+        background:
+            rgba(255,255,255,0.025);
 
-/* =========================================
-   RESPONSIVE MUSIC
-========================================= */
+        border-color:
+            rgba(255,255,255,0.1);
 
-@media (max-width: 700px) {
-
-    .music-content {
-        width: 94%;
-    }
-
-    .music-player {
-        margin-top: 38px;
-
-        padding:
-            42px 22px 32px;
-    }
-
-    .music-player-orbit {
-        top: 42px;
-
-        width: 125px;
-        height: 125px;
-    }
-
-    .music-player-star {
-        width: 62px;
-        height: 62px;
-
-        margin:
-            16px auto 30px;
-
-        font-size: 1.7rem;
-    }
-
-    .music-progress {
-        margin-top: 32px;
-    }
-
-    .music-controls {
-        gap: 20px;
-
-        margin-top: 26px;
-    }
-
-    .music-controls button {
-        width: 38px;
-        height: 38px;
-    }
-
-    .music-controls .music-play {
-        width: 58px;
-        height: 58px;
-    }
-
-    .soundtrack-list {
-        margin-top: 22px;
-    }
-
-    .soundtrack-track {
-        min-height: 64px;
-
-        grid-template-columns:
-            34px
-            1fr
-            35px;
-
-        padding:
-            10px 12px;
-    }
-
-    .track-title {
-        font-size: 0.88rem;
-    }
-
-    .track-artist {
-        font-size: 0.45rem;
-
-        letter-spacing: 0.13rem;
-    }
-
-    .track-number {
-        font-size: 0.45rem;
-    }
-
-}
-
-
-/* =========================================
-   SMALL MOBILE
-========================================= */
-
-@media (max-width: 430px) {
-
-    .chapter-content {
-        width: 94%;
-
-        padding:
-            70px 10px 50px;
-    }
-
-    .chapter-back {
-        top: 22px;
-        left: 20px;
-    }
-
-    .music-player {
-        padding:
-            36px 16px 28px;
-    }
-
-    .music-player-label {
-        font-size: 0.48rem;
-
-        letter-spacing: 0.34rem;
-    }
-
-    .music-now-playing h2 {
-        font-size: 1.55rem;
-    }
-
-    #music-track-artist {
-        font-size: 0.52rem;
-
-        letter-spacing: 0.16rem;
-    }
-
-    .music-controls {
-        gap: 16px;
-    }
-
-    .music-controls button {
-        width: 36px;
-        height: 36px;
-    }
-
-    .music-controls .music-play {
-        width: 55px;
-        height: 55px;
-    }
-
-    .soundtrack-track {
-        grid-template-columns:
-            28px
-            1fr
-            30px;
+        box-shadow: none;
     }
 
 }
