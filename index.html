@@ -971,7 +971,7 @@
 
 
     <!-- =========================================
-         SOUNDTRACK
+         V6 — THE SOUNDTRACK
     ========================================== -->
 
     <section
@@ -987,6 +987,7 @@
         >
             ← BACK
         </button>
+
 
         <div class="chapter-content music-content">
 
@@ -1008,26 +1009,114 @@
                 places, and moments.
             </p>
 
-            <div
-                id="soundtrack-list"
-                class="soundtrack-list"
-            >
 
-                <div class="track-placeholder">
+            <!-- =================================
+                 MUSIC PLAYER
+            ================================== -->
 
-                    <span
-                        aria-hidden="true"
-                    >
-                        ✦
-                    </span>
+            <div class="music-player">
 
-                    <p>
-                        Our soundtrack is waiting.
+                <div
+                    class="music-player-orbit"
+                    aria-hidden="true"
+                >
+                    <span></span>
+                </div>
+
+
+                <div
+                    class="music-player-star"
+                    aria-hidden="true"
+                >
+                    ✦
+                </div>
+
+
+                <div class="music-now-playing">
+
+                    <p class="music-player-label">
+                        NOW PLAYING
+                    </p>
+
+                    <h2 id="music-track-title">
+                        Our First Song
+                    </h2>
+
+                    <p id="music-track-artist">
+                        Our Little World
                     </p>
 
                 </div>
 
+
+                <div class="music-progress">
+
+                    <input
+                        id="music-progress"
+                        type="range"
+                        min="0"
+                        max="100"
+                        value="0"
+                        step="0.1"
+                        aria-label="Song progress"
+                    >
+
+                    <div class="music-time">
+
+                        <span id="music-current-time">
+                            0:00
+                        </span>
+
+                        <span id="music-duration">
+                            0:00
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="music-controls">
+
+                    <button
+                        id="music-previous"
+                        type="button"
+                        aria-label="Previous song"
+                    >
+                        ◀
+                    </button>
+
+                    <button
+                        id="music-play"
+                        class="music-play"
+                        type="button"
+                        aria-label="Play"
+                    >
+                        ▶
+                    </button>
+
+                    <button
+                        id="music-next"
+                        type="button"
+                        aria-label="Next song"
+                    >
+                        ▶
+                    </button>
+
+                </div>
+
             </div>
+
+
+            <!-- =================================
+                 PLAYLIST
+            ================================== -->
+
+            <div
+                id="soundtrack-list"
+                class="soundtrack-list"
+                aria-label="Soundtrack playlist"
+            ></div>
 
         </div>
 
@@ -1158,7 +1247,7 @@
 
 <!-- =========================================
      JAVASCRIPT
-========================================== -->
+========================================= -->
 
 <!-- V5 — Universe -->
 <script
@@ -1177,6 +1266,13 @@
 <!-- V5 — Letter -->
 <script
     src="js/letter.js"
+    defer
+></script>
+
+
+<!-- V6 — Soundtrack -->
+<script
+    src="js/music.js"
     defer
 ></script>
 
